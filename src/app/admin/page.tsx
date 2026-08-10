@@ -605,7 +605,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", background: "var(--color-bg)" }}>
+    <div className="admin-container" style={{ display: "flex", minHeight: "100vh", background: "var(--color-bg)" }}>
       {/* Toast Notification */}
       {toastMessage && (
         <div

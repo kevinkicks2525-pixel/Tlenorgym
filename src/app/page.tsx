@@ -9,11 +9,9 @@ import Planning from "@/components/Planning";
 import ContactSection from "@/components/ContactSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
-import { Milk, Pill, Zap, MessageSquare, ArrowRight, Package, ShoppingBag } from "lucide-react";
-import { getSupabaseProducts, isSupabaseConfigured } from "@/lib/supabase";
+import { MessageSquare, ArrowRight, Package, ShoppingBag } from "lucide-react";
 
 import ProductDetailModal from "@/components/ProductDetailModal";
-import { Eye } from "lucide-react";
 
 import { getLocalProducts, fetchAndMergeProducts, subscribeProducts, ProductItem } from "@/lib/product-store";
 import { trackProductClick } from "@/lib/analytics";
@@ -22,16 +20,16 @@ export default function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<ProductItem[]>([]);
   const [selectedProductDetail, setSelectedProductDetail] = useState<ProductItem | null>(null);
 
-  const loadData = async () => {
-    const local = getLocalProducts();
-    if (local.length > 0) {
-      setFeaturedProducts(local.slice(0, 3));
-    }
-    const merged = await fetchAndMergeProducts();
-    setFeaturedProducts(merged.slice(0, 3));
-  };
-
   useEffect(() => {
+    const loadData = async () => {
+      const local = getLocalProducts();
+      if (local.length > 0) {
+        setFeaturedProducts(local.slice(0, 3));
+      }
+      const merged = await fetchAndMergeProducts();
+      setFeaturedProducts(merged.slice(0, 3));
+    };
+
     loadData();
     const unsubscribe = subscribeProducts(() => {
       loadData();

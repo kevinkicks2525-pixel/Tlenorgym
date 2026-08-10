@@ -170,7 +170,8 @@ export default function DedicatedProductPage({ params }: { params: Promise<{ id:
     );
   }
 
-  const isAvailable = product.stock_quantity > 0;
+  const safeStockQty = product.stock_quantity ?? (product.stock ? 10 : 0);
+  const isAvailable = safeStockQty > 0;
 
   return (
     <div style={{ background: "var(--color-bg)", minHeight: "100vh", paddingTop: "40px", paddingBottom: "80px" }}>
@@ -349,7 +350,7 @@ export default function DedicatedProductPage({ params }: { params: Promise<{ id:
                   color: isAvailable ? "#25d366" : "var(--color-red)",
                 }}
               >
-                {isAvailable ? `✓ En Stock (${product.stock_quantity} disponible${product.stock_quantity > 1 ? "s" : ""})` : "Rupture de Stock"}
+                {isAvailable ? `✓ En Stock (${safeStockQty} disponible${safeStockQty > 1 ? "s" : ""})` : "Rupture de Stock"}
               </span>
             </div>
 
@@ -374,7 +375,7 @@ export default function DedicatedProductPage({ params }: { params: Promise<{ id:
                   <span style={{ fontSize: "1.1rem", fontWeight: 800, padding: "0 16px" }}>{quantity}</span>
                   <button
                     type="button"
-                    onClick={() => setQuantity(Math.min(product.stock_quantity, quantity + 1))}
+                    onClick={() => setQuantity(Math.min(safeStockQty, quantity + 1))}
                     style={{ background: "none", border: "none", color: "#fff", padding: "10px 16px", cursor: "pointer" }}
                   >
                     <Plus size={16} />

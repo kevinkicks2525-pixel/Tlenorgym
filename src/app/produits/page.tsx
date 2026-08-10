@@ -22,41 +22,41 @@ export default function ProduitsPage() {
   const [categories, setCategories] = useState<string[]>(["Tous"]);
   const { totalItems, setIsCartOpen } = useCart();
 
-  const loadData = async () => {
-    const local = getLocalProducts();
-    if (local.length > 0) {
-      setProductList(local);
-      updateCategoryTabs(local);
-    }
-
-    const merged = await fetchAndMergeProducts();
-    setProductList(merged);
-    updateCategoryTabs(merged);
-  };
-
-  const updateCategoryTabs = (products: ProductItem[]) => {
-    const catSet = new Set<string>();
-    products.forEach((p) => {
-      if (p.category) catSet.add(p.category.trim());
-    });
-
-    // Check custom admin categories in localStorage
-    try {
-      const savedCats = localStorage.getItem("tlenorgym_admin_categories");
-      if (savedCats) {
-        const parsed = JSON.parse(savedCats);
-        if (Array.isArray(parsed)) {
-          parsed.forEach((c: string) => catSet.add(c.trim()));
-        }
-      }
-    } catch {
-      // fallback
-    }
-
-    setCategories(["Tous", ...Array.from(catSet)]);
-  };
-
   useEffect(() => {
+    const updateCategoryTabs = (products: ProductItem[]) => {
+      const catSet = new Set<string>();
+      products.forEach((p) => {
+        if (p.category) catSet.add(p.category.trim());
+      });
+
+      // Check custom admin categories in localStorage
+      try {
+        const savedCats = localStorage.getItem("tlenorgym_admin_categories");
+        if (savedCats) {
+          const parsed = JSON.parse(savedCats);
+          if (Array.isArray(parsed)) {
+            parsed.forEach((c: string) => catSet.add(c.trim()));
+          }
+        }
+      } catch {
+        // fallback
+      }
+
+      setCategories(["Tous", ...Array.from(catSet)]);
+    };
+
+    const loadData = async () => {
+      const local = getLocalProducts();
+      if (local.length > 0) {
+        setProductList(local);
+        updateCategoryTabs(local);
+      }
+
+      const merged = await fetchAndMergeProducts();
+      setProductList(merged);
+      updateCategoryTabs(merged);
+    };
+
     loadData();
     const unsubscribe = subscribeProducts(() => {
       loadData();
@@ -162,7 +162,7 @@ export default function ProduitsPage() {
                   href={`/produits/${encodeURIComponent(product.id || product.name)}`}
                   className="product-card"
                   style={{
-                    opacity: product.stock_quantity > 0 ? 1 : 0.75,
+                    opacity: (product.stock_quantity ?? (product.stock ? 10 : 0)) > 0 ? 1 : 0.75,
                     cursor: "pointer",
                     display: "flex",
                     flexDirection: "column",
@@ -198,7 +198,7 @@ export default function ProduitsPage() {
                       categoryIcons[product.category] || <Package size={32} className="text-accent" />
                     )}
                     <span className="product-card__category">{product.category}</span>
-                    {product.stock_quantity <= 0 && (
+                    {(product.stock_quantity ?? (product.stock ? 10 : 0)) <= 0 && (
                       <span
                         style={{
                           position: "absolute",
@@ -228,7 +228,7 @@ export default function ProduitsPage() {
 
                       <div style={{ display: "flex", gap: "0.4rem" }}>
                         <span
-                          className={`btn ${product.stock_quantity > 0 ? "btn--primary" : "btn--outline"} btn--sm`}
+                          className={`btn ${(product.stock_quantity ?? (product.stock ? 10 : 0)) > 0 ? "btn--primary" : "btn--outline"} btn--sm`}
                           style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", fontWeight: 700 }}
                         >
                           <ShoppingBag size={14} /> Commander

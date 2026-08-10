@@ -6,7 +6,7 @@ import { useCart } from "@/context/CartContext";
 import { wilayas, getDeliveryCost } from "@/data/delivery-data";
 import communesData from "@/data/communes.json";
 import bureauxData from "@/data/bureaux.json";
-import { createSupabaseOrder, isSupabaseConfigured, OrderItemData } from "@/lib/supabase";
+import { OrderItemData } from "@/lib/supabase";
 import { saveNewOrder } from "@/lib/order-store";
 
 interface YalidineBureau {
@@ -30,6 +30,8 @@ export default function CartDrawer() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [savedOrderTotal, setSavedOrderTotal] = useState(0);
+  const [savedOrderPhone, setSavedOrderPhone] = useState("");
 
   const currentWilaya = useMemo(() => {
     return wilayas.find((w) => w.code === selectedWilayaCode) || wilayas[15];
@@ -96,6 +98,10 @@ export default function CartDrawer() {
 
     // Save locally, send Telegram & update store
     await saveNewOrder(newOrder);
+
+    // Save values for success screen before clearing cart
+    setSavedOrderTotal(grandTotal);
+    setSavedOrderPhone(phone);
 
     setIsSubmitting(false);
     setStep("success");
@@ -360,7 +366,7 @@ export default function CartDrawer() {
               </div>
               <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.75rem", marginBottom: "0.5rem" }}>Merci pour votre commande !</h3>
               <p style={{ color: "var(--color-text-secondary)", fontSize: "0.95rem", lineHeight: 1.6, marginBottom: "1.5rem" }}>
-                Votre commande a été transmise avec succès. Notre équipe vous contactera au <strong style={{ color: "var(--color-accent)" }}>{phone}</strong> pour confirmer l&apos;expédition.
+                Votre commande a été transmise avec succès. Notre équipe vous contactera au <strong style={{ color: "var(--color-accent)" }}>{savedOrderPhone}</strong> pour confirmer l&apos;expédition.
               </p>
 
               <div style={{ background: "var(--color-bg)", padding: "1.25rem", borderRadius: "var(--radius-md)", textAlign: "left", marginBottom: "1.5rem", fontSize: "0.9rem" }}>
@@ -370,7 +376,7 @@ export default function CartDrawer() {
                   <strong>Mode :</strong> {deliveryType === "home" ? `À domicile (${selectedCommune})` : `Bureau Yalidine (${selectedBureau})`}
                 </div>
                 <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#25d366", marginTop: "0.5rem", paddingTop: "0.5rem", borderTop: "1px solid var(--color-border)" }}>
-                  Total à payer : {grandTotal.toLocaleString()} DA
+                  Total à payer : {savedOrderTotal.toLocaleString()} DA
                 </div>
               </div>
 

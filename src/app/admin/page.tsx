@@ -82,7 +82,8 @@ export default function AdminPage() {
   // Session Persistence via localStorage
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
     if (typeof window !== "undefined") {
-      return localStorage.getItem("tlenorgym_admin_auth") === "true";
+      const token = localStorage.getItem("tlenorgym_admin_auth");
+      return Boolean(token && token.startsWith("admin_"));
     }
     return false;
   });
@@ -157,22 +158,37 @@ export default function AdminPage() {
       syncOrders();
     });
 
-    // Load Categories
+    // Load Categories (merge Supabase + localStorage without overwriting)
     async function syncCategories() {
-      if (isSupabaseConfigured) {
-        const supaCats = await getSupabaseCategories();
-        if (supaCats && supaCats.length > 0) {
-          setCategoriesList(supaCats.map((c: any) => c.name));
-        }
-      }
+      const catSet = new Set<string>(defaultCategories);
+
+      // Load from localStorage first
       try {
         const savedCats = localStorage.getItem("tlenorgym_admin_categories");
         if (savedCats) {
           const parsed = JSON.parse(savedCats);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            setCategoriesList(parsed);
+          if (Array.isArray(parsed)) {
+            parsed.forEach((c: string) => catSet.add(c));
           }
         }
+      } catch {
+        // fallback
+      }
+
+      // Merge with Supabase categories
+      if (isSupabaseConfigured) {
+        const supaCats = await getSupabaseCategories();
+        if (supaCats && supaCats.length > 0) {
+          supaCats.forEach((c: { name: string }) => catSet.add(c.name));
+        }
+      }
+
+      const merged = Array.from(catSet);
+      setCategoriesList(merged);
+
+      // Persist merged categories
+      try {
+        localStorage.setItem("tlenorgym_admin_categories", JSON.stringify(merged));
       } catch {
         // fallback
       }
@@ -242,15 +258,25 @@ export default function AdminPage() {
     }, 3500);
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (passcode === "tlenor123" || passcode === "admin") {
-      setIsAuthenticated(true);
-      if (typeof window !== "undefined") {
-        localStorage.setItem("tlenorgym_admin_auth", "true");
+    try {
+      const res = await fetch("/api/admin-auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ passcode }),
+      });
+      const data = await res.json();
+      if (data.ok && data.token) {
+        setIsAuthenticated(true);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("tlenorgym_admin_auth", data.token);
+        }
+        setPassError(false);
+      } else {
+        setPassError(true);
       }
-      setPassError(false);
-    } else {
+    } catch {
       setPassError(true);
     }
   };

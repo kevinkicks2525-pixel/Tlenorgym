@@ -15,35 +15,28 @@ import { getSupabaseProducts, isSupabaseConfigured } from "@/lib/supabase";
 import ProductDetailModal from "@/components/ProductDetailModal";
 import { Eye } from "lucide-react";
 
+import { getLocalProducts, fetchAndMergeProducts, subscribeProducts, ProductItem } from "@/lib/product-store";
+import { trackProductClick } from "@/lib/analytics";
+
 export default function Home() {
-  const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
-  const [selectedProductDetail, setSelectedProductDetail] = useState<any | null>(null);
+  const [featuredProducts, setFeaturedProducts] = useState<ProductItem[]>([]);
+  const [selectedProductDetail, setSelectedProductDetail] = useState<ProductItem | null>(null);
+
+  const loadData = async () => {
+    const local = getLocalProducts();
+    if (local.length > 0) {
+      setFeaturedProducts(local.slice(0, 3));
+    }
+    const merged = await fetchAndMergeProducts();
+    setFeaturedProducts(merged.slice(0, 3));
+  };
 
   useEffect(() => {
-    async function loadData() {
-      let items: any[] = [];
-      if (isSupabaseConfigured) {
-        const supaData = await getSupabaseProducts();
-        if (supaData && supaData.length > 0) {
-          items = supaData;
-        }
-      }
-      try {
-        const saved = localStorage.getItem("tlenorgym_admin_products");
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            const combinedMap = new Map();
-            [...items, ...parsed].forEach((p) => combinedMap.set(p.name.toLowerCase(), p));
-            items = Array.from(combinedMap.values());
-          }
-        }
-      } catch {
-        // fallback
-      }
-      setFeaturedProducts(items.slice(0, 3));
-    }
     loadData();
+    const unsubscribe = subscribeProducts(() => {
+      loadData();
+    });
+    return () => unsubscribe();
   }, []);
 
   return (
@@ -106,7 +99,7 @@ export default function Home() {
                     </div>
                     <div className="product-card__body">
                       <h3 className="product-card__name">{product.name}</h3>
-                      <p className="product-card__desc">{product.desc || product.description || "Disponible sur place"}</p>
+                      <p className="product-card__desc">{product.desc || "Disponible sur place"}</p>
                       <div className="product-card__footer">
                         <span className="product-card__price">{product.price}</span>
                         <button

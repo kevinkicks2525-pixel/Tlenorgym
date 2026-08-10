@@ -2,24 +2,11 @@
 
 import { useState, useEffect } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
-import { Milk, Moon, Pill, Dna, Zap, Flame, Sparkles, Fish, Cookie, MessageSquare, Phone, Package, ShoppingBag, Eye } from "lucide-react";
-import { getSupabaseProducts, getSupabaseCategories, isSupabaseConfigured } from "@/lib/supabase";
+import { Milk, Moon, Pill, Dna, Zap, Flame, Sparkles, Fish, Cookie, MessageSquare, Phone, Package, Eye } from "lucide-react";
 import ProductDetailModal from "@/components/ProductDetailModal";
 import { useCart } from "@/context/CartContext";
-
-interface ProductUIItem {
-  id?: number | string;
-  name: string;
-  desc: string;
-  price: string;
-  category: string;
-  stock: boolean;
-  stock_quantity?: number;
-  image?: string;
-  icon: React.ReactNode;
-}
-
-const defaultCategories = ["Tous", "Protéines", "Acides Aminés", "Performance", "Vitamines", "Snacks"];
+import { getLocalProducts, fetchAndMergeProducts, subscribeProducts, ProductItem } from "@/lib/product-store";
+import { trackProductClick } from "@/lib/analytics";
 
 const categoryIcons: Record<string, React.ReactNode> = {
   "Protéines": <Milk size={44} className="text-accent" />,
@@ -30,92 +17,62 @@ const categoryIcons: Record<string, React.ReactNode> = {
 };
 
 export default function ProduitsPage() {
-  const { addToCart } = useCart();
   const [activeCategory, setActiveCategory] = useState("Tous");
-  const [categories, setCategories] = useState<string[]>(defaultCategories);
-  const [productList, setProductList] = useState<ProductUIItem[]>([]);
-  const [selectedProductDetail, setSelectedProductDetail] = useState<ProductUIItem | null>(null);
+  const [productList, setProductList] = useState<ProductItem[]>([]);
+  const [categories, setCategories] = useState<string[]>(["Tous"]);
+  const [selectedProductDetail, setSelectedProductDetail] = useState<ProductItem | null>(null);
+
+  const loadData = async () => {
+    const local = getLocalProducts();
+    if (local.length > 0) {
+      setProductList(local);
+      updateCategoryTabs(local);
+    }
+
+    const merged = await fetchAndMergeProducts();
+    setProductList(merged);
+    updateCategoryTabs(merged);
+  };
+
+  const updateCategoryTabs = (products: ProductItem[]) => {
+    const catSet = new Set<string>();
+    products.forEach((p) => {
+      if (p.category) catSet.add(p.category.trim());
+    });
+
+    // Check custom admin categories in localStorage
+    try {
+      const savedCats = localStorage.getItem("tlenorgym_admin_categories");
+      if (savedCats) {
+        const parsed = JSON.parse(savedCats);
+        if (Array.isArray(parsed)) {
+          parsed.forEach((c: string) => catSet.add(c.trim()));
+        }
+      }
+    } catch {
+      // fallback
+    }
+
+    setCategories(["Tous", ...Array.from(catSet)]);
+  };
 
   useEffect(() => {
-    async function loadData() {
-      let loadedProducts: ProductUIItem[] = [];
-
-      // 1. Fetch Supabase Products
-      if (isSupabaseConfigured) {
-        const supaData = await getSupabaseProducts();
-        if (supaData && supaData.length > 0) {
-          loadedProducts = supaData.map((item) => ({
-            id: item.id,
-            name: item.name,
-            desc: item.description || "Supplément de qualité supérieure disponible à Tlénor Gym.",
-            price: item.price,
-            category: item.category,
-            stock: (item.stock_quantity ?? (item.stock ? 10 : 0)) > 0,
-            stock_quantity: item.stock_quantity ?? (item.stock ? 10 : 0),
-            image: item.image_url || "",
-            icon: categoryIcons[item.category] || <Package size={44} className="text-accent" />,
-          }));
-        }
-
-        // Fetch Supabase Categories
-        const supaCats = await getSupabaseCategories();
-        if (supaCats && supaCats.length > 0) {
-          setCategories(["Tous", ...supaCats.map((c: any) => c.name)]);
-        }
-      }
-
-      // 2. Merge from LocalStorage if available
-      try {
-        const savedProducts = localStorage.getItem("tlenorgym_admin_products");
-        if (savedProducts) {
-          const parsed = JSON.parse(savedProducts);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            const localMapped: ProductUIItem[] = parsed.map((item: any) => ({
-              id: item.id || item.name,
-              name: item.name,
-              desc: item.desc || item.description || "Supplément de qualité supérieure disponible à Tlénor Gym.",
-              price: item.price,
-              category: item.category,
-              stock: (item.stock_quantity ?? (item.stock ? 10 : 0)) > 0,
-              stock_quantity: item.stock_quantity ?? (item.stock ? 10 : 0),
-              image: item.image || item.image_url || "",
-              icon: categoryIcons[item.category] || <Package size={44} className="text-accent" />,
-            }));
-
-            // Merge unique items by name
-            const combinedMap = new Map<string, ProductUIItem>();
-            [...loadedProducts, ...localMapped].forEach((prod) => {
-              combinedMap.set(prod.name.toLowerCase(), prod);
-            });
-            loadedProducts = Array.from(combinedMap.values());
-          }
-        }
-      } catch {
-        // fallback
-      }
-
-      // Load Categories from LocalStorage if custom
-      try {
-        const savedCats = localStorage.getItem("tlenorgym_admin_categories");
-        if (savedCats) {
-          const parsed = JSON.parse(savedCats);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            setCategories(["Tous", ...parsed]);
-          }
-        }
-      } catch {
-        // fallback
-      }
-
-      setProductList(loadedProducts);
-    }
     loadData();
+    const unsubscribe = subscribeProducts(() => {
+      loadData();
+    });
+    return () => unsubscribe();
   }, []);
 
-  const filtered =
-    activeCategory === "Tous"
-      ? productList
-      : productList.filter((p) => p.category === activeCategory);
+  const handleSelectProduct = (product: ProductItem) => {
+    trackProductClick(product.name);
+    setSelectedProductDetail(product);
+  };
+
+  const filtered = productList.filter((p) => {
+    if (activeCategory === "Tous") return true;
+    return (p.category || "").trim().toLowerCase() === activeCategory.trim().toLowerCase();
+  });
 
   return (
     <>
@@ -141,7 +98,7 @@ export default function ProduitsPage() {
 
       <section className="section">
         <div className="container">
-          {/* Category Filter */}
+          {/* Category Filter Tabs */}
           <div
             style={{
               display: "flex",
@@ -155,28 +112,28 @@ export default function ProduitsPage() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`filter-btn ${activeCategory === cat ? "filter-btn--active" : ""}`}
+                className={`filter-btn ${activeCategory.toLowerCase() === cat.toLowerCase() ? "filter-btn--active" : ""}`}
               >
                 {cat}
               </button>
             ))}
           </div>
 
-          {/* Product Grid */}
+          {/* Products Grid */}
           <div className="products__grid">
             {filtered.map((product, i) => (
-              <ScrollReveal key={product.name + i} delay={i * 80}>
+              <ScrollReveal key={`${product.id || product.name}-${i}`} delay={i * 80}>
                 <div
                   className="product-card"
                   style={{
-                    opacity: product.stock ? 1 : 0.75,
+                    opacity: product.stock_quantity > 0 ? 1 : 0.75,
                     cursor: "pointer",
                     display: "flex",
                     flexDirection: "column",
                   }}
-                  onClick={() => setSelectedProductDetail(product)}
+                  onClick={() => handleSelectProduct(product)}
                 >
-                  {/* Clean Image Container */}
+                  {/* Image Container */}
                   <div
                     className="product-card__image"
                     style={{
@@ -202,10 +159,10 @@ export default function ProduitsPage() {
                         }}
                       />
                     ) : (
-                      product.icon
+                      categoryIcons[product.category] || <Package size={52} className="text-accent" />
                     )}
                     <span className="product-card__category">{product.category}</span>
-                    {!product.stock && (
+                    {product.stock_quantity <= 0 && (
                       <span
                         style={{
                           position: "absolute",
@@ -237,9 +194,9 @@ export default function ProduitsPage() {
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            setSelectedProductDetail(product);
+                            handleSelectProduct(product);
                           }}
-                          className={`btn ${product.stock ? "btn--primary" : "btn--outline"} btn--sm`}
+                          className={`btn ${product.stock_quantity > 0 ? "btn--primary" : "btn--outline"} btn--sm`}
                           style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
                         >
                           <Eye size={14} /> Voir

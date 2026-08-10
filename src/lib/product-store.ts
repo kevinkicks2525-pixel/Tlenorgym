@@ -20,18 +20,34 @@ export const defaultProductsList: ProductItem[] = [];
 
 export function getLocalProducts(): ProductItem[] {
   if (typeof window === "undefined") return [];
+  const results: ProductItem[] = [];
+  const map = new Map<string, ProductItem>();
+
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed;
+    const saved1 = localStorage.getItem("tlenorgym_admin_products");
+    if (saved1) {
+      const parsed1 = JSON.parse(saved1);
+      if (Array.isArray(parsed1)) {
+        parsed1.forEach((p) => p.name && map.set(p.name.trim().toLowerCase(), p));
       }
     }
   } catch {
     // fallback
   }
-  return [];
+
+  try {
+    const saved2 = localStorage.getItem("tlenorgym_products");
+    if (saved2) {
+      const parsed2 = JSON.parse(saved2);
+      if (Array.isArray(parsed2)) {
+        parsed2.forEach((p) => p.name && map.set(p.name.trim().toLowerCase(), p));
+      }
+    }
+  } catch {
+    // fallback
+  }
+
+  return Array.from(map.values());
 }
 
 export async function fetchAndMergeProducts(): Promise<ProductItem[]> {
@@ -93,7 +109,8 @@ export async function fetchAndMergeProducts(): Promise<ProductItem[]> {
 export function saveLocalProducts(products: ProductItem[]) {
   if (typeof window === "undefined") return;
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+    localStorage.setItem("tlenorgym_admin_products", JSON.stringify(products));
+    localStorage.setItem("tlenorgym_products", JSON.stringify(products));
     window.dispatchEvent(new Event(EVENT_NAME));
   } catch {
     // fallback

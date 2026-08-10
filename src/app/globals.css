@@ -1695,14 +1695,24 @@ h1, h2, h3, h4, h5, h6 {
 
   .admin-sidebar {
     position: fixed !important;
-    left: -280px;
-    top: 0;
-    bottom: 0;
-    transition: left 0.3s ease;
+    left: -320px !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    height: 100vh !important;
+    width: 280px !important;
+    z-index: 99999 !important;
+    transition: left 0.3s ease !important;
   }
 
   .admin-sidebar--open {
     left: 0 !important;
-    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.8);
+    box-shadow: 10px 0 50px rgba(0, 0, 0, 0.95) !important;
+  }
+
+  .admin-main-content {
+    padding: 1.25rem 1rem !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
   }
 }

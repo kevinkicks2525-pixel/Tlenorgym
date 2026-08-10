@@ -14,7 +14,9 @@ import {
   ChevronRight,
   Sparkles,
   Layers,
-  Activity
+  Activity,
+  X,
+  Menu
 } from "lucide-react";
 
 interface AdminSidebarProps {
@@ -84,18 +86,19 @@ export default function AdminSidebar({
 
   return (
     <>
-      {/* Mobile Sidebar Toggle Header */}
+      {/* Mobile Top Header */}
       <div
         style={{
           display: "none",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "1rem",
+          padding: "1rem 1.25rem",
           background: "var(--color-surface)",
           borderBottom: "1px solid var(--color-border)",
           position: "sticky",
           top: 0,
           zIndex: 999,
+          width: "100%",
         }}
         className="admin-mobile-header"
       >
@@ -105,11 +108,26 @@ export default function AdminSidebar({
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="btn btn--outline btn--sm"
-          style={{ padding: "6px 12px" }}
+          style={{ padding: "6px 12px", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
         >
-          Menu Admin
+          {mobileOpen ? <X size={18} /> : <Menu size={18} />} Menu Admin
         </button>
       </div>
+
+      {/* Mobile Drawer Backdrop */}
+      {mobileOpen && (
+        <div
+          onClick={() => setMobileOpen(false)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0, 0, 0, 0.75)",
+            backdropFilter: "blur(4px)",
+            zIndex: 99988,
+          }}
+          className="admin-mobile-backdrop"
+        />
+      )}
 
       {/* Sidebar Container */}
       <aside
@@ -123,7 +141,7 @@ export default function AdminSidebar({
           position: "sticky",
           top: 0,
           flexShrink: 0,
-          zIndex: 100,
+          zIndex: 99999,
         }}
         className={`admin-sidebar ${mobileOpen ? "admin-sidebar--open" : ""}`}
       >

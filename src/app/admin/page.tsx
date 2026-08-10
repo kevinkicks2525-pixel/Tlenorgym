@@ -639,7 +639,7 @@ export default function AdminPage() {
       />
 
       {/* Main Content Area */}
-      <main style={{ flex: 1, padding: "2rem 2.5rem", overflowY: "auto" }}>
+      <main className="admin-main-content" style={{ flex: 1, padding: "2rem 2.5rem", overflowY: "auto" }}>
         {/* Header Title */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem", borderBottom: "1px solid var(--color-border)", paddingBottom: "1.25rem" }}>
           <div>

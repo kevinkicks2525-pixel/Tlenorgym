@@ -104,12 +104,15 @@ export default function Navbar() {
           style={{
             position: "fixed",
             inset: 0,
-            zIndex: 99999,
-            background: "rgba(10, 10, 10, 0.96)",
-            backdropFilter: "blur(12px)",
+            zIndex: 9999999,
+            background: "#0a0a0a",
+            opacity: 1,
             display: "flex",
             flexDirection: "column",
             padding: "2rem 1.5rem",
+            width: "100vw",
+            height: "100vh",
+            overflowY: "auto",
           }}
         >
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "2.5rem", borderBottom: "1px solid var(--color-border)", paddingBottom: "1rem" }}>

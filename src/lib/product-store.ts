@@ -16,58 +16,7 @@ export interface ProductItem {
 const STORAGE_KEY = "tlenorgym_admin_products";
 const EVENT_NAME = "tlenorgym_products_updated";
 
-export const defaultProductsList: ProductItem[] = [
-  {
-    id: "default-1",
-    name: "Whey Protein Isolate 2kg",
-    category: "Protéines",
-    price: "12 500 DA",
-    stock: true,
-    stock_quantity: 15,
-    desc: "Isolat de petit-lait pur ultra-filtré, 27g de protéines par dose, pauvre en sucre et graisses.",
-    image: "https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    id: "default-2",
-    name: "BCAA 2:1:1 + Électrolytes",
-    category: "Acides Aminés",
-    price: "5 500 DA",
-    stock: true,
-    stock_quantity: 20,
-    desc: "Acides aminés ramifiés pour optimiser la récupération musculaire et l'hydratation.",
-    image: "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    id: "default-3",
-    name: "Pre-Workout Explosive Energy",
-    category: "Performance",
-    price: "6 800 DA",
-    stock: true,
-    stock_quantity: 12,
-    desc: "Booster d'entraînement ultra-puissant avec citrulline, bêta-alanine et énergie explosive.",
-    image: "https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    id: "default-4",
-    name: "Créatine Monohydrate 300g",
-    category: "Performance",
-    price: "4 800 DA",
-    stock: true,
-    stock_quantity: 18,
-    desc: "Créatine micronisée 100% pure pour augmenter la force, l'endurance et le volume musculaire.",
-    image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    id: "default-5",
-    name: "Multivitamines Pro Complex",
-    category: "Vitamines",
-    price: "3 900 DA",
-    stock: true,
-    stock_quantity: 25,
-    desc: "Complexe complet de vitamines, minéraux et antioxydants pour la santé globale des sportifs.",
-    image: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=600&q=80",
-  },
-];
+export const defaultProductsList: ProductItem[] = [];
 
 export function getLocalProducts(): ProductItem[] {
   if (typeof window === "undefined") return [];
@@ -98,8 +47,7 @@ export function getLocalProducts(): ProductItem[] {
     // fallback
   }
 
-  const items = Array.from(map.values());
-  return items.length > 0 ? items : defaultProductsList;
+  return Array.from(map.values());
 }
 
 export async function fetchAndMergeProducts(): Promise<ProductItem[]> {

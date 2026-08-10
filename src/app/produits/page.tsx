@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Milk, Moon, Pill, Dna, Zap, Flame, Sparkles, Fish, Cookie, MessageSquare, Phone, Package, Eye } from "lucide-react";
 import ProductDetailModal from "@/components/ProductDetailModal";
@@ -123,15 +124,17 @@ export default function ProduitsPage() {
           <div className="products__grid">
             {filtered.map((product, i) => (
               <ScrollReveal key={`${product.id || product.name}-${i}`} delay={i * 80}>
-                <div
+                <Link
+                  href={`/produits/${encodeURIComponent(product.id || product.name)}`}
                   className="product-card"
                   style={{
                     opacity: product.stock_quantity > 0 ? 1 : 0.75,
                     cursor: "pointer",
                     display: "flex",
                     flexDirection: "column",
+                    textDecoration: "none",
                   }}
-                  onClick={() => handleSelectProduct(product)}
+                  onClick={() => trackProductClick(product.name)}
                 >
                   {/* Image Container */}
                   <div
@@ -191,20 +194,16 @@ export default function ProduitsPage() {
                       <span className="product-card__price">{product.price}</span>
 
                       <div style={{ display: "flex", gap: "0.4rem" }}>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleSelectProduct(product);
-                          }}
+                        <span
                           className={`btn ${product.stock_quantity > 0 ? "btn--primary" : "btn--outline"} btn--sm`}
                           style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
                         >
-                          <Eye size={14} /> Voir
-                        </button>
+                          <Eye size={14} /> Voir Produit
+                        </span>
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </ScrollReveal>
             ))}
           </div>

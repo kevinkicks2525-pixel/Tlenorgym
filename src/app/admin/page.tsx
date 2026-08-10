@@ -53,6 +53,7 @@ import {
   isSupabaseConfigured 
 } from "@/lib/supabase";
 import { getLocalProducts, fetchAndMergeProducts, saveLocalProducts, ProductItem } from "@/lib/product-store";
+import { getLocalOrders, fetchAndMergeOrders, subscribeOrders } from "@/lib/order-store";
 import { getAnalyticsData, AnalyticsData } from "@/lib/analytics";
 
 interface OptimizableImageItem {
@@ -102,7 +103,7 @@ export default function AdminPage() {
   const [newCatName, setNewCatName] = useState("");
 
   // Orders State
-  const [ordersList, setOrdersList] = useState<OrderItemData[]>([]);
+  const [ordersList, setOrdersList] = useState<OrderItemData[]>(() => getLocalOrders());
   const [orderFilter, setOrderFilter] = useState<string>("all");
   const [selectedOrderDetails, setSelectedOrderDetails] = useState<OrderItemData | null>(null);
 
@@ -147,25 +148,14 @@ export default function AdminPage() {
 
     // Load Orders
     async function syncOrders() {
-      if (isSupabaseConfigured) {
-        const supaOrders = await getSupabaseOrders();
-        if (supaOrders && supaOrders.length > 0) {
-          setOrdersList(supaOrders);
-        }
-      }
-      try {
-        const savedOrders = localStorage.getItem("tlenorgym_admin_orders");
-        if (savedOrders) {
-          const parsed = JSON.parse(savedOrders);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            setOrdersList(parsed);
-          }
-        }
-      } catch {
-        // fallback
-      }
+      const merged = await fetchAndMergeOrders();
+      setOrdersList(merged);
     }
     syncOrders();
+
+    const unsubscribeOrders = subscribeOrders(() => {
+      syncOrders();
+    });
 
     // Load Categories
     async function syncCategories() {

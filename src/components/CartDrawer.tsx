@@ -6,6 +6,7 @@ import { useCart } from "@/context/CartContext";
 import { wilayas, getDeliveryCost } from "@/data/delivery-data";
 import communesData from "@/data/communes.json";
 import { createSupabaseOrder, isSupabaseConfigured, OrderItemData } from "@/lib/supabase";
+import { saveNewOrder } from "@/lib/order-store";
 
 export default function CartDrawer() {
   const { cart, removeFromCart, updateQuantity, clearCart, subtotal, totalItems, isCartOpen, setIsCartOpen } = useCart();
@@ -72,19 +73,7 @@ export default function CartDrawer() {
       created_at: new Date().toISOString(),
     };
 
-    // Save locally
-    try {
-      const saved = localStorage.getItem("tlenorgym_admin_orders");
-      const existingOrders = saved ? JSON.parse(saved) : [];
-      localStorage.setItem("tlenorgym_admin_orders", JSON.stringify([newOrder, ...existingOrders]));
-    } catch {
-      // fallback
-    }
-
-    // Save to Supabase if configured
-    if (isSupabaseConfigured) {
-      await createSupabaseOrder(newOrder);
-    }
+    await saveNewOrder(newOrder);
 
     setIsSubmitting(false);
     setStep("success");

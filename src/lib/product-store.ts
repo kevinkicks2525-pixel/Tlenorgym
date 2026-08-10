@@ -75,17 +75,53 @@ export async function fetchAndMergeProducts(): Promise<ProductItem[]> {
 
   const localItems = getLocalProducts();
 
-  // Merge unique products by normalized name
+  // If Supabase is configured, auto-push any local items missing from Supabase so mobile devices receive them
+  if (isSupabaseConfigured) {
+    const supaNameSet = new Set(supaItems.map((p) => p.name.trim().toLowerCase()));
+    for (const localProd of localItems) {
+      if (localProd.name && !supaNameSet.has(localProd.name.trim().toLowerCase())) {
+        try {
+          const inserted = await addSupabaseProduct({
+            name: localProd.name,
+            category: localProd.category || "Protéines",
+            price: localProd.price,
+            desc: localProd.desc,
+            stock: (localProd.stock_quantity ?? 10) > 0,
+            stock_quantity: localProd.stock_quantity ?? 10,
+            image: localProd.image,
+          });
+          if (inserted && inserted.id) {
+            const newSupaItem: ProductItem = {
+              id: inserted.id,
+              name: inserted.name,
+              category: inserted.category || "Protéines",
+              price: inserted.price,
+              stock: (inserted.stock_quantity ?? (inserted.stock ? 10 : 0)) > 0,
+              stock_quantity: inserted.stock_quantity ?? (inserted.stock ? 10 : 0),
+              desc: inserted.description || "Supplément officiel disponible à Tlénor Gym.",
+              image: inserted.image_url || "",
+            };
+            supaItems.push(newSupaItem);
+            supaNameSet.add(inserted.name.trim().toLowerCase());
+          }
+        } catch (err) {
+          console.warn("Auto-sync product to Supabase warning:", err);
+        }
+      }
+    }
+  }
+
+  // Merge unique products by normalized name (Supabase as primary truth)
   const productMap = new Map<string, ProductItem>();
   
-  // Load local items first
-  localItems.forEach((prod) => {
+  supaItems.forEach((prod) => {
     productMap.set(prod.name.trim().toLowerCase(), prod);
   });
 
-  // Supabase items override or complement
-  supaItems.forEach((prod) => {
-    productMap.set(prod.name.trim().toLowerCase(), prod);
+  localItems.forEach((prod) => {
+    if (!productMap.has(prod.name.trim().toLowerCase())) {
+      productMap.set(prod.name.trim().toLowerCase(), prod);
+    }
   });
 
   const merged = Array.from(productMap.values());

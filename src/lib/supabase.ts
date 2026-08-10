@@ -179,3 +179,41 @@ export async function deleteSupabaseOrder(id: number | string) {
   }
 }
 
+// ── CATEGORIES HELPERS ─────────────────────────────────────
+export async function getSupabaseCategories() {
+  if (!supabase) return null;
+  try {
+    const { data, error } = await supabase.from("categories").select("*").order("name");
+    if (error) throw error;
+    return data;
+  } catch (err) {
+    console.warn("Supabase categories fetch error:", err);
+    return null;
+  }
+}
+
+export async function addSupabaseCategory(name: string) {
+  if (!supabase) return null;
+  try {
+    const { data, error } = await supabase.from("categories").insert([{ name }]).select();
+    if (error) throw error;
+    return data?.[0];
+  } catch (err) {
+    console.error("Supabase category insert error:", err);
+    return null;
+  }
+}
+
+export async function deleteSupabaseCategory(id: number | string) {
+  if (!supabase) return false;
+  try {
+    const { error } = await supabase.from("categories").delete().eq("id", id);
+    if (error) throw error;
+    return true;
+  } catch (err) {
+    console.error("Supabase category delete error:", err);
+    return false;
+  }
+}
+
+

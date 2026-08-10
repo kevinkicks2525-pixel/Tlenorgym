@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Phone } from "lucide-react";
+import { Phone, ShoppingBag } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 
 const navLinks = [
   { href: "/", label: "Accueil" },
@@ -17,6 +18,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const { totalItems, setIsCartOpen } = useCart();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -62,7 +64,21 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="navbar__cta">
+        <div className="navbar__cta" style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          <button
+            onClick={() => setIsCartOpen(true)}
+            className="btn btn--outline btn--sm"
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", position: "relative" }}
+            title="Voir le panier"
+          >
+            <ShoppingBag size={18} />
+            <span style={{ display: "none" }}>Panier</span>
+            {totalItems > 0 && (
+              <span style={{ background: "var(--color-accent)", color: "#000", fontSize: "0.75rem", fontWeight: 900, borderRadius: "50%", width: "20px", height: "20px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                {totalItems}
+              </span>
+            )}
+          </button>
           <a href="tel:0552089293" className="btn btn--primary btn--sm" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
             <Phone size={16} /> Appelez-nous
           </a>

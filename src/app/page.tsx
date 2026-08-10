@@ -12,19 +12,20 @@ import Link from "next/link";
 import { Milk, Pill, Zap, MessageSquare, ArrowRight, Package } from "lucide-react";
 import { getSupabaseProducts, isSupabaseConfigured } from "@/lib/supabase";
 
-import CheckoutModal from "@/components/CheckoutModal";
+import ProductDetailModal from "@/components/ProductDetailModal";
+import { Eye } from "lucide-react";
 
 export default function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
-  const [selectedCheckoutProduct, setSelectedCheckoutProduct] = useState<any | null>(null);
+  const [selectedProductDetail, setSelectedProductDetail] = useState<any | null>(null);
 
   useEffect(() => {
     async function loadData() {
+      let items: any[] = [];
       if (isSupabaseConfigured) {
         const supaData = await getSupabaseProducts();
         if (supaData && supaData.length > 0) {
-          setFeaturedProducts(supaData.slice(0, 3));
-          return;
+          items = supaData;
         }
       }
       try {
@@ -32,24 +33,25 @@ export default function Home() {
         if (saved) {
           const parsed = JSON.parse(saved);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            setFeaturedProducts(parsed.slice(0, 3));
-            return;
+            const combinedMap = new Map();
+            [...items, ...parsed].forEach((p) => combinedMap.set(p.name.toLowerCase(), p));
+            items = Array.from(combinedMap.values());
           }
         }
       } catch {
         // fallback
       }
-      setFeaturedProducts([]);
+      setFeaturedProducts(items.slice(0, 3));
     }
     loadData();
   }, []);
 
   return (
     <>
-      {selectedCheckoutProduct && (
-        <CheckoutModal
-          product={selectedCheckoutProduct}
-          onClose={() => setSelectedCheckoutProduct(null)}
+      {selectedProductDetail && (
+        <ProductDetailModal
+          product={selectedProductDetail}
+          onClose={() => setSelectedProductDetail(null)}
         />
       )}
       <Hero />
@@ -78,7 +80,11 @@ export default function Home() {
             <div className="products__grid">
               {featuredProducts.map((product, i) => (
                 <ScrollReveal key={i} delay={i * 120}>
-                  <div className="product-card">
+                  <div
+                    className="product-card"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setSelectedProductDetail(product)}
+                  >
                     <div
                       className="product-card__image"
                       style={{
@@ -86,12 +92,13 @@ export default function Home() {
                         alignItems: "center",
                         justifyContent: "center",
                         background: "linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg) 100%)",
-                        padding: "2rem",
+                        padding: "1.5rem",
                         position: "relative",
+                        minHeight: "200px",
                       }}
                     >
                       {product.image && typeof product.image === "string" && (product.image.startsWith("http") || product.image.startsWith("data:")) ? (
-                        <img src={product.image} alt={product.name} style={{ maxHeight: "100px", objectFit: "contain" }} />
+                        <img src={product.image} alt={product.name} style={{ height: "160px", width: "100%", objectFit: "contain", filter: "drop-shadow(0 10px 15px rgba(0,0,0,0.5))" }} />
                       ) : (
                         <Package size={44} className="text-accent" />
                       )}
@@ -103,11 +110,14 @@ export default function Home() {
                       <div className="product-card__footer">
                         <span className="product-card__price">{product.price}</span>
                         <button
-                          onClick={() => setSelectedCheckoutProduct(product)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedProductDetail(product);
+                          }}
                           className="btn btn--primary btn--sm"
                           style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
                         >
-                          <MessageSquare size={14} /> Commander
+                          <Eye size={14} /> Voir Produit
                         </button>
                       </div>
                     </div>

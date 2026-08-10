@@ -3,6 +3,8 @@
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { CartProvider } from "@/context/CartContext";
+import CartDrawer from "@/components/CartDrawer";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -13,10 +15,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   }
 
   return (
-    <>
+    <CartProvider>
       <Navbar />
       <main>{children}</main>
       <Footer />
-    </>
+      <CartDrawer />
+    </CartProvider>
   );
 }

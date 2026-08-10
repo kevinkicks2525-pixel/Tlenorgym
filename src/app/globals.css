@@ -1670,3 +1670,23 @@ h1, h2, h3, h4, h5, h6 {
     min-height: 140px !important;
   }
 }
+
+/* ---- ADMIN SIDEBAR MOBILE RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .admin-mobile-header {
+    display: flex !important;
+  }
+
+  .admin-sidebar {
+    position: fixed !important;
+    left: -280px;
+    top: 0;
+    bottom: 0;
+    transition: left 0.3s ease;
+  }
+
+  .admin-sidebar--open {
+    left: 0 !important;
+    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.8);
+  }
+}

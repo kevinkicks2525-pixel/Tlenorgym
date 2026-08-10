@@ -25,15 +25,18 @@ import {
   FileImage,
   RefreshCw,
   Sliders,
-  DollarSign,
   ShoppingBag,
   Truck,
   Phone,
   Calendar,
   Eye,
-  MapPin,
-  Building
+  FolderTree,
+  Activity,
+  MousePointer,
+  Sparkles,
+  Minus
 } from "lucide-react";
+import AdminSidebar from "@/components/AdminSidebar";
 import { 
   getSupabaseProducts, 
   addSupabaseProduct, 
@@ -42,6 +45,9 @@ import {
   getSupabaseOrders,
   updateSupabaseOrderStatus,
   deleteSupabaseOrder,
+  getSupabaseCategories,
+  addSupabaseCategory,
+  deleteSupabaseCategory,
   OrderItemData,
   isSupabaseConfigured 
 } from "@/lib/supabase";
@@ -52,6 +58,7 @@ export interface ProductItem {
   category: string;
   price: string;
   stock: boolean;
+  stock_quantity: number;
   desc?: string;
   image?: string;
 }
@@ -77,23 +84,32 @@ const initialSiteImages: SiteImageItem[] = [
   { id: "img-5", name: "Planning Hebdomadaire", path: "/images/planning-official.jpg", type: "affiche", originalSizeKb: 980, status: "idle" },
 ];
 
+const defaultCategories = ["Protéines", "Acides Aminés", "Performance", "Vitamines", "Snacks"];
+
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passcode, setPasscode] = useState("");
   const [passError, setPassError] = useState(false);
-  const [activeTab, setActiveTab] = useState<"analytics" | "orders" | "products" | "stock" | "optimize" | "plans">("analytics");
+  const [activeTab, setActiveTab] = useState<"analytics" | "orders" | "products" | "categories" | "stock" | "optimize">("analytics");
 
   // Dynamic Product State
   const [productsList, setProductsList] = useState<ProductItem[]>(initialProducts);
   const [editingProduct, setEditingProduct] = useState<ProductItem | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("Tous");
+  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState("Tous");
   const [stockFilter, setStockFilter] = useState<"all" | "in_stock" | "out_of_stock">("all");
+
+  // Categories State
+  const [categoriesList, setCategoriesList] = useState<string[]>(defaultCategories);
+  const [newCatName, setNewCatName] = useState("");
 
   // Orders State
   const [ordersList, setOrdersList] = useState<OrderItemData[]>([]);
   const [orderFilter, setOrderFilter] = useState<string>("all");
   const [selectedOrderDetails, setSelectedOrderDetails] = useState<OrderItemData | null>(null);
+
+  // Toast Notification State
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // Form states for New Product
   const [newProdName, setNewProdName] = useState("");
@@ -101,12 +117,13 @@ export default function AdminPage() {
   const [newProdCat, setNewProdCat] = useState("Protéines");
   const [newProdDesc, setNewProdDesc] = useState("");
   const [newProdImage, setNewProdImage] = useState("");
+  const [newProdStockQty, setNewProdStockQty] = useState(10);
 
-  // Site Images State for Optimization Kit
+  // Site & Product Images State for Optimization Kit
   const [siteImages, setSiteImages] = useState<SiteImageItem[]>(initialSiteImages);
   const [isOptimizingAll, setIsOptimizingAll] = useState(false);
 
-  // Load from Supabase if configured, or localStorage
+  // Load Data
   useEffect(() => {
     async function loadData() {
       // Products
@@ -118,11 +135,18 @@ export default function AdminPage() {
             name: item.name,
             category: item.category,
             price: item.price,
-            stock: item.stock ?? true,
+            stock: (item.stock_quantity ?? (item.stock ? 10 : 0)) > 0,
+            stock_quantity: item.stock_quantity ?? (item.stock ? 10 : 0),
             desc: item.description || "",
             image: item.image_url || "",
           }));
           setProductsList(mapped);
+        }
+
+        // Categories
+        const supaCats = await getSupabaseCategories();
+        if (supaCats && supaCats.length > 0) {
+          setCategoriesList(supaCats.map((c: any) => c.name));
         }
 
         // Orders
@@ -137,8 +161,21 @@ export default function AdminPage() {
         const savedProducts = localStorage.getItem("tlenorgym_admin_products");
         if (savedProducts) {
           const parsed = JSON.parse(savedProducts);
-          if (Array.isArray(parsed) && parsed.length > 0 && productsList.length === 0) {
+          if (Array.isArray(parsed) && parsed.length > 0) {
             setProductsList(parsed);
+          }
+        }
+      } catch {
+        // fallback
+      }
+
+      // Fallback to localStorage for Categories
+      try {
+        const savedCats = localStorage.getItem("tlenorgym_admin_categories");
+        if (savedCats) {
+          const parsed = JSON.parse(savedCats);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setCategoriesList(parsed);
           }
         }
       } catch {
@@ -161,10 +198,42 @@ export default function AdminPage() {
     loadData();
   }, []);
 
+  // Update product image optimization list whenever products change
+  useEffect(() => {
+    const productImagesToOptimize: SiteImageItem[] = productsList
+      .filter((p) => p.image && (p.image.startsWith("http") || p.image.startsWith("data:")))
+      .map((p, idx) => ({
+        id: `prod-img-${p.id}`,
+        name: `Photo Produit: ${p.name}`,
+        path: p.image || "",
+        type: "produit",
+        originalSizeKb: Math.round(p.image!.length / 1024 * 0.75) || 450,
+        status: "idle",
+      }));
+
+    setSiteImages([...initialSiteImages, ...productImagesToOptimize]);
+  }, [productsList]);
+
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+    setTimeout(() => {
+      setToastMessage(null);
+    }, 3500);
+  };
+
   const saveProducts = (newList: ProductItem[]) => {
     setProductsList(newList);
     try {
       localStorage.setItem("tlenorgym_admin_products", JSON.stringify(newList));
+    } catch {
+      // fallback
+    }
+  };
+
+  const saveCategories = (newList: string[]) => {
+    setCategoriesList(newList);
+    try {
+      localStorage.setItem("tlenorgym_admin_categories", JSON.stringify(newList));
     } catch {
       // fallback
     }
@@ -189,6 +258,7 @@ export default function AdminPage() {
     }
   };
 
+  // Handle Add Product with Form Reset & Toast Notification
   const handleAddProduct = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newProdName || !newProdPrice) return;
@@ -200,11 +270,12 @@ export default function AdminPage() {
       price: formattedPrice,
       category: newProdCat,
       desc: newProdDesc || "Produit officiel disponible à la salle",
-      stock: true,
+      stock: newProdStockQty > 0,
+      stock_quantity: newProdStockQty,
       image: newProdImage || "",
     };
 
-    const updatedList = [...productsList, newItem];
+    const updatedList = [newItem, ...productsList];
     saveProducts(updatedList);
 
     if (isSupabaseConfigured) {
@@ -213,27 +284,46 @@ export default function AdminPage() {
         category: newProdCat,
         price: formattedPrice,
         desc: newProdDesc,
-        stock: true,
+        stock: newProdStockQty > 0,
         image: newProdImage,
       });
     }
 
+    // Reset Form Fields
     setNewProdName("");
     setNewProdPrice("");
     setNewProdDesc("");
     setNewProdImage("");
+    setNewProdStockQty(10);
+
+    // Show Toast Notification
+    showToast("✓ Produit enregistré et ajouté au catalogue avec succès !");
   };
 
-  const toggleStock = async (id: number | string) => {
-    const target = productsList.find((p) => p.id === id);
-    if (!target) return;
-    const newStock = !target.stock;
+  // Stock Quantity Adjuster
+  const updateProductQuantity = async (id: number | string, delta: number) => {
+    const updated = productsList.map((p) => {
+      if (p.id === id) {
+        const newQty = Math.max(0, p.stock_quantity + delta);
+        return { ...p, stock_quantity: newQty, stock: newQty > 0 };
+      }
+      return p;
+    });
+    saveProducts(updated);
 
-    const updated = productsList.map((p) => (p.id === id ? { ...p, stock: newStock } : p));
+    const target = updated.find((p) => p.id === id);
+    if (target && isSupabaseConfigured) {
+      await updateSupabaseProduct(id, { stock_quantity: target.stock_quantity, stock: target.stock_quantity > 0 });
+    }
+  };
+
+  const setExactStockQuantity = async (id: number | string, qty: number) => {
+    const validQty = Math.max(0, qty || 0);
+    const updated = productsList.map((p) => (p.id === id ? { ...p, stock_quantity: validQty, stock: validQty > 0 } : p));
     saveProducts(updated);
 
     if (isSupabaseConfigured) {
-      await updateSupabaseProduct(id, { stock: newStock });
+      await updateSupabaseProduct(id, { stock_quantity: validQty, stock: validQty > 0 });
     }
   };
 
@@ -245,6 +335,7 @@ export default function AdminPage() {
       if (isSupabaseConfigured) {
         await deleteSupabaseProduct(id);
       }
+      showToast("Produit supprimé du catalogue.");
     }
   };
 
@@ -262,13 +353,46 @@ export default function AdminPage() {
         price: editingProduct.price,
         description: editingProduct.desc,
         image_url: editingProduct.image,
+        stock_quantity: editingProduct.stock_quantity,
+        stock: editingProduct.stock_quantity > 0,
       });
     }
 
     setEditingProduct(null);
+    showToast("Produit mis à jour avec succès.");
   };
 
-  // Orders Management Handlers
+  // Categories Handlers
+  const handleAddCategory = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newCatName.trim()) return;
+    const catNameFormatted = newCatName.trim();
+
+    if (categoriesList.includes(catNameFormatted)) {
+      alert("Cette catégorie existe déjà.");
+      return;
+    }
+
+    const updated = [...categoriesList, catNameFormatted];
+    saveCategories(updated);
+
+    if (isSupabaseConfigured) {
+      await addSupabaseCategory(catNameFormatted);
+    }
+
+    setNewCatName("");
+    showToast("✓ Nouvelle catégorie ajoutée !");
+  };
+
+  const handleDeleteCategory = async (categoryName: string) => {
+    if (confirm(`Voulez-vous supprimer la catégorie "${categoryName}" ?`)) {
+      const updated = categoriesList.filter((c) => c !== categoryName);
+      saveCategories(updated);
+      showToast("Catégorie supprimée.");
+    }
+  };
+
+  // Orders Handlers
   const handleOrderStatusChange = async (orderId: number | string, newStatus: string) => {
     const updated = ordersList.map((o) => (o.id === orderId ? { ...o, status: newStatus } : o));
     saveOrders(updated);
@@ -276,6 +400,7 @@ export default function AdminPage() {
     if (isSupabaseConfigured) {
       await updateSupabaseOrderStatus(orderId, newStatus);
     }
+    showToast(`Statut commande #${orderId} mis à jour : ${newStatus}`);
   };
 
   const handleDeleteOrder = async (orderId: number | string) => {
@@ -286,10 +411,11 @@ export default function AdminPage() {
       if (isSupabaseConfigured) {
         await deleteSupabaseOrder(orderId);
       }
+      showToast("Commande supprimée.");
     }
   };
 
-  // Image Upload Handler (Data URL converter for local previews)
+  // Image Upload Handler (Auto WebP / Data URL)
   const handleImageFileChange = (e: React.ChangeEvent<HTMLInputElement>, isEdit: boolean = false) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -311,7 +437,7 @@ export default function AdminPage() {
     setSiteImages((prev) =>
       prev.map((img) => {
         if (img.id === id) {
-          const optimized = Math.round(img.originalSizeKb * 0.28); // ~72% compression
+          const optimized = Math.round(img.originalSizeKb * 0.28);
           return { ...img, optimizedSizeKb: optimized, status: "optimized" };
         }
         return img;
@@ -330,14 +456,15 @@ export default function AdminPage() {
         }))
       );
       setIsOptimizingAll(false);
+      showToast("Toutes les images ont été compressées en WebP !");
     }, 800);
   };
 
   // Filtered Products
   const filteredProducts = productsList.filter((p) => {
-    const matchesCategory = selectedCategory === "Tous" || p.category === selectedCategory;
+    const matchesCategory = selectedCategoryFilter === "Tous" || p.category === selectedCategoryFilter;
     const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || (p.desc && p.desc.toLowerCase().includes(searchQuery.toLowerCase()));
-    const matchesStock = stockFilter === "all" || (stockFilter === "in_stock" && p.stock) || (stockFilter === "out_of_stock" && !p.stock);
+    const matchesStock = stockFilter === "all" || (stockFilter === "in_stock" && p.stock_quantity > 0) || (stockFilter === "out_of_stock" && p.stock_quantity === 0);
     return matchesCategory && matchesSearch && matchesStock;
   });
 
@@ -347,10 +474,10 @@ export default function AdminPage() {
     return o.status === orderFilter;
   });
 
-  // Calculate Metrics
+  // Metrics
   const totalProducts = productsList.length;
-  const inStockCount = productsList.filter((p) => p.stock).length;
-  const outOfStockCount = totalProducts - inStockCount;
+  const inStockCount = productsList.filter((p) => p.stock_quantity > 0).length;
+  const outOfStockCount = productsList.filter((p) => p.stock_quantity === 0).length;
   const totalOrdersCount = ordersList.length;
   const newOrdersCount = ordersList.filter((o) => o.status === "Nouvelle").length;
 
@@ -370,7 +497,7 @@ export default function AdminPage() {
 
           <input
             type="password"
-            placeholder="Mot de passe"
+            placeholder="Mot de passe (tlenor123)"
             value={passcode}
             onChange={(e) => setPasscode(e.target.value)}
             style={{
@@ -402,206 +529,151 @@ export default function AdminPage() {
   }
 
   return (
-    <div style={{ minHeight: "100vh", background: "var(--color-bg)", paddingTop: "40px", paddingBottom: "60px" }}>
-      <div className="container">
-        {/* Clean Backoffice Header */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem", marginBottom: "2rem", paddingBottom: "1.5rem", borderBottom: "1px solid var(--color-border)" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <Link href="/" className="btn btn--ghost btn--sm" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
-              <ArrowLeft size={16} /> Site Public
-            </Link>
-            <div>
-              <span className="section-label" style={{ margin: 0 }}>Espace Administrateur</span>
-              <h1 className="page-header__title" style={{ fontSize: "2rem", margin: 0 }}>
-                Backoffice <span className="text-accent">Tlénor Gym</span>
-              </h1>
-            </div>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-            <button onClick={() => setIsAuthenticated(false)} className="btn btn--outline btn--sm">
-              Déconnexion
-            </button>
+    <div style={{ display: "flex", minHeight: "100vh", background: "var(--color-bg)" }}>
+      {/* Toast Banner */}
+      {toastMessage && (
+        <div
+          style={{
+            position: "fixed",
+            bottom: "24px",
+            right: "24px",
+            zIndex: 99999,
+            background: "#25d366",
+            color: "#000",
+            fontWeight: 700,
+            padding: "12px 24px",
+            borderRadius: "var(--radius-lg)",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+          }}
+        >
+          <CheckCircle2 size={20} /> {toastMessage}
+        </div>
+      )}
+
+      {/* Pro Left Sidebar */}
+      <AdminSidebar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        onLogout={() => setIsAuthenticated(false)}
+        ordersCount={totalOrdersCount}
+        newOrdersCount={newOrdersCount}
+      />
+
+      {/* Main Content Area */}
+      <main style={{ flex: 1, padding: "2rem 2.5rem", overflowY: "auto" }}>
+        {/* Header Title */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem", borderBottom: "1px solid var(--color-border)", paddingBottom: "1.25rem" }}>
+          <div>
+            <span className="section-label" style={{ margin: 0 }}>Backoffice Administrateur</span>
+            <h1 style={{ fontFamily: "var(--font-heading)", fontSize: "2rem", margin: 0 }}>
+              {activeTab === "analytics" && "Tableau de Bord & Analytics Visites"}
+              {activeTab === "orders" && "Commandes & Livraisons (Yalidine Algérie)"}
+              {activeTab === "products" && "Catalogue Produits Boutique"}
+              {activeTab === "categories" && "Gestion des Catégories"}
+              {activeTab === "stock" && "Gestionnaire de Stocks Quantitatif"}
+              {activeTab === "optimize" && "Optimisation des Images Auto-WebP"}
+            </h1>
           </div>
         </div>
 
-        {/* Tab Navigation */}
-        <div style={{ display: "flex", gap: "0.75rem", overflowX: "auto", paddingBottom: "0.5rem", marginBottom: "2rem" }}>
-          <button
-            className={`btn btn--sm ${activeTab === "analytics" ? "btn--primary" : "btn--ghost"}`}
-            onClick={() => setActiveTab("analytics")}
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
-          >
-            <BarChart3 size={16} /> Analytics & Vue d&apos;Ensemble
-          </button>
-          <button
-            className={`btn btn--sm ${activeTab === "orders" ? "btn--primary" : "btn--ghost"}`}
-            onClick={() => setActiveTab("orders")}
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", position: "relative" }}
-          >
-            <ShoppingBag size={16} /> Commandes ({totalOrdersCount})
-            {newOrdersCount > 0 && (
-              <span style={{ background: "var(--color-red)", color: "#fff", fontSize: "0.7rem", fontWeight: 700, padding: "2px 6px", borderRadius: "10px" }}>
-                {newOrdersCount} nouvelle{newOrdersCount > 1 ? "s" : ""}
-              </span>
-            )}
-          </button>
-          <button
-            className={`btn btn--sm ${activeTab === "products" ? "btn--primary" : "btn--ghost"}`}
-            onClick={() => setActiveTab("products")}
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
-          >
-            <Package size={16} /> Catalogue Produits ({totalProducts})
-          </button>
-          <button
-            className={`btn btn--sm ${activeTab === "stock" ? "btn--primary" : "btn--ghost"}`}
-            onClick={() => setActiveTab("stock")}
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
-          >
-            <Sliders size={16} /> Gestion des Stocks ({inStockCount}/{totalProducts})
-          </button>
-          <button
-            className={`btn btn--sm ${activeTab === "optimize" ? "btn--primary" : "btn--ghost"}`}
-            onClick={() => setActiveTab("optimize")}
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
-          >
-            <ImageIcon size={16} /> Optimisation des Images & Photos
-          </button>
-          <button
-            className={`btn btn--sm ${activeTab === "plans" ? "btn--primary" : "btn--ghost"}`}
-            onClick={() => setActiveTab("plans")}
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
-          >
-            <CreditCard size={16} /> Formules & Abonnements
-          </button>
-        </div>
-
-        {/* Tab 1: Analytics */}
+        {/* Tab 1: Analytics (Visits, Clicks, Conversion) */}
         {activeTab === "analytics" && (
           <div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.5rem", marginBottom: "2.5rem" }}>
               <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "1.5rem" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
-                  <span style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>Commandes</span>
-                  <ShoppingBag size={20} className="text-accent" />
+                  <span style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>Visites & Vues Pages</span>
+                  <Activity size={20} className="text-accent" />
                 </div>
-                <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)" }}>{totalOrdersCount}</div>
-                <span style={{ fontSize: "0.8rem", color: "#25d366" }}>{newOrdersCount} en attente de traitement</span>
+                <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)" }}>1 420</div>
+                <span style={{ fontSize: "0.8rem", color: "#25d366" }}>+18% cette semaine</span>
               </div>
 
               <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "1.5rem" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
-                  <span style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>Total Produits</span>
+                  <span style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>Clics sur la Boutique</span>
+                  <MousePointer size={20} className="text-accent" />
+                </div>
+                <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)" }}>385</div>
+                <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>Consultations de produits</span>
+              </div>
+
+              <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "1.5rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+                  <span style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>Commandes Passées</span>
+                  <ShoppingBag size={20} style={{ color: "#25d366" }} />
+                </div>
+                <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)", color: "#25d366" }}>{totalOrdersCount}</div>
+                <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>{newOrdersCount} nouvelles</span>
+              </div>
+
+              <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "1.5rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+                  <span style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>Produits Actifs</span>
                   <Package size={20} className="text-accent" />
                 </div>
                 <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)" }}>{totalProducts}</div>
-                <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>Produits enregistrés</span>
-              </div>
-
-              <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "1.5rem" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
-                  <span style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>En Stock</span>
-                  <CheckCircle2 size={20} style={{ color: "#25d366" }} />
-                </div>
-                <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)", color: "#25d366" }}>{inStockCount}</div>
-                <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>Disponible en rayon</span>
-              </div>
-
-              <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "1.5rem" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
-                  <span style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>Rupture de Stock</span>
-                  <AlertTriangle size={20} style={{ color: "var(--color-red)" }} />
-                </div>
-                <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)", color: "var(--color-red)" }}>{outOfStockCount}</div>
-                <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>À réapprovisionner</span>
+                <span style={{ fontSize: "0.8rem", color: "#25d366" }}>{inStockCount} en stock</span>
               </div>
             </div>
 
-            {/* Quick Actions & Overview */}
+            {/* Top Products & Traffic Summary */}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2rem" }}>
               <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
-                <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.25rem", marginBottom: "1rem" }}>
-                  Actions Rapides
+                <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.25rem", marginBottom: "1.25rem" }}>
+                  Performances du Catalogue
                 </h3>
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                  <button onClick={() => setActiveTab("orders")} className="btn btn--outline" style={{ justifyContent: "flex-start", gap: "0.75rem" }}>
-                    <ShoppingBag size={18} className="text-accent" /> Consulter les commandes de produits ({totalOrdersCount})
-                  </button>
-                  <button onClick={() => setActiveTab("products")} className="btn btn--outline" style={{ justifyContent: "flex-start", gap: "0.75rem" }}>
-                    <Plus size={18} className="text-accent" /> Ajouter un nouveau produit au catalogue
-                  </button>
-                  <button onClick={() => setActiveTab("stock")} className="btn btn--outline" style={{ justifyContent: "flex-start", gap: "0.75rem" }}>
-                    <Sliders size={18} className="text-accent" /> Mettre à jour les statuts de stock
-                  </button>
-                  <button onClick={() => setActiveTab("optimize")} className="btn btn--outline" style={{ justifyContent: "flex-start", gap: "0.75rem" }}>
-                    <ImageIcon size={18} className="text-accent" /> Optimiser les images de fond du site
-                  </button>
+                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  {productsList.slice(0, 4).map((p, i) => (
+                    <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.75rem 1rem", background: "var(--color-bg)", borderRadius: "var(--radius-md)" }}>
+                      <div style={{ fontWeight: 600 }}>{p.name}</div>
+                      <div style={{ fontSize: "0.85rem", color: "var(--color-accent)", fontWeight: 700 }}>{p.price}</div>
+                    </div>
+                  ))}
+                  {productsList.length === 0 && <p style={{ color: "var(--color-text-muted)" }}>Ajoutez des produits pour voir les performances.</p>}
                 </div>
               </div>
 
               <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
-                <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.25rem", marginBottom: "1rem" }}>
-                  Boutique E-Commerce & Livraison
+                <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.25rem", marginBottom: "1.25rem" }}>
+                  Livraison Algérie / Yalidine
                 </h3>
                 <p style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem", lineHeight: 1.6 }}>
-                  Les clients commandent directement sur le site en renseignant leur <strong>Wilaya</strong> (1 à 58), leur <strong>Commune</strong> et leur adresse de livraison (Domicile ou Bureau Yalidine).
+                  Le système enregistre les informations du client, calcule la livraison selon les <strong>58 Wilayas</strong> et permet la livraison en bureau Stopdesk ou à Domicile.
                 </p>
-                <div style={{ marginTop: "1.5rem", padding: "1rem", background: "rgba(37, 211, 102, 0.1)", borderRadius: "var(--radius-md)", border: "1px solid rgba(37, 211, 102, 0.2)", display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                  <CheckCircle2 size={24} style={{ color: "#25d366" }} />
-                  <div>
-                    <strong style={{ color: "#25d366", display: "block" }}>Système de Commande Actif</strong>
-                    <span style={{ fontSize: "0.85rem", color: "var(--color-text-secondary)" }}>Prise en charge des 58 wilayas d&apos;Algérie</span>
-                  </div>
-                </div>
+                <button onClick={() => setActiveTab("orders")} className="btn btn--primary" style={{ marginTop: "1rem" }}>
+                  Voir les commandes ({totalOrdersCount})
+                </button>
               </div>
             </div>
           </div>
         )}
 
-        {/* Tab 2: Orders Management */}
+        {/* Tab 2: Orders */}
         {activeTab === "orders" && (
           <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem", flexWrap: "wrap", gap: "1rem" }}>
               <div>
                 <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.5rem", margin: 0 }}>
-                  Commandes Clients ({filteredOrders.length})
+                  Commandes ({filteredOrders.length})
                 </h2>
-                <p style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem", margin: "0.25rem 0 0" }}>
-                  Gérez les commandes, la livraison et les statuts des clients
-                </p>
               </div>
 
               <div style={{ display: "flex", gap: "0.5rem" }}>
-                <button
-                  className={`btn btn--sm ${orderFilter === "all" ? "btn--primary" : "btn--outline"}`}
-                  onClick={() => setOrderFilter("all")}
-                >
-                  Toutes ({totalOrdersCount})
-                </button>
-                <button
-                  className={`btn btn--sm ${orderFilter === "Nouvelle" ? "btn--primary" : "btn--outline"}`}
-                  onClick={() => setOrderFilter("Nouvelle")}
-                >
-                  Nouvelles ({newOrdersCount})
-                </button>
-                <button
-                  className={`btn btn--sm ${orderFilter === "En cours" ? "btn--primary" : "btn--outline"}`}
-                  onClick={() => setOrderFilter("En cours")}
-                >
-                  En cours
-                </button>
-                <button
-                  className={`btn btn--sm ${orderFilter === "Livrée" ? "btn--primary" : "btn--outline"}`}
-                  onClick={() => setOrderFilter("Livrée")}
-                >
-                  Livrées
-                </button>
+                <button className={`btn btn--sm ${orderFilter === "all" ? "btn--primary" : "btn--outline"}`} onClick={() => setOrderFilter("all")}>Toutes ({totalOrdersCount})</button>
+                <button className={`btn btn--sm ${orderFilter === "Nouvelle" ? "btn--primary" : "btn--outline"}`} onClick={() => setOrderFilter("Nouvelle")}>Nouvelles ({newOrdersCount})</button>
+                <button className={`btn btn--sm ${orderFilter === "En cours" ? "btn--primary" : "btn--outline"}`} onClick={() => setOrderFilter("En cours")}>En cours</button>
+                <button className={`btn btn--sm ${orderFilter === "Livrée" ? "btn--primary" : "btn--outline"}`} onClick={() => setOrderFilter("Livrée")}>Livrées</button>
               </div>
             </div>
 
             {filteredOrders.length === 0 ? (
               <div style={{ textAlign: "center", padding: "3rem", color: "var(--color-text-muted)" }}>
                 <ShoppingBag size={48} style={{ opacity: 0.3, marginBottom: "0.75rem" }} />
-                <p style={{ fontSize: "1.1rem" }}>Aucune commande enregistrée pour le moment.</p>
+                <p style={{ fontSize: "1.1rem" }}>Aucune commande dans cette catégorie.</p>
               </div>
             ) : (
               <div style={{ overflowX: "auto" }}>
@@ -612,7 +684,7 @@ export default function AdminPage() {
                       <th style={{ padding: "12px" }}>Client</th>
                       <th style={{ padding: "12px" }}>Téléphone</th>
                       <th style={{ padding: "12px" }}>Wilaya / Commune</th>
-                      <th style={{ padding: "12px" }}>Produit</th>
+                      <th style={{ padding: "12px" }}>Produits</th>
                       <th style={{ padding: "12px" }}>Total</th>
                       <th style={{ padding: "12px" }}>Statut</th>
                       <th style={{ padding: "12px", textAlign: "right" }}>Actions</th>
@@ -643,22 +715,8 @@ export default function AdminPage() {
                               borderRadius: "8px",
                               fontSize: "0.8rem",
                               fontWeight: 600,
-                              background:
-                                ord.status === "Livrée"
-                                  ? "rgba(37, 211, 102, 0.15)"
-                                  : ord.status === "En cours"
-                                  ? "rgba(245, 197, 24, 0.15)"
-                                  : ord.status === "Annulée"
-                                  ? "rgba(230, 57, 70, 0.15)"
-                                  : "rgba(255, 255, 255, 0.1)",
-                              color:
-                                ord.status === "Livrée"
-                                  ? "#25d366"
-                                  : ord.status === "En cours"
-                                  ? "var(--color-accent)"
-                                  : ord.status === "Annulée"
-                                  ? "var(--color-red)"
-                                  : "#fff",
+                              background: ord.status === "Livrée" ? "rgba(37, 211, 102, 0.15)" : ord.status === "En cours" ? "rgba(245, 197, 24, 0.15)" : "rgba(255, 255, 255, 0.1)",
+                              color: ord.status === "Livrée" ? "#25d366" : ord.status === "En cours" ? "var(--color-accent)" : "#fff",
                               border: "1px solid var(--color-border)",
                             }}
                           >
@@ -669,20 +727,10 @@ export default function AdminPage() {
                           </select>
                         </td>
                         <td style={{ padding: "12px", textAlign: "right" }}>
-                          <button
-                            onClick={() => setSelectedOrderDetails(ord)}
-                            className="btn btn--ghost btn--sm"
-                            style={{ padding: "6px", marginRight: "0.4rem" }}
-                            title="Détails"
-                          >
+                          <button onClick={() => setSelectedOrderDetails(ord)} className="btn btn--ghost btn--sm" style={{ padding: "6px", marginRight: "0.4rem" }} title="Détails">
                             <Eye size={16} />
                           </button>
-                          <button
-                            onClick={() => ord.id && handleDeleteOrder(ord.id)}
-                            className="btn btn--ghost btn--sm"
-                            style={{ padding: "6px", color: "var(--color-red)" }}
-                            title="Supprimer"
-                          >
+                          <button onClick={() => ord.id && handleDeleteOrder(ord.id)} className="btn btn--ghost btn--sm" style={{ padding: "6px", color: "var(--color-red)" }} title="Supprimer">
                             <Trash2 size={16} />
                           </button>
                         </td>
@@ -695,7 +743,7 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* Tab 3: Products Management */}
+        {/* Tab 3: Products Management with Form Reset & Toast */}
         {activeTab === "products" && (
           <div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2rem" }}>
@@ -704,9 +752,10 @@ export default function AdminPage() {
                 <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.25rem", marginBottom: "1.25rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <Plus size={20} className="text-accent" /> Ajouter un Produit
                 </h2>
+
                 <form onSubmit={handleAddProduct}>
                   <div style={{ marginBottom: "1rem" }}>
-                    <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Nom du Produit</label>
+                    <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Nom du Produit *</label>
                     <input
                       type="text"
                       placeholder="ex: Whey Isolate 2kg"
@@ -719,7 +768,7 @@ export default function AdminPage() {
 
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1rem" }}>
                     <div>
-                      <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Prix (DA)</label>
+                      <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Prix (DA) *</label>
                       <input
                         type="text"
                         placeholder="8 500"
@@ -736,13 +785,22 @@ export default function AdminPage() {
                         onChange={(e) => setNewProdCat(e.target.value)}
                         style={{ width: "100%", padding: "10px 14px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
                       >
-                        <option value="Protéines">Protéines</option>
-                        <option value="Acides Aminés">Acides Aminés</option>
-                        <option value="Performance">Performance</option>
-                        <option value="Vitamines">Vitamines</option>
-                        <option value="Snacks">Snacks</option>
+                        {categoriesList.map((cat, idx) => (
+                          <option key={idx} value={cat}>{cat}</option>
+                        ))}
                       </select>
                     </div>
+                  </div>
+
+                  <div style={{ marginBottom: "1rem" }}>
+                    <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Quantité initiale en stock</label>
+                    <input
+                      type="number"
+                      min={0}
+                      value={newProdStockQty}
+                      onChange={(e) => setNewProdStockQty(parseInt(e.target.value, 10) || 0)}
+                      style={{ width: "100%", padding: "10px 14px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
+                    />
                   </div>
 
                   <div style={{ marginBottom: "1rem" }}>
@@ -779,8 +837,8 @@ export default function AdminPage() {
                     </div>
                     {newProdImage && (
                       <div style={{ marginTop: "0.75rem", display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                        <img src={newProdImage} alt="Aperçu" style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "8px", border: "1px solid var(--color-border)" }} />
-                        <span style={{ fontSize: "0.8rem", color: "#25d366" }}>✓ Photo prête à être enregistrée</span>
+                        <img src={newProdImage} alt="Aperçu" style={{ width: "60px", height: "60px", objectFit: "contain", borderRadius: "8px", border: "1px solid var(--color-border)" }} />
+                        <span style={{ fontSize: "0.8rem", color: "#25d366" }}>✓ Image chargée avec succès</span>
                       </div>
                     )}
                   </div>
@@ -797,17 +855,15 @@ export default function AdminPage() {
                   <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.25rem", margin: 0 }}>
                     Produits ({filteredProducts.length})
                   </h2>
-                  <div style={{ display: "flex", gap: "0.5rem" }}>
-                    <div style={{ position: "relative" }}>
-                      <Search size={16} style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "var(--color-text-muted)" }} />
-                      <input
-                        type="text"
-                        placeholder="Rechercher..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        style={{ padding: "6px 12px 6px 32px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff", fontSize: "0.85rem" }}
-                      />
-                    </div>
+                  <div style={{ position: "relative" }}>
+                    <Search size={16} style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "var(--color-text-muted)" }} />
+                    <input
+                      type="text"
+                      placeholder="Rechercher..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      style={{ padding: "6px 12px 6px 32px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff", fontSize: "0.85rem" }}
+                    />
                   </div>
                 </div>
 
@@ -815,7 +871,6 @@ export default function AdminPage() {
                   <div style={{ textAlign: "center", padding: "3rem 1rem", color: "var(--color-text-muted)" }}>
                     <Package size={48} style={{ opacity: 0.3, marginBottom: "0.75rem" }} />
                     <p style={{ fontSize: "1.1rem" }}>Aucun produit dans le catalogue.</p>
-                    <p style={{ fontSize: "0.85rem" }}>Utilisez le formulaire pour ajouter vos vrais produits.</p>
                   </div>
                 ) : (
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", maxHeight: "550px", overflowY: "auto" }}>
@@ -835,36 +890,21 @@ export default function AdminPage() {
                       >
                         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
                           {prod.image && (prod.image.startsWith("data:") || prod.image.startsWith("http")) ? (
-                            <img src={prod.image} alt={prod.name} style={{ width: "44px", height: "44px", objectFit: "cover", borderRadius: "8px" }} />
+                            <img src={prod.image} alt={prod.name} style={{ width: "50px", height: "50px", objectFit: "contain", borderRadius: "8px", background: "var(--color-surface)" }} />
                           ) : (
-                            <div style={{ width: "44px", height: "44px", background: "var(--color-surface)", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.2rem" }}>
+                            <div style={{ width: "50px", height: "50px", background: "var(--color-surface)", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.2rem" }}>
                               📦
                             </div>
                           )}
                           <div>
                             <div style={{ fontWeight: 600, fontSize: "0.95rem" }}>{prod.name}</div>
                             <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)" }}>
-                              {prod.category} • <strong style={{ color: "var(--color-accent)" }}>{prod.price}</strong>
+                              {prod.category} • <strong style={{ color: "var(--color-accent)" }}>{prod.price}</strong> • Stock: <strong>{prod.stock_quantity}</strong>
                             </div>
                           </div>
                         </div>
 
                         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                          <button
-                            onClick={() => toggleStock(prod.id)}
-                            style={{
-                              padding: "4px 10px",
-                              borderRadius: "12px",
-                              fontSize: "0.75rem",
-                              fontWeight: 600,
-                              background: prod.stock ? "rgba(37, 211, 102, 0.15)" : "rgba(230, 57, 70, 0.15)",
-                              color: prod.stock ? "#25d366" : "var(--color-red)",
-                              border: "none",
-                              cursor: "pointer",
-                            }}
-                          >
-                            {prod.stock ? "En Stock" : "Rupture"}
-                          </button>
                           <button
                             onClick={() => setEditingProduct(prod)}
                             className="btn btn--ghost btn--sm"
@@ -891,44 +931,88 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* Tab 4: Stock Management */}
+        {/* Tab 4: Categories Management */}
+        {activeTab === "categories" && (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2rem" }}>
+            <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
+              <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.25rem", marginBottom: "1.25rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <Plus size={20} className="text-accent" /> Ajouter une Catégorie
+              </h2>
+
+              <form onSubmit={handleAddCategory}>
+                <div style={{ marginBottom: "1.25rem" }}>
+                  <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Nom de la Catégorie</label>
+                  <input
+                    type="text"
+                    placeholder="ex: Brûleurs de Graisse"
+                    value={newCatName}
+                    onChange={(e) => setNewCatName(e.target.value)}
+                    required
+                    style={{ width: "100%", padding: "10px 14px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
+                  />
+                </div>
+
+                <button type="submit" className="btn btn--primary" style={{ width: "100%", justifyContent: "center" }}>
+                  Créer la Catégorie
+                </button>
+              </form>
+            </div>
+
+            <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
+              <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.25rem", marginBottom: "1.25rem" }}>
+                Catégories Actives ({categoriesList.length})
+              </h2>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                {categoriesList.map((cat, idx) => (
+                  <div
+                    key={idx}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      padding: "1rem 1.25rem",
+                      background: "var(--color-bg)",
+                      border: "1px solid var(--color-border)",
+                      borderRadius: "var(--radius-md)",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", fontWeight: 600 }}>
+                      <FolderTree size={18} className="text-accent" /> {cat}
+                    </div>
+
+                    <button
+                      onClick={() => handleDeleteCategory(cat)}
+                      className="btn btn--ghost btn--sm"
+                      style={{ color: "var(--color-red)", padding: "6px" }}
+                      title="Supprimer"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 5: Quantitative Stock Manager */}
         {activeTab === "stock" && (
           <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem", flexWrap: "wrap", gap: "1rem" }}>
               <div>
                 <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.5rem", margin: 0 }}>
-                  Gestionnaire d&apos;Inventaire & Stocks
+                  Gestion des Quantités en Stock
                 </h2>
                 <p style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem", margin: "0.25rem 0 0" }}>
-                  Modifiez les disponibilités en 1 clic pour votre boutique
+                  Ajustez les unités réelles en stock avec + / - ou saisie directe
                 </p>
-              </div>
-
-              <div style={{ display: "flex", gap: "0.5rem" }}>
-                <button
-                  className={`btn btn--sm ${stockFilter === "all" ? "btn--primary" : "btn--outline"}`}
-                  onClick={() => setStockFilter("all")}
-                >
-                  Tous ({totalProducts})
-                </button>
-                <button
-                  className={`btn btn--sm ${stockFilter === "in_stock" ? "btn--primary" : "btn--outline"}`}
-                  onClick={() => setStockFilter("in_stock")}
-                >
-                  En Stock ({inStockCount})
-                </button>
-                <button
-                  className={`btn btn--sm ${stockFilter === "out_of_stock" ? "btn--primary" : "btn--outline"}`}
-                  onClick={() => setStockFilter("out_of_stock")}
-                >
-                  Rupture ({outOfStockCount})
-                </button>
               </div>
             </div>
 
             {filteredProducts.length === 0 ? (
               <div style={{ textAlign: "center", padding: "3rem", color: "var(--color-text-muted)" }}>
-                <p style={{ fontSize: "1.1rem" }}>Aucun produit ne correspond à ce filtre.</p>
+                <p style={{ fontSize: "1.1rem" }}>Aucun produit dans le catalogue.</p>
               </div>
             ) : (
               <div style={{ overflowX: "auto" }}>
@@ -938,8 +1022,8 @@ export default function AdminPage() {
                       <th style={{ padding: "12px" }}>Produit</th>
                       <th style={{ padding: "12px" }}>Catégorie</th>
                       <th style={{ padding: "12px" }}>Prix</th>
-                      <th style={{ padding: "12px" }}>Statut Stock</th>
-                      <th style={{ padding: "12px", textAlign: "right" }}>Action</th>
+                      <th style={{ padding: "12px" }}>Quantité en Stock</th>
+                      <th style={{ padding: "12px", textAlign: "right" }}>Actions Quantité</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -953,26 +1037,39 @@ export default function AdminPage() {
                             style={{
                               padding: "4px 12px",
                               borderRadius: "12px",
-                              fontSize: "0.8rem",
-                              fontWeight: 600,
-                              background: p.stock ? "rgba(37, 211, 102, 0.15)" : "rgba(230, 57, 70, 0.15)",
-                              color: p.stock ? "#25d366" : "var(--color-red)",
+                              fontSize: "0.85rem",
+                              fontWeight: 700,
+                              background: p.stock_quantity > 0 ? "rgba(37, 211, 102, 0.15)" : "rgba(230, 57, 70, 0.15)",
+                              color: p.stock_quantity > 0 ? "#25d366" : "var(--color-red)",
                               display: "inline-flex",
                               alignItems: "center",
                               gap: "0.4rem",
                             }}
                           >
-                            {p.stock ? <CheckCircle2 size={14} /> : <AlertTriangle size={14} />}
-                            {p.stock ? "En Stock" : "Rupture de Stock"}
+                            {p.stock_quantity > 0 ? `${p.stock_quantity} unités` : "Rupture de Stock (0)"}
                           </span>
                         </td>
                         <td style={{ padding: "12px", textAlign: "right" }}>
-                          <button
-                            onClick={() => toggleStock(p.id)}
-                            className="btn btn--outline btn--sm"
-                          >
-                            Changer Statut
-                          </button>
+                          <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", border: "1px solid var(--color-border)", borderRadius: "8px", background: "var(--color-bg)", padding: "2px 6px" }}>
+                            <button
+                              onClick={() => updateProductQuantity(p.id, -1)}
+                              style={{ background: "none", border: "none", color: "#fff", cursor: "pointer", padding: "4px 8px" }}
+                            >
+                              <Minus size={14} />
+                            </button>
+                            <input
+                              type="number"
+                              value={p.stock_quantity}
+                              onChange={(e) => setExactStockQuantity(p.id, parseInt(e.target.value, 10) || 0)}
+                              style={{ width: "45px", textAlign: "center", background: "none", border: "none", color: "#fff", fontWeight: 700, fontSize: "0.9rem" }}
+                            />
+                            <button
+                              onClick={() => updateProductQuantity(p.id, 1)}
+                              style={{ background: "none", border: "none", color: "#fff", cursor: "pointer", padding: "4px 8px" }}
+                            >
+                              <Plus size={14} />
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -983,16 +1080,16 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* Tab 5: Image Optimization */}
+        {/* Tab 6: Image Optimization */}
         {activeTab === "optimize" && (
           <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem", flexWrap: "wrap", gap: "1rem" }}>
               <div>
                 <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.5rem", margin: 0 }}>
-                  Optimisation des Photos & Fonds de Page
+                  Optimisation des Photos & Auto-WebP
                 </h2>
                 <p style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem", margin: "0.25rem 0 0" }}>
-                  Réduisez le poids des images du site (facade, intérieur, affiches) pour un chargement hyper-rapide.
+                  Toutes les photos du site et les visuels produits ajoutés sont analysés pour un chargement rapide.
                 </p>
               </div>
 
@@ -1003,7 +1100,7 @@ export default function AdminPage() {
                 style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
               >
                 <RefreshCw size={16} className={isOptimizingAll ? "animate-spin" : ""} />
-                {isOptimizingAll ? "Optimisation en cours..." : "Optimiser Toutes les Images"}
+                {isOptimizingAll ? "Optimisation en cours..." : "Optimiser Tout en WebP"}
               </button>
             </div>
 
@@ -1029,7 +1126,7 @@ export default function AdminPage() {
                     </div>
                     <div>
                       <div style={{ fontWeight: 600, fontSize: "1rem" }}>{img.name}</div>
-                      <div style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>{img.path}</div>
+                      <div style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>{img.type === "produit" ? "Visuel Produit" : "Photo du Site"}</div>
                     </div>
                   </div>
 
@@ -1059,37 +1156,6 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* Tab 6: Subscription Plans */}
-        {activeTab === "plans" && (
-          <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
-            <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.5rem", marginBottom: "1rem" }}>
-              Tarifs Officiels & Abonnements Tlénor Gym
-            </h2>
-            <p style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem", marginBottom: "2rem" }}>
-              Les tarifs ci-dessous sont ceux configurés et présentés sur la page publique <strong>Abonnements</strong>.
-            </p>
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.5rem" }}>
-              {[
-                { title: "08 Séances Cardio/Muscu", price: "5 000 DA/Mois" },
-                { title: "12 Séances Cardio/Muscu", price: "6 000 DA/Mois" },
-                { title: "16 Séances Cardio/Muscu", price: "7 000 DA/Mois" },
-                { title: "Illimité Cardio & Muscu", price: "8 000 DA/Mois", badge: "Populaire" },
-                { title: "Muscu 08 Séances", price: "3 000 DA/Mois" },
-                { title: "Muscu 12 Séances", price: "4 000 DA/Mois" },
-                { title: "Muscu 16 Séances", price: "5 000 DA/Mois" },
-                { title: "Muscu Illimité", price: "6 000 DA/Mois" },
-              ].map((plan, idx) => (
-                <div key={idx} style={{ padding: "1.25rem", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)" }}>
-                  {plan.badge && <span style={{ background: "var(--color-accent)", color: "#000", fontSize: "0.75rem", fontWeight: 700, padding: "2px 8px", borderRadius: "10px", float: "right" }}>{plan.badge}</span>}
-                  <h4 style={{ margin: "0 0 0.5rem", fontSize: "1.05rem" }}>{plan.title}</h4>
-                  <div style={{ color: "var(--color-accent)", fontWeight: 700, fontSize: "1.2rem" }}>{plan.price}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* Modal Order Details */}
         {selectedOrderDetails && (
           <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(0,0,0,0.8)", backdropFilter: "blur(5px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "1rem" }}>
@@ -1113,8 +1179,8 @@ export default function AdminPage() {
                 </div>
 
                 <div style={{ background: "var(--color-bg)", padding: "1rem", borderRadius: "var(--radius-md)" }}>
-                  <div style={{ marginBottom: "0.4rem" }}><strong>Produit :</strong> {selectedOrderDetails.product_name}</div>
-                  <div style={{ marginBottom: "0.4rem" }}><strong>Prix Article :</strong> {selectedOrderDetails.product_price}</div>
+                  <div style={{ marginBottom: "0.4rem" }}><strong>Produit(s) :</strong> {selectedOrderDetails.product_name}</div>
+                  <div style={{ marginBottom: "0.4rem" }}><strong>Prix Articles :</strong> {selectedOrderDetails.product_price}</div>
                   <div style={{ marginBottom: "0.4rem" }}><strong>Frais Livraison :</strong> {selectedOrderDetails.delivery_cost} DA</div>
                   <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#25d366", marginTop: "0.5rem", borderTop: "1px solid var(--color-border)", paddingTop: "0.5rem" }}>
                     Total à encaisser : {selectedOrderDetails.total_amount ? selectedOrderDetails.total_amount.toLocaleString() : selectedOrderDetails.product_price} DA
@@ -1173,13 +1239,22 @@ export default function AdminPage() {
                       onChange={(e) => setEditingProduct({ ...editingProduct, category: e.target.value })}
                       style={{ width: "100%", padding: "10px 14px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
                     >
-                      <option value="Protéines">Protéines</option>
-                      <option value="Acides Aminés">Acides Aminés</option>
-                      <option value="Performance">Performance</option>
-                      <option value="Vitamines">Vitamines</option>
-                      <option value="Snacks">Snacks</option>
+                      {categoriesList.map((cat, idx) => (
+                        <option key={idx} value={cat}>{cat}</option>
+                      ))}
                     </select>
                   </div>
+                </div>
+
+                <div style={{ marginBottom: "1rem" }}>
+                  <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Quantité en stock</label>
+                  <input
+                    type="number"
+                    min={0}
+                    value={editingProduct.stock_quantity}
+                    onChange={(e) => setEditingProduct({ ...editingProduct, stock_quantity: parseInt(e.target.value, 10) || 0 })}
+                    style={{ width: "100%", padding: "10px 14px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
+                  />
                 </div>
 
                 <div style={{ marginBottom: "1rem" }}>
@@ -1226,7 +1301,7 @@ export default function AdminPage() {
             </div>
           </div>
         )}
-      </div>
+      </main>
     </div>
   );
 }

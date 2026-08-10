@@ -16,38 +16,7 @@ export interface ProductItem {
 const STORAGE_KEY = "tlenorgym_admin_products";
 const EVENT_NAME = "tlenorgym_products_updated";
 
-export const defaultProductsList: ProductItem[] = [
-  {
-    id: "default-1",
-    name: "Whey Protein Isolate 2kg",
-    category: "Protéines",
-    price: "12 500 DA",
-    stock: true,
-    stock_quantity: 15,
-    desc: "Isolat de petit-lait pur ultra-filtré, 27g de protéines par dose, sans sucre.",
-    image: "",
-  },
-  {
-    id: "default-2",
-    name: "BCAA 2:1:1 + Électrolytes",
-    category: "Acides Aminés",
-    price: "5 500 DA",
-    stock: true,
-    stock_quantity: 20,
-    desc: "Acides aminés ramifiés pour optimiser la récupération et réduire la fatigue.",
-    image: "",
-  },
-  {
-    id: "default-3",
-    name: "Pre-Workout Explosive Energy",
-    category: "Performance",
-    price: "6 800 DA",
-    stock: true,
-    stock_quantity: 12,
-    desc: "Booster d'entraînement haute intensité avec créatine, bêta-alanine et caféine.",
-    image: "",
-  },
-];
+export const defaultProductsList: ProductItem[] = [];
 
 export function getLocalProducts(): ProductItem[] {
   if (typeof window === "undefined") return [];

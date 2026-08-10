@@ -3,25 +3,24 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
-import { Milk, Moon, Pill, Dna, Zap, Flame, Sparkles, Fish, Cookie, MessageSquare, Phone, Package, Eye, ShoppingBag } from "lucide-react";
-import ProductDetailModal from "@/components/ProductDetailModal";
+import { Milk, Pill, Zap, Sparkles, Cookie, MessageSquare, Phone, Package, ShoppingBag } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { getLocalProducts, fetchAndMergeProducts, subscribeProducts, ProductItem } from "@/lib/product-store";
 import { trackProductClick } from "@/lib/analytics";
 
 const categoryIcons: Record<string, React.ReactNode> = {
-  "Protéines": <Milk size={44} className="text-accent" />,
-  "Acides Aminés": <Pill size={44} className="text-accent" />,
-  "Performance": <Zap size={44} className="text-accent" />,
-  "Vitamines": <Sparkles size={44} className="text-accent" />,
-  "Snacks": <Cookie size={44} className="text-accent" />,
+  "Protéines": <Milk size={28} className="text-accent" />,
+  "Acides Aminés": <Pill size={28} className="text-accent" />,
+  "Performance": <Zap size={28} className="text-accent" />,
+  "Vitamines": <Sparkles size={28} className="text-accent" />,
+  "Snacks": <Cookie size={28} className="text-accent" />,
 };
 
 export default function ProduitsPage() {
   const [activeCategory, setActiveCategory] = useState("Tous");
   const [productList, setProductList] = useState<ProductItem[]>([]);
   const [categories, setCategories] = useState<string[]>(["Tous"]);
-  const [selectedProductDetail, setSelectedProductDetail] = useState<ProductItem | null>(null);
+  const { totalItems, setIsCartOpen } = useCart();
 
   const loadData = async () => {
     const local = getLocalProducts();
@@ -65,11 +64,6 @@ export default function ProduitsPage() {
     return () => unsubscribe();
   }, []);
 
-  const handleSelectProduct = (product: ProductItem) => {
-    trackProductClick(product.name);
-    setSelectedProductDetail(product);
-  };
-
   const filtered = productList.filter((p) => {
     if (activeCategory === "Tous") return true;
     return (p.category || "").trim().toLowerCase() === activeCategory.trim().toLowerCase();
@@ -77,12 +71,52 @@ export default function ProduitsPage() {
 
   return (
     <>
-      {selectedProductDetail && (
-        <ProductDetailModal
-          product={selectedProductDetail}
-          onClose={() => setSelectedProductDetail(null)}
-        />
-      )}
+      {/* Floating Cart Icon Button (Style CD Project) */}
+      <button
+        onClick={() => setIsCartOpen(true)}
+        aria-label="Voir le panier"
+        style={{
+          position: "fixed",
+          bottom: "28px",
+          right: "24px",
+          width: "58px",
+          height: "58px",
+          borderRadius: "50%",
+          backgroundColor: "var(--color-accent)",
+          color: "#000",
+          border: "none",
+          boxShadow: "0 8px 25px rgba(245, 197, 24, 0.45)",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 9999,
+        }}
+      >
+        <ShoppingBag size={24} />
+        {totalItems > 0 && (
+          <span
+            style={{
+              position: "absolute",
+              top: "-4px",
+              right: "-4px",
+              background: "var(--color-red)",
+              color: "#fff",
+              fontSize: "0.75rem",
+              fontWeight: 900,
+              width: "22px",
+              height: "22px",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              border: "2px solid var(--color-bg)",
+            }}
+          >
+            {totalItems}
+          </span>
+        )}
+      </button>
 
       <div className="page-header">
         <div className="container">
@@ -145,7 +179,6 @@ export default function ProduitsPage() {
                       justifyContent: "center",
                       background: "linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg) 100%)",
                       position: "relative",
-                      height: "240px",
                       width: "100%",
                       overflow: "hidden",
                     }}
@@ -162,7 +195,7 @@ export default function ProduitsPage() {
                         }}
                       />
                     ) : (
-                      categoryIcons[product.category] || <Package size={52} className="text-accent" />
+                      categoryIcons[product.category] || <Package size={32} className="text-accent" />
                     )}
                     <span className="product-card__category">{product.category}</span>
                     {product.stock_quantity <= 0 && (
@@ -210,7 +243,7 @@ export default function ProduitsPage() {
 
           {filtered.length === 0 && (
             <div style={{ textAlign: "center", padding: "var(--space-4xl)", color: "var(--color-text-muted)" }}>
-              <Package size={56} style={{ opacity: 0.3, marginBottom: "1rem" }} />
+              <Package size={48} style={{ opacity: 0.3, marginBottom: "1rem" }} />
               <p style={{ fontSize: "var(--fs-xl)" }}>Aucun produit disponible dans cette catégorie.</p>
             </div>
           )}

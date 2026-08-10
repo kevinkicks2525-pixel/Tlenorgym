@@ -1666,8 +1666,24 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .product-card__image {
-    padding: 1.25rem !important;
-    min-height: 140px !important;
+    padding: 0 !important;
+    height: 180px !important;
+    min-height: 180px !important;
+  }
+
+  .product-card__image img {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .phone-text {
+    display: none !important;
+  }
+  .nav-phone-btn {
+    padding: 8px 10px !important;
   }
 }
 

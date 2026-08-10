@@ -4,12 +4,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Phone, ShoppingBag } from "lucide-react";
-import { useCart } from "@/context/CartContext";
+import { Phone, X, Menu, Shield } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Accueil" },
-  { href: "/produits", label: "Produits" },
+  { href: "/produits", label: "Boutique Produits" },
   { href: "/coaching", label: "Coaching" },
   { href: "/abonnements", label: "Abonnements" },
 ];
@@ -18,10 +17,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-  const { totalItems, setIsCartOpen } = useCart();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -32,27 +30,31 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   return (
     <nav className={`navbar ${scrolled ? "navbar--scrolled" : ""}`} id="main-nav">
-      <div className="navbar__inner">
-        <Link href="/" className="navbar__logo">
+      <div className="navbar__inner" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}>
+        {/* Brand Logo */}
+        <Link href="/" className="navbar__logo" style={{ display: "flex", alignItems: "center", gap: "0.6rem", textDecoration: "none", flexShrink: 0 }}>
           <Image
             src="/images/logo.png"
             alt="Tlénor Gym Logo"
-            width={44}
-            height={44}
+            width={38}
+            height={38}
             className="navbar__logo-img"
             priority
           />
-          <span>
+          <span style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "1.2rem", color: "#fff", whiteSpace: "nowrap" }}>
             TLÉNOR <span className="text-accent">GYM</span>
           </span>
         </Link>
 
-        <div className="navbar__links">
+        {/* Desktop Links */}
+        <div className="navbar__links" style={{ display: "flex", alignItems: "center", gap: "1.75rem" }}>
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -64,53 +66,113 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="navbar__cta" style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <button
-            onClick={() => setIsCartOpen(true)}
-            className="btn btn--outline btn--sm"
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", position: "relative" }}
-            title="Voir le panier"
+        {/* Right CTA Actions */}
+        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexShrink: 0 }}>
+          <a
+            href="tel:0552089293"
+            className="btn btn--primary btn--sm nav-phone-btn"
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", whiteSpace: "nowrap" }}
           >
-            <ShoppingBag size={18} />
-            <span style={{ display: "none" }}>Panier</span>
-            {totalItems > 0 && (
-              <span style={{ background: "var(--color-accent)", color: "#000", fontSize: "0.75rem", fontWeight: 900, borderRadius: "50%", width: "20px", height: "20px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                {totalItems}
-              </span>
-            )}
-          </button>
-          <a href="tel:0552089293" className="btn btn--primary btn--sm" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-            <Phone size={16} /> Appelez-nous
+            <Phone size={15} /> <span className="phone-text">Appelez-nous</span>
           </a>
-        </div>
 
-        <button
-          className={`navbar__hamburger ${mobileOpen ? "navbar__hamburger--open" : ""}`}
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Menu"
-          id="mobile-menu-toggle"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-
-      <div className={`navbar__mobile ${mobileOpen ? "navbar__mobile--open" : ""}`}>
-        {navLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="navbar__mobile-link"
-            onClick={() => setMobileOpen(false)}
+          {/* Hamburger Toggle */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Menu"
+            className="navbar__hamburger"
+            style={{
+              background: "rgba(255, 255, 255, 0.08)",
+              border: "1px solid var(--color-border)",
+              borderRadius: "8px",
+              padding: "8px",
+              color: "#fff",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            {link.label}
-          </Link>
-        ))}
-        <a href="tel:0552089293" className="btn btn--primary btn--lg" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
-          <Phone size={18} /> Appelez-nous
-        </a>
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Drawer Overlay */}
+      {mobileOpen && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 99999,
+            background: "rgba(10, 10, 10, 0.96)",
+            backdropFilter: "blur(12px)",
+            display: "flex",
+            flexDirection: "column",
+            padding: "2rem 1.5rem",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "2.5rem", borderBottom: "1px solid var(--color-border)", paddingBottom: "1rem" }}>
+            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "1.3rem" }}>
+              TLÉNOR <span className="text-accent">GYM</span>
+            </span>
+            <button
+              onClick={() => setMobileOpen(false)}
+              style={{ background: "rgba(255,255,255,0.1)", border: "none", color: "#fff", borderRadius: "50%", padding: "8px", cursor: "pointer" }}
+            >
+              <X size={24} />
+            </button>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", flex: 1 }}>
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                style={{
+                  fontSize: "1.35rem",
+                  fontWeight: 700,
+                  fontFamily: "var(--font-heading)",
+                  color: pathname === link.href ? "var(--color-accent)" : "#fff",
+                  textDecoration: "none",
+                  padding: "0.5rem 0",
+                  borderBottom: "1px solid rgba(255,255,255,0.05)",
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
+
+            <Link
+              href="/admin"
+              onClick={() => setMobileOpen(false)}
+              style={{
+                fontSize: "1.1rem",
+                fontWeight: 600,
+                color: "var(--color-text-secondary)",
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                marginTop: "1rem",
+              }}
+            >
+              <Shield size={18} className="text-accent" /> Backoffice Administrateur
+            </Link>
+          </div>
+
+          <div style={{ marginTop: "auto", paddingTop: "1.5rem" }}>
+            <a
+              href="tel:0552089293"
+              className="btn btn--primary btn--lg"
+              style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
+            >
+              <Phone size={18} /> Appelez-nous (0552 08 92 93)
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

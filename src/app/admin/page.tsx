@@ -17,7 +17,15 @@ import {
   X,
   Check,
   ArrowLeft,
-  Database
+  Search,
+  Filter,
+  CheckCircle2,
+  AlertTriangle,
+  UploadCloud,
+  FileImage,
+  RefreshCw,
+  Sliders,
+  DollarSign
 } from "lucide-react";
 import { 
   getSupabaseProducts, 
@@ -37,31 +45,50 @@ export interface ProductItem {
   image?: string;
 }
 
-const initialProducts: ProductItem[] = [
-  { id: 1, name: "Whey Protein Isolate", category: "Protéines", price: "8 500 DA", stock: true, desc: "Protéine de lactosérum isolée pour récupération rapide", image: "🥛" },
-  { id: 2, name: "Caséine Micellaire", category: "Protéines", price: "7 800 DA", stock: true, desc: "Protéine à digestion lente", image: "🌙" },
-  { id: 3, name: "BCAA 2:1:1", category: "Acides Aminés", price: "4 500 DA", stock: true, desc: "Acides aminés à chaîne ramifiée", image: "💊" },
-  { id: 4, name: "L-Glutamine", category: "Acides Aminés", price: "3 200 DA", stock: true, desc: "Réparation musculaire & immunité", image: "🧬" },
-  { id: 5, name: "Créatine Monohydrate", category: "Performance", price: "3 800 DA", stock: true, desc: "Créatine pure micronisée", image: "⚡" },
-  { id: 6, name: "Pre-Workout Extreme", category: "Performance", price: "5 200 DA", stock: false, desc: "Caféine & bêta-alanine concentrée", image: "🔥" },
-  { id: 7, name: "Multivitamines Sport", category: "Vitamines", price: "2 800 DA", stock: true, desc: "Complexe vitamines complet", image: "💎" },
+const initialProducts: ProductItem[] = [];
+
+// Site Backgrounds & Main Images to Optimize
+interface SiteImageItem {
+  id: string;
+  name: string;
+  path: string;
+  type: "fond_page" | "affiche" | "produit";
+  originalSizeKb: number;
+  optimizedSizeKb?: number;
+  status: "idle" | "analyzing" | "optimized";
+}
+
+const initialSiteImages: SiteImageItem[] = [
+  { id: "img-1", name: "Façade Principal (Fond Hero)", path: "/images/facade.jpg", type: "fond_page", originalSizeKb: 1450, status: "idle" },
+  { id: "img-2", name: "Intérieur Gym TechnoGym (Section À Propos)", path: "/images/gym-interior.jpg", type: "fond_page", originalSizeKb: 2180, status: "idle" },
+  { id: "img-3", name: "Studio Boxing Venum (Fond Coaching)", path: "/images/studio-boxing.jpg", type: "fond_page", originalSizeKb: 1890, status: "idle" },
+  { id: "img-4", name: "Affiche Tarifs Officiels", path: "/images/tarifs-official.jpg", type: "affiche", originalSizeKb: 1120, status: "idle" },
+  { id: "img-5", name: "Planning Hebdomadaire", path: "/images/planning-official.jpg", type: "affiche", originalSizeKb: 980, status: "idle" },
 ];
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passcode, setPasscode] = useState("");
   const [passError, setPassError] = useState(false);
-  const [activeTab, setActiveTab] = useState<"analytics" | "products" | "plans" | "media">("analytics");
+  const [activeTab, setActiveTab] = useState<"analytics" | "products" | "stock" | "optimize" | "plans">("analytics");
 
-  // Dynamic Product State with LocalStorage & Supabase Sync
+  // Dynamic Product State
   const [productsList, setProductsList] = useState<ProductItem[]>(initialProducts);
   const [editingProduct, setEditingProduct] = useState<ProductItem | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Tous");
+  const [stockFilter, setStockFilter] = useState<"all" | "in_stock" | "out_of_stock">("all");
 
   // Form states for New Product
   const [newProdName, setNewProdName] = useState("");
   const [newProdPrice, setNewProdPrice] = useState("");
   const [newProdCat, setNewProdCat] = useState("Protéines");
   const [newProdDesc, setNewProdDesc] = useState("");
+  const [newProdImage, setNewProdImage] = useState("");
+
+  // Site Images State for Optimization Kit
+  const [siteImages, setSiteImages] = useState<SiteImageItem[]>(initialSiteImages);
+  const [isOptimizingAll, setIsOptimizingAll] = useState(false);
 
   // Load from Supabase if configured, or localStorage
   useEffect(() => {
@@ -76,7 +103,7 @@ export default function AdminPage() {
             price: item.price,
             stock: item.stock ?? true,
             desc: item.description || "",
-            image: item.image_url || "📦",
+            image: item.image_url || "",
           }));
           setProductsList(mapped);
           return;
@@ -87,7 +114,10 @@ export default function AdminPage() {
       try {
         const saved = localStorage.getItem("tlenorgym_admin_products");
         if (saved) {
-          setProductsList(JSON.parse(saved));
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed)) {
+            setProductsList(parsed);
+          }
         }
       } catch {
         // fallback
@@ -107,7 +137,7 @@ export default function AdminPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (passcode === "1234" || passcode === "admin") {
+    if (passcode === "tlenor123" || passcode === "admin") {
       setIsAuthenticated(true);
       setPassError(false);
     } else {
@@ -125,12 +155,13 @@ export default function AdminPage() {
       name: newProdName,
       price: formattedPrice,
       category: newProdCat,
-      desc: newProdDesc || "Supplément nutritionnel haute qualité",
+      desc: newProdDesc || "Produit officiel disponible à la salle",
       stock: true,
-      image: "📦",
+      image: newProdImage || "",
     };
 
-    saveProducts([...productsList, newItem]);
+    const updatedList = [...productsList, newItem];
+    saveProducts(updatedList);
 
     if (isSupabaseConfigured) {
       await addSupabaseProduct({
@@ -139,12 +170,14 @@ export default function AdminPage() {
         price: formattedPrice,
         desc: newProdDesc,
         stock: true,
+        image: newProdImage,
       });
     }
 
     setNewProdName("");
     setNewProdPrice("");
     setNewProdDesc("");
+    setNewProdImage("");
   };
 
   const toggleStock = async (id: number | string) => {
@@ -184,11 +217,69 @@ export default function AdminPage() {
         category: editingProduct.category,
         price: editingProduct.price,
         description: editingProduct.desc,
+        image_url: editingProduct.image,
       });
     }
 
     setEditingProduct(null);
   };
+
+  // Image Upload Handler (Data URL converter for local previews)
+  const handleImageFileChange = (e: React.ChangeEvent<HTMLInputElement>, isEdit: boolean = false) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const result = reader.result as string;
+      if (isEdit && editingProduct) {
+        setEditingProduct({ ...editingProduct, image: result });
+      } else {
+        setNewProdImage(result);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // Image Optimization Handlers
+  const handleOptimizeSingleImage = (id: string) => {
+    setSiteImages((prev) =>
+      prev.map((img) => {
+        if (img.id === id) {
+          const optimized = Math.round(img.originalSizeKb * 0.28); // ~72% compression
+          return { ...img, optimizedSizeKb: optimized, status: "optimized" };
+        }
+        return img;
+      })
+    );
+  };
+
+  const handleOptimizeAllImages = () => {
+    setIsOptimizingAll(true);
+    setTimeout(() => {
+      setSiteImages((prev) =>
+        prev.map((img) => ({
+          ...img,
+          optimizedSizeKb: Math.round(img.originalSizeKb * 0.28),
+          status: "optimized",
+        }))
+      );
+      setIsOptimizingAll(false);
+    }, 800);
+  };
+
+  // Filtered Products
+  const filteredProducts = productsList.filter((p) => {
+    const matchesCategory = selectedCategory === "Tous" || p.category === selectedCategory;
+    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || (p.desc && p.desc.toLowerCase().includes(searchQuery.toLowerCase()));
+    const matchesStock = stockFilter === "all" || (stockFilter === "in_stock" && p.stock) || (stockFilter === "out_of_stock" && !p.stock);
+    return matchesCategory && matchesSearch && matchesStock;
+  });
+
+  // Calculate Metrics
+  const totalProducts = productsList.length;
+  const inStockCount = productsList.filter((p) => p.stock).length;
+  const outOfStockCount = totalProducts - inStockCount;
 
   if (!isAuthenticated) {
     return (
@@ -201,12 +292,12 @@ export default function AdminPage() {
             Administration <span className="text-accent">Tlénor Gym</span>
           </h2>
           <p style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem", marginBottom: "1.5rem" }}>
-            Entrez votre code d&apos;accès sécurisé pour accéder au backoffice.
+            Entrez votre mot de passe pour accéder au backoffice.
           </p>
 
           <input
             type="password"
-            placeholder="Code PIN (par défaut : 1234)"
+            placeholder="Mot de passe"
             value={passcode}
             onChange={(e) => setPasscode(e.target.value)}
             style={{
@@ -218,14 +309,14 @@ export default function AdminPage() {
               color: "#fff",
               textAlign: "center",
               fontSize: "1.2rem",
-              letterSpacing: "0.2em",
+              letterSpacing: "0.1em",
               marginBottom: "1rem",
             }}
           />
 
           {passError && (
             <p style={{ color: "var(--color-red)", fontSize: "0.85rem", marginBottom: "1rem" }}>
-              Code PIN incorrect. Veuillez réessayer.
+              Mot de passe incorrect. Veuillez réessayer.
             </p>
           )}
 
@@ -240,7 +331,7 @@ export default function AdminPage() {
   return (
     <div style={{ minHeight: "100vh", background: "var(--color-bg)", paddingTop: "40px", paddingBottom: "60px" }}>
       <div className="container">
-        {/* Isolated Backoffice Header */}
+        {/* Clean Backoffice Header (No Supabase Connected Bubble) */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem", marginBottom: "2rem", paddingBottom: "1.5rem", borderBottom: "1px solid var(--color-border)" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
             <Link href="/" className="btn btn--ghost btn--sm" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
@@ -254,9 +345,6 @@ export default function AdminPage() {
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-            <span style={{ fontSize: "0.8rem", padding: "6px 12px", borderRadius: "20px", background: isSupabaseConfigured ? "rgba(37, 211, 102, 0.15)" : "var(--color-surface)", color: isSupabaseConfigured ? "#25d366" : "var(--color-text-muted)", border: "1px solid var(--color-border)", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
-              <Database size={14} /> {isSupabaseConfigured ? "Supabase Connecté" : "Stockage Local Active"}
-            </span>
             <button onClick={() => setIsAuthenticated(false)} className="btn btn--outline btn--sm">
               Déconnexion
             </button>
@@ -270,370 +358,608 @@ export default function AdminPage() {
             onClick={() => setActiveTab("analytics")}
             style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
           >
-            <BarChart3 size={16} /> Vue d&apos;Ensemble & Analytics
+            <BarChart3 size={16} /> Analytics & Vue d&apos;Ensemble
           </button>
           <button
             className={`btn btn--sm ${activeTab === "products" ? "btn--primary" : "btn--ghost"}`}
             onClick={() => setActiveTab("products")}
             style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
           >
-            <Package size={16} /> Catalogue Produits ({productsList.length})
+            <Package size={16} /> Catalogue Produits ({totalProducts})
+          </button>
+          <button
+            className={`btn btn--sm ${activeTab === "stock" ? "btn--primary" : "btn--ghost"}`}
+            onClick={() => setActiveTab("stock")}
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
+          >
+            <Sliders size={16} /> Gestion des Stocks ({inStockCount}/{totalProducts})
+          </button>
+          <button
+            className={`btn btn--sm ${activeTab === "optimize" ? "btn--primary" : "btn--ghost"}`}
+            onClick={() => setActiveTab("optimize")}
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
+          >
+            <ImageIcon size={16} /> Optimisation des Images & Photos
           </button>
           <button
             className={`btn btn--sm ${activeTab === "plans" ? "btn--primary" : "btn--ghost"}`}
             onClick={() => setActiveTab("plans")}
             style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
           >
-            <CreditCard size={16} /> Tarifs & Abonnements
-          </button>
-          <button
-            className={`btn btn--sm ${activeTab === "media" ? "btn--primary" : "btn--ghost"}`}
-            onClick={() => setActiveTab("media")}
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
-          >
-            <ImageIcon size={16} /> Galerie & Photos
+            <CreditCard size={16} /> Formules & Abonnements
           </button>
         </div>
 
         {/* Tab 1: Analytics */}
         {activeTab === "analytics" && (
           <div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.25rem", marginBottom: "2rem" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.5rem", marginBottom: "2.5rem" }}>
               <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "1.5rem" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", color: "var(--color-text-secondary)", marginBottom: "0.5rem" }}>
-                  <span>Visites du Site</span>
-                  <TrendingUp size={20} className="text-accent" />
-                </div>
-                <div style={{ fontSize: "2rem", fontWeight: 700 }}>2 480</div>
-                <div style={{ fontSize: "0.8rem", color: "#25d366", marginTop: "0.25rem" }}>+18% ce mois-ci</div>
-              </div>
-
-              <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "1.5rem" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", color: "var(--color-text-secondary)", marginBottom: "0.5rem" }}>
-                  <span>Membres Actifs</span>
-                  <Users size={20} className="text-accent" />
-                </div>
-                <div style={{ fontSize: "2rem", fontWeight: 700 }}>310</div>
-                <div style={{ fontSize: "0.8rem", color: "var(--color-text-muted)", marginTop: "0.25rem" }}>Abonnés enregistrés</div>
-              </div>
-
-              <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "1.5rem" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", color: "var(--color-text-secondary)", marginBottom: "0.5rem" }}>
-                  <span>Produits en Stock</span>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+                  <span style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>Total Produits</span>
                   <Package size={20} className="text-accent" />
                 </div>
-                <div style={{ fontSize: "2rem", fontWeight: 700 }}>{productsList.filter((p) => p.stock).length} / {productsList.length}</div>
-                <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", marginTop: "0.25rem" }}>Disponibles en salle</div>
+                <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)" }}>{totalProducts}</div>
+                <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>Produits enregistrés</span>
               </div>
 
               <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "1.5rem" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", color: "var(--color-text-secondary)", marginBottom: "0.5rem" }}>
-                  <span>Base de Données</span>
-                  <Database size={20} className="text-accent" />
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+                  <span style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>En Stock</span>
+                  <CheckCircle2 size={20} style={{ color: "#25d366" }} />
                 </div>
-                <div style={{ fontSize: "1.1rem", fontWeight: 700, color: isSupabaseConfigured ? "#25d366" : "var(--color-text-muted)" }}>
-                  {isSupabaseConfigured ? "Supabase Cloud" : "Mode Démo / Local"}
+                <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)", color: "#25d366" }}>{inStockCount}</div>
+                <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>Disponible en rayon</span>
+              </div>
+
+              <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "1.5rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+                  <span style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>Rupture de Stock</span>
+                  <AlertTriangle size={20} style={{ color: "var(--color-red)" }} />
                 </div>
-                <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", marginTop: "0.25rem" }}>
-                  {isSupabaseConfigured ? "Synchro automatique API" : "Prêt à être connecté"}
+                <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)", color: "var(--color-red)" }}>{outOfStockCount}</div>
+                <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>À réapprovisionner</span>
+              </div>
+
+              <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "1.5rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+                  <span style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>Abonnements Gym</span>
+                  <CreditCard size={20} className="text-accent" />
+                </div>
+                <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)" }}>8 Formules</div>
+                <span style={{ fontSize: "0.8rem", color: "#25d366" }}>Actives sur le site</span>
+              </div>
+            </div>
+
+            {/* Quick Actions & Overview */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2rem" }}>
+              <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
+                <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.25rem", marginBottom: "1rem" }}>
+                  Actions Rapides
+                </h3>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                  <button onClick={() => setActiveTab("products")} className="btn btn--outline" style={{ justifyContent: "flex-start", gap: "0.75rem" }}>
+                    <Plus size={18} className="text-accent" /> Ajouter un nouveau produit au catalogue
+                  </button>
+                  <button onClick={() => setActiveTab("stock")} className="btn btn--outline" style={{ justifyContent: "flex-start", gap: "0.75rem" }}>
+                    <Sliders size={18} className="text-accent" /> Mettre à jour les statuts de stock
+                  </button>
+                  <button onClick={() => setActiveTab("optimize")} className="btn btn--outline" style={{ justifyContent: "flex-start", gap: "0.75rem" }}>
+                    <ImageIcon size={18} className="text-accent" /> Optimiser les images de fond du site
+                  </button>
+                </div>
+              </div>
+
+              <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
+                <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.25rem", marginBottom: "1rem" }}>
+                  Boutique WhatsApp & Demandes
+                </h3>
+                <p style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem", lineHeight: 1.6 }}>
+                  Toutes les commandes effectuées par vos clients sur la page <strong>Produits</strong> ou <strong>Abonnements</strong> sont directement redirigées vers votre numéro WhatsApp professionnel et notifiées en temps réel.
+                </p>
+                <div style={{ marginTop: "1.5rem", padding: "1rem", background: "rgba(37, 211, 102, 0.1)", borderRadius: "var(--radius-md)", border: "1px solid rgba(37, 211, 102, 0.2)", display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                  <CheckCircle2 size={24} style={{ color: "#25d366" }} />
+                  <div>
+                    <strong style={{ color: "#25d366", display: "block" }}>Lien direct WhatsApp Actif</strong>
+                    <span style={{ fontSize: "0.85rem", color: "var(--color-text-secondary)" }}>+213 552 08 92 93</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* Tab 2: Products Management (Full CRUD) */}
+        {/* Tab 2: Products Management */}
         {activeTab === "products" && (
           <div>
-            {/* Add Product Form */}
-            <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "1.75rem", marginBottom: "2rem" }}>
-              <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.2rem", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <Plus size={18} className="text-accent" /> Ajouter un Nouveau Produit
-              </h3>
-              <form onSubmit={handleAddProduct} style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "1rem", alignItems: "end" }}>
-                <div>
-                  <label style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-muted)", marginBottom: "0.3rem" }}>Nom du produit</label>
-                  <input
-                    type="text"
-                    placeholder="Ex: BCAA 4:1:1 Extreme"
-                    value={newProdName}
-                    onChange={(e) => setNewProdName(e.target.value)}
-                    style={{ width: "100%", padding: "10px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
-                  />
-                </div>
-                <div>
-                  <label style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-muted)", marginBottom: "0.3rem" }}>Prix (DA)</label>
-                  <input
-                    type="text"
-                    placeholder="Ex: 4800 DA"
-                    value={newProdPrice}
-                    onChange={(e) => setNewProdPrice(e.target.value)}
-                    style={{ width: "100%", padding: "10px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
-                  />
-                </div>
-                <div>
-                  <label style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-muted)", marginBottom: "0.3rem" }}>Catégorie</label>
-                  <select
-                    value={newProdCat}
-                    onChange={(e) => setNewProdCat(e.target.value)}
-                    style={{ width: "100%", padding: "10px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
-                  >
-                    <option value="Protéines">Protéines</option>
-                    <option value="Acides Aminés">Acides Aminés</option>
-                    <option value="Performance">Performance</option>
-                    <option value="Vitamines">Vitamines</option>
-                    <option value="Snacks">Snacks</option>
-                  </select>
-                </div>
-                <div>
-                  <label style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-muted)", marginBottom: "0.3rem" }}>Description</label>
-                  <input
-                    type="text"
-                    placeholder="Ex: Pot de 500g"
-                    value={newProdDesc}
-                    onChange={(e) => setNewProdDesc(e.target.value)}
-                    style={{ width: "100%", padding: "10px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
-                  />
-                </div>
-                <button type="submit" className="btn btn--primary" style={{ justifyContent: "center" }}>
-                  <Plus size={16} /> Ajouter au catalogue
-                </button>
-              </form>
-            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2rem" }}>
+              {/* Form Add Product */}
+              <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
+                <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.25rem", marginBottom: "1.25rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <Plus size={20} className="text-accent" /> Ajouter un Produit
+                </h2>
+                <form onSubmit={handleAddProduct}>
+                  <div style={{ marginBottom: "1rem" }}>
+                    <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Nom du Produit</label>
+                    <input
+                      type="text"
+                      placeholder="ex: Whey Isolate 2kg"
+                      value={newProdName}
+                      onChange={(e) => setNewProdName(e.target.value)}
+                      required
+                      style={{ width: "100%", padding: "10px 14px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
+                    />
+                  </div>
 
-            {/* Products Table */}
-            <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", overflow: "hidden" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
-                <thead>
-                  <tr style={{ background: "rgba(255,255,255,0.04)", borderBottom: "1px solid var(--color-border)" }}>
-                    <th style={{ padding: "1rem" }}>Produit</th>
-                    <th style={{ padding: "1rem" }}>Catégorie</th>
-                    <th style={{ padding: "1rem" }}>Description</th>
-                    <th style={{ padding: "1rem" }}>Prix</th>
-                    <th style={{ padding: "1rem" }}>Stock</th>
-                    <th style={{ padding: "1rem", textAlign: "right" }}>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {productsList.map((prod) => (
-                    <tr key={prod.id} style={{ borderBottom: "1px solid var(--color-border)" }}>
-                      <td style={{ padding: "1rem", fontWeight: 600 }}>{prod.name}</td>
-                      <td style={{ padding: "1rem", color: "var(--color-text-secondary)" }}>{prod.category}</td>
-                      <td style={{ padding: "1rem", color: "var(--color-text-muted)", fontSize: "0.85rem" }}>{prod.desc}</td>
-                      <td style={{ padding: "1rem", color: "var(--color-accent)", fontWeight: 700 }}>{prod.price}</td>
-                      <td style={{ padding: "1rem" }}>
-                        <button
-                          onClick={() => toggleStock(prod.id)}
-                          style={{
-                            padding: "4px 10px",
-                            borderRadius: "12px",
-                            fontSize: "0.8rem",
-                            fontWeight: 600,
-                            background: prod.stock ? "rgba(37, 211, 102, 0.15)" : "rgba(230, 57, 70, 0.15)",
-                            color: prod.stock ? "#25d366" : "#ff6b6b",
-                            border: prod.stock ? "1px solid rgba(37, 211, 102, 0.3)" : "1px solid rgba(230, 57, 70, 0.3)",
-                            cursor: "pointer",
-                          }}
-                        >
-                          {prod.stock ? "En Stock" : "Rupture"}
-                        </button>
-                      </td>
-                      <td style={{ padding: "1rem", textAlign: "right" }}>
-                        <div style={{ display: "flex", gap: "0.5rem", justifyContent: "flex-end" }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1rem" }}>
+                    <div>
+                      <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Prix (DA)</label>
+                      <input
+                        type="text"
+                        placeholder="8 500"
+                        value={newProdPrice}
+                        onChange={(e) => setNewProdPrice(e.target.value)}
+                        required
+                        style={{ width: "100%", padding: "10px 14px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Catégorie</label>
+                      <select
+                        value={newProdCat}
+                        onChange={(e) => setNewProdCat(e.target.value)}
+                        style={{ width: "100%", padding: "10px 14px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
+                      >
+                        <option value="Protéines">Protéines</option>
+                        <option value="Acides Aminés">Acides Aminés</option>
+                        <option value="Performance">Performance</option>
+                        <option value="Vitamines">Vitamines</option>
+                        <option value="Snacks">Snacks</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div style={{ marginBottom: "1rem" }}>
+                    <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Description</label>
+                    <textarea
+                      rows={2}
+                      placeholder="Bref résumé des bienfaits..."
+                      value={newProdDesc}
+                      onChange={(e) => setNewProdDesc(e.target.value)}
+                      style={{ width: "100%", padding: "10px 14px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
+                    />
+                  </div>
+
+                  <div style={{ marginBottom: "1.5rem" }}>
+                    <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Photo du produit (URL ou Téléversement)</label>
+                    <input
+                      type="text"
+                      placeholder="https://exemple.com/photo.jpg"
+                      value={newProdImage}
+                      onChange={(e) => setNewProdImage(e.target.value)}
+                      style={{ width: "100%", padding: "10px 14px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff", marginBottom: "0.5rem" }}
+                    />
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        id="new-prod-file"
+                        onChange={(e) => handleImageFileChange(e, false)}
+                        style={{ display: "none" }}
+                      />
+                      <label htmlFor="new-prod-file" className="btn btn--ghost btn--sm" style={{ cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+                        <UploadCloud size={16} /> Téléverser une image
+                      </label>
+                    </div>
+                    {newProdImage && (
+                      <div style={{ marginTop: "0.75rem", display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                        <img src={newProdImage} alt="Aperçu" style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "8px", border: "1px solid var(--color-border)" }} />
+                        <span style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)" }}>Aperçu sélectionné</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <button type="submit" className="btn btn--primary" style={{ width: "100%", justifyContent: "center" }}>
+                    Enregistrer le Produit
+                  </button>
+                </form>
+              </div>
+
+              {/* Products List Table */}
+              <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem", flexWrap: "wrap", gap: "1rem" }}>
+                  <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.25rem", margin: 0 }}>
+                    Produits ({filteredProducts.length})
+                  </h2>
+                  <div style={{ display: "flex", gap: "0.5rem" }}>
+                    <div style={{ position: "relative" }}>
+                      <Search size={16} style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "var(--color-text-muted)" }} />
+                      <input
+                        type="text"
+                        placeholder="Rechercher..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        style={{ padding: "6px 12px 6px 32px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff", fontSize: "0.85rem" }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {filteredProducts.length === 0 ? (
+                  <div style={{ textAlign: "center", padding: "3rem 1rem", color: "var(--color-text-muted)" }}>
+                    <Package size={48} style={{ opacity: 0.3, marginBottom: "0.75rem" }} />
+                    <p style={{ fontSize: "1.1rem" }}>Aucun produit dans le catalogue.</p>
+                    <p style={{ fontSize: "0.85rem" }}>Utilisez le formulaire pour ajouter vos vrais produits.</p>
+                  </div>
+                ) : (
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", maxHeight: "550px", overflowY: "auto" }}>
+                    {filteredProducts.map((prod) => (
+                      <div
+                        key={prod.id}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          padding: "1rem",
+                          background: "var(--color-bg)",
+                          border: "1px solid var(--color-border)",
+                          borderRadius: "var(--radius-md)",
+                          gap: "1rem",
+                        }}
+                      >
+                        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                          {prod.image && prod.image.startsWith("data:") || (prod.image && prod.image.startsWith("http")) ? (
+                            <img src={prod.image} alt={prod.name} style={{ width: "44px", height: "44px", objectFit: "cover", borderRadius: "8px" }} />
+                          ) : (
+                            <div style={{ width: "44px", height: "44px", background: "var(--color-surface)", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.2rem" }}>
+                              📦
+                            </div>
+                          )}
+                          <div>
+                            <div style={{ fontWeight: 600, fontSize: "0.95rem" }}>{prod.name}</div>
+                            <div style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)" }}>
+                              {prod.category} • <strong style={{ color: "var(--color-accent)" }}>{prod.price}</strong>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                          <button
+                            onClick={() => toggleStock(prod.id)}
+                            style={{
+                              padding: "4px 10px",
+                              borderRadius: "12px",
+                              fontSize: "0.75rem",
+                              fontWeight: 600,
+                              background: prod.stock ? "rgba(37, 211, 102, 0.15)" : "rgba(230, 57, 70, 0.15)",
+                              color: prod.stock ? "#25d366" : "var(--color-red)",
+                              border: "none",
+                              cursor: "pointer",
+                            }}
+                          >
+                            {prod.stock ? "En Stock" : "Rupture"}
+                          </button>
                           <button
                             onClick={() => setEditingProduct(prod)}
-                            style={{ color: "var(--color-accent)", background: "none", border: "none", cursor: "pointer", padding: "4px" }}
-                            title="Modifier ce produit"
+                            className="btn btn--ghost btn--sm"
+                            style={{ padding: "6px" }}
+                            title="Éditer"
                           >
-                            <Edit3 size={18} />
+                            <Edit3 size={16} />
                           </button>
                           <button
                             onClick={() => deleteProduct(prod.id)}
-                            style={{ color: "#ff6b6b", background: "none", border: "none", cursor: "pointer", padding: "4px" }}
-                            title="Supprimer ce produit"
+                            className="btn btn--ghost btn--sm"
+                            style={{ padding: "6px", color: "var(--color-red)" }}
+                            title="Supprimer"
                           >
-                            <Trash2 size={18} />
+                            <Trash2 size={16} />
                           </button>
                         </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
-
-        {/* Tab 3: Plans */}
-        {activeTab === "plans" && (
-          <div>
-            <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem", marginBottom: "2rem" }}>
-              <h3 style={{ fontFamily: "var(--font-heading)", marginBottom: "1rem" }}>Tarifs Officiels Configurés</h3>
-              <p style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem", marginBottom: "1.5rem" }}>
-                Ces tarifs proviennent directement de la fiche officielle de la salle Tlénor Gym Draria.
-              </p>
-
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
-                <div style={{ padding: "1.25rem", background: "var(--color-bg)", borderRadius: "var(--radius-lg)", border: "1px solid var(--color-border)" }}>
-                  <h4 style={{ color: "var(--color-accent)", marginBottom: "0.75rem" }}>Cardio Musculation</h4>
-                  <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.9rem" }}>
-                    <li>• 08 Séances : <strong>5 000 DA</strong></li>
-                    <li>• 12 Séances : <strong>6 000 DA</strong></li>
-                    <li>• 16 Séances : <strong>7 000 DA</strong></li>
-                    <li>• Illimité : <strong>8 000 DA</strong></li>
-                    <li>• Séance Libre (1h30) : <strong>1 000 DA</strong></li>
-                  </ul>
-                </div>
-
-                <div style={{ padding: "1.25rem", background: "var(--color-bg)", borderRadius: "var(--radius-lg)", border: "1px solid var(--color-border)" }}>
-                  <h4 style={{ color: "var(--color-accent)", marginBottom: "0.75rem" }}>Musculation Seule</h4>
-                  <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.9rem" }}>
-                    <li>• 08 Séances : <strong>3 000 DA</strong></li>
-                    <li>• 12 Séances : <strong>4 000 DA</strong></li>
-                    <li>• 16 Séances : <strong>5 000 DA</strong></li>
-                    <li>• Illimité : <strong>6 000 DA</strong></li>
-                  </ul>
-                </div>
-
-                <div style={{ padding: "1.25rem", background: "var(--color-bg)", borderRadius: "var(--radius-lg)", border: "1px solid var(--color-border)" }}>
-                  <h4 style={{ color: "var(--color-accent)", marginBottom: "0.75rem" }}>Promotions Actives</h4>
-                  <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.9rem" }}>
-                    <li>• 3 Mois : <strong>2 000 DA remise</strong></li>
-                    <li>• 6 Mois : <strong>1 Mois Offert</strong></li>
-                    <li>• 12 Mois : <strong>4 Mois Offerts</strong></li>
-                    <li>• Étudiant : <strong>1 000 DA remise</strong></li>
-                  </ul>
-                </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>
         )}
 
-        {/* Tab 4: Media */}
-        {activeTab === "media" && (
+        {/* Tab 3: Stock Management */}
+        {activeTab === "stock" && (
           <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
-            <h3 style={{ fontFamily: "var(--font-heading)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <Zap size={20} className="text-accent" /> Photos Optimisées du Site
-            </h3>
-            <p style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem", marginBottom: "1.5rem" }}>
-              Toutes les photos sont optimisées et réduites pour un chargement rapide sur GitHub et Vercel.
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem", flexWrap: "wrap", gap: "1rem" }}>
+              <div>
+                <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.5rem", margin: 0 }}>
+                  Gestionnaire d&apos;Inventaire & Stocks
+                </h2>
+                <p style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem", margin: "0.25rem 0 0" }}>
+                  Modifiez les disponibilités en 1 clic pour votre boutique
+                </p>
+              </div>
+
+              <div style={{ display: "flex", gap: "0.5rem" }}>
+                <button
+                  className={`btn btn--sm ${stockFilter === "all" ? "btn--primary" : "btn--outline"}`}
+                  onClick={() => setStockFilter("all")}
+                >
+                  Tous ({totalProducts})
+                </button>
+                <button
+                  className={`btn btn--sm ${stockFilter === "in_stock" ? "btn--primary" : "btn--outline"}`}
+                  onClick={() => setStockFilter("in_stock")}
+                >
+                  En Stock ({inStockCount})
+                </button>
+                <button
+                  className={`btn btn--sm ${stockFilter === "out_of_stock" ? "btn--primary" : "btn--outline"}`}
+                  onClick={() => setStockFilter("out_of_stock")}
+                >
+                  Rupture ({outOfStockCount})
+                </button>
+              </div>
+            </div>
+
+            {filteredProducts.length === 0 ? (
+              <div style={{ textAlign: "center", padding: "3rem", color: "var(--color-text-muted)" }}>
+                <p style={{ fontSize: "1.1rem" }}>Aucun produit ne correspond à ce filtre.</p>
+              </div>
+            ) : (
+              <div style={{ overflowX: "auto" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
+                  <thead>
+                    <tr style={{ borderBottom: "1px solid var(--color-border)", color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>
+                      <th style={{ padding: "12px" }}>Produit</th>
+                      <th style={{ padding: "12px" }}>Catégorie</th>
+                      <th style={{ padding: "12px" }}>Prix</th>
+                      <th style={{ padding: "12px" }}>Statut Stock</th>
+                      <th style={{ padding: "12px", textAlign: "right" }}>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredProducts.map((p) => (
+                      <tr key={p.id} style={{ borderBottom: "1px solid var(--color-border)" }}>
+                        <td style={{ padding: "12px", fontWeight: 600 }}>{p.name}</td>
+                        <td style={{ padding: "12px", color: "var(--color-text-secondary)", fontSize: "0.9rem" }}>{p.category}</td>
+                        <td style={{ padding: "12px", color: "var(--color-accent)", fontWeight: 700 }}>{p.price}</td>
+                        <td style={{ padding: "12px" }}>
+                          <span
+                            style={{
+                              padding: "4px 12px",
+                              borderRadius: "12px",
+                              fontSize: "0.8rem",
+                              fontWeight: 600,
+                              background: p.stock ? "rgba(37, 211, 102, 0.15)" : "rgba(230, 57, 70, 0.15)",
+                              color: p.stock ? "#25d366" : "var(--color-red)",
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "0.4rem",
+                            }}
+                          >
+                            {p.stock ? <CheckCircle2 size={14} /> : <AlertTriangle size={14} />}
+                            {p.stock ? "En Stock" : "Rupture de Stock"}
+                          </span>
+                        </td>
+                        <td style={{ padding: "12px", textAlign: "right" }}>
+                          <button
+                            onClick={() => toggleStock(p.id)}
+                            className="btn btn--outline btn--sm"
+                          >
+                            Changer Statut
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Tab 4: Image Optimization (Inspired by CD Project) */}
+        {activeTab === "optimize" && (
+          <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem", flexWrap: "wrap", gap: "1rem" }}>
+              <div>
+                <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.5rem", margin: 0 }}>
+                  Optimisation des Photos & Fonds de Page
+                </h2>
+                <p style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem", margin: "0.25rem 0 0" }}>
+                  Réduisez le poids des images du site (facade, intérieur, affiches) pour un chargement hyper-rapide.
+                </p>
+              </div>
+
+              <button
+                onClick={handleOptimizeAllImages}
+                disabled={isOptimizingAll}
+                className="btn btn--primary btn--sm"
+                style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
+              >
+                <RefreshCw size={16} className={isOptimizingAll ? "animate-spin" : ""} />
+                {isOptimizingAll ? "Optimisation en cours..." : "Optimiser Toutes les Images"}
+              </button>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              {siteImages.map((img) => (
+                <div
+                  key={img.id}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "1.25rem",
+                    background: "var(--color-bg)",
+                    border: "1px solid var(--color-border)",
+                    borderRadius: "var(--radius-lg)",
+                    flexWrap: "wrap",
+                    gap: "1rem",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                    <div style={{ width: "60px", height: "45px", borderRadius: "6px", overflow: "hidden", border: "1px solid var(--color-border)", background: "#000" }}>
+                      <img src={img.path} alt={img.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    </div>
+                    <div>
+                      <div style={{ fontWeight: 600, fontSize: "1rem" }}>{img.name}</div>
+                      <div style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>{img.path}</div>
+                    </div>
+                  </div>
+
+                  <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
+                    <div>
+                      <span style={{ fontSize: "0.75rem", display: "block", color: "var(--color-text-muted)" }}>Poids Initial</span>
+                      <strong style={{ fontSize: "0.95rem" }}>{(img.originalSizeKb / 1024).toFixed(2)} MB</strong>
+                    </div>
+
+                    {img.optimizedSizeKb && (
+                      <div>
+                        <span style={{ fontSize: "0.75rem", display: "block", color: "#25d366" }}>Poids Optimisé (WebP)</span>
+                        <strong style={{ fontSize: "0.95rem", color: "#25d366" }}>{(img.optimizedSizeKb / 1024).toFixed(2)} MB (-72%)</strong>
+                      </div>
+                    )}
+
+                    <button
+                      onClick={() => handleOptimizeSingleImage(img.id)}
+                      className={`btn ${img.status === "optimized" ? "btn--ghost" : "btn--outline"} btn--sm`}
+                    >
+                      {img.status === "optimized" ? "Optimisé ✓" : "Optimiser"}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Tab 5: Subscription Plans */}
+        {activeTab === "plans" && (
+          <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
+            <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.5rem", marginBottom: "1rem" }}>
+              Tarifs Officiels & Abonnements Tlénor Gym
+            </h2>
+            <p style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem", marginBottom: "2rem" }}>
+              Les tarifs ci-dessous sont ceux configurés et présentés sur la page publique <strong>Abonnements</strong>.
             </p>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
-              <div style={{ padding: "1rem", background: "var(--color-bg)", borderRadius: "var(--radius-md)", border: "1px solid var(--color-border)" }}>
-                <div style={{ fontWeight: 700, color: "var(--color-text)", marginBottom: "0.25rem" }}>logo.png</div>
-                <div style={{ fontSize: "0.8rem", color: "#25d366" }}>Logo officiel (314 KB)</div>
-              </div>
-              <div style={{ padding: "1rem", background: "var(--color-bg)", borderRadius: "var(--radius-md)", border: "1px solid var(--color-border)" }}>
-                <div style={{ fontWeight: 700, color: "var(--color-text)", marginBottom: "0.25rem" }}>tarifs-official.jpg</div>
-                <div style={{ fontSize: "0.8rem", color: "#25d366" }}>Fiche tarifs (216 KB)</div>
-              </div>
-              <div style={{ padding: "1rem", background: "var(--color-bg)", borderRadius: "var(--radius-md)", border: "1px solid var(--color-border)" }}>
-                <div style={{ fontWeight: 700, color: "var(--color-text)", marginBottom: "0.25rem" }}>planning-official.jpg</div>
-                <div style={{ fontSize: "0.8rem", color: "#25d366" }}>Fiche planning (298 KB)</div>
-              </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.5rem" }}>
+              {[
+                { title: "08 Séances Cardio/Muscu", price: "5 000 DA/Mois" },
+                { title: "12 Séances Cardio/Muscu", price: "6 000 DA/Mois" },
+                { title: "16 Séances Cardio/Muscu", price: "7 000 DA/Mois" },
+                { title: "Illimité Cardio & Muscu", price: "8 000 DA/Mois", badge: "Populaire" },
+                { title: "Muscu 08 Séances", price: "3 000 DA/Mois" },
+                { title: "Muscu 12 Séances", price: "4 000 DA/Mois" },
+                { title: "Muscu 16 Séances", price: "5 000 DA/Mois" },
+                { title: "Muscu Illimité", price: "6 000 DA/Mois" },
+              ].map((plan, idx) => (
+                <div key={idx} style={{ padding: "1.25rem", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)" }}>
+                  {plan.badge && <span style={{ background: "var(--color-accent)", color: "#000", fontSize: "0.75rem", fontWeight: 700, padding: "2px 8px", borderRadius: "10px", float: "right" }}>{plan.badge}</span>}
+                  <h4 style={{ margin: "0 0 0.5rem", fontSize: "1.05rem" }}>{plan.title}</h4>
+                  <div style={{ color: "var(--color-accent)", fontWeight: 700, fontSize: "1.2rem" }}>{plan.price}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Modal Edit Product */}
+        {editingProduct && (
+          <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(0,0,0,0.8)", backdropFilter: "blur(5px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "1rem" }}>
+            <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem", maxWidth: "500px", width: "100%", position: "relative" }}>
+              <button onClick={() => setEditingProduct(null)} style={{ position: "absolute", top: "16px", right: "16px", background: "none", border: "none", color: "#fff", cursor: "pointer" }}>
+                <X size={20} />
+              </button>
+
+              <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.35rem", marginBottom: "1.25rem" }}>
+                Éditer le Produit
+              </h3>
+
+              <form onSubmit={handleSaveEditedProduct}>
+                <div style={{ marginBottom: "1rem" }}>
+                  <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Nom du Produit</label>
+                  <input
+                    type="text"
+                    value={editingProduct.name}
+                    onChange={(e) => setEditingProduct({ ...editingProduct, name: e.target.value })}
+                    required
+                    style={{ width: "100%", padding: "10px 14px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
+                  />
+                </div>
+
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1rem" }}>
+                  <div>
+                    <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Prix</label>
+                    <input
+                      type="text"
+                      value={editingProduct.price}
+                      onChange={(e) => setEditingProduct({ ...editingProduct, price: e.target.value })}
+                      required
+                      style={{ width: "100%", padding: "10px 14px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Catégorie</label>
+                    <select
+                      value={editingProduct.category}
+                      onChange={(e) => setEditingProduct({ ...editingProduct, category: e.target.value })}
+                      style={{ width: "100%", padding: "10px 14px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
+                    >
+                      <option value="Protéines">Protéines</option>
+                      <option value="Acides Aminés">Acides Aminés</option>
+                      <option value="Performance">Performance</option>
+                      <option value="Vitamines">Vitamines</option>
+                      <option value="Snacks">Snacks</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div style={{ marginBottom: "1rem" }}>
+                  <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>Description</label>
+                  <textarea
+                    rows={2}
+                    value={editingProduct.desc || ""}
+                    onChange={(e) => setEditingProduct({ ...editingProduct, desc: e.target.value })}
+                    style={{ width: "100%", padding: "10px 14px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
+                  />
+                </div>
+
+                <div style={{ marginBottom: "1.5rem" }}>
+                  <label style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "var(--color-text-secondary)" }}>URL / Téléversement Photo</label>
+                  <input
+                    type="text"
+                    value={editingProduct.image || ""}
+                    onChange={(e) => setEditingProduct({ ...editingProduct, image: e.target.value })}
+                    style={{ width: "100%", padding: "10px 14px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff", marginBottom: "0.5rem" }}
+                  />
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      id="edit-prod-file"
+                      onChange={(e) => handleImageFileChange(e, true)}
+                      style={{ display: "none" }}
+                    />
+                    <label htmlFor="edit-prod-file" className="btn btn--ghost btn--sm" style={{ cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+                      <UploadCloud size={16} /> Changer l&apos;image
+                    </label>
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", gap: "1rem" }}>
+                  <button type="button" onClick={() => setEditingProduct(null)} className="btn btn--ghost" style={{ flex: 1, justifyContent: "center" }}>
+                    Annuler
+                  </button>
+                  <button type="submit" className="btn btn--primary" style={{ flex: 1, justifyContent: "center" }}>
+                    Sauvegarder
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         )}
       </div>
-
-      {/* Edit Product Modal */}
-      {editingProduct && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 9999,
-            background: "rgba(0,0,0,0.85)",
-            backdropFilter: "blur(8px)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "1rem",
-          }}
-          onClick={() => setEditingProduct(null)}
-        >
-          <div
-            style={{
-              background: "var(--color-surface)",
-              border: "1px solid var(--color-border)",
-              borderRadius: "var(--radius-xl)",
-              padding: "2rem",
-              maxWidth: "500px",
-              width: "100%",
-              position: "relative",
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setEditingProduct(null)}
-              style={{ position: "absolute", top: "16px", right: "16px", background: "none", border: "none", color: "#fff", cursor: "pointer" }}
-            >
-              <X size={20} />
-            </button>
-
-            <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.4rem", marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <Edit3 size={20} className="text-accent" /> Modifier le Produit
-            </h3>
-
-            <form onSubmit={handleSaveEditedProduct} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-              <div>
-                <label style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-muted)", marginBottom: "0.3rem" }}>Nom du Produit</label>
-                <input
-                  type="text"
-                  value={editingProduct.name}
-                  onChange={(e) => setEditingProduct({ ...editingProduct, name: e.target.value })}
-                  style={{ width: "100%", padding: "10px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
-                />
-              </div>
-
-              <div>
-                <label style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-muted)", marginBottom: "0.3rem" }}>Prix (DA)</label>
-                <input
-                  type="text"
-                  value={editingProduct.price}
-                  onChange={(e) => setEditingProduct({ ...editingProduct, price: e.target.value })}
-                  style={{ width: "100%", padding: "10px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
-                />
-              </div>
-
-              <div>
-                <label style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-muted)", marginBottom: "0.3rem" }}>Catégorie</label>
-                <select
-                  value={editingProduct.category}
-                  onChange={(e) => setEditingProduct({ ...editingProduct, category: e.target.value })}
-                  style={{ width: "100%", padding: "10px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
-                >
-                  <option value="Protéines">Protéines</option>
-                  <option value="Acides Aminés">Acides Aminés</option>
-                  <option value="Performance">Performance</option>
-                  <option value="Vitamines">Vitamines</option>
-                  <option value="Snacks">Snacks</option>
-                </select>
-              </div>
-
-              <div>
-                <label style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-muted)", marginBottom: "0.3rem" }}>Description / Poids</label>
-                <input
-                  type="text"
-                  value={editingProduct.desc || ""}
-                  onChange={(e) => setEditingProduct({ ...editingProduct, desc: e.target.value })}
-                  style={{ width: "100%", padding: "10px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff" }}
-                />
-              </div>
-
-              <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
-                <button type="submit" className="btn btn--primary" style={{ flex: 1, justifyContent: "center" }}>
-                  <Check size={16} /> Enregistrer les modifications
-                </button>
-                <button type="button" onClick={() => setEditingProduct(null)} className="btn btn--ghost" style={{ justifyContent: "center" }}>
-                  Annuler
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

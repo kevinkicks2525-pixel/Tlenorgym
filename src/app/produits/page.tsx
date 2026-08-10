@@ -24,84 +24,11 @@ const categoryIcons: Record<string, React.ReactNode> = {
   "Snacks": <Cookie size={44} className="text-accent" />,
 };
 
-const defaultProducts: ProductUIItem[] = [
-  {
-    name: "Whey Protein Isolate",
-    desc: "Protéine de lactosérum isolée pour une absorption rapide et une récupération optimale après l'entraînement.",
-    price: "8 500 DA",
-    category: "Protéines",
-    stock: true,
-    icon: <Milk size={44} className="text-accent" />,
-  },
-  {
-    name: "Caséine Micellaire",
-    desc: "Protéine à digestion lente, idéale avant le coucher pour une récupération nocturne continue.",
-    price: "7 800 DA",
-    category: "Protéines",
-    stock: true,
-    icon: <Moon size={44} className="text-accent" />,
-  },
-  {
-    name: "BCAA 2:1:1",
-    desc: "Acides aminés à chaîne ramifiée pour réduire la fatigue musculaire et accélérer la récupération.",
-    price: "4 500 DA",
-    category: "Acides Aminés",
-    stock: true,
-    icon: <Pill size={44} className="text-accent" />,
-  },
-  {
-    name: "L-Glutamine",
-    desc: "Acide aminé essentiel pour le système immunitaire et la réparation des tissus musculaires.",
-    price: "3 200 DA",
-    category: "Acides Aminés",
-    stock: true,
-    icon: <Dna size={44} className="text-accent" />,
-  },
-  {
-    name: "Créatine Monohydrate",
-    desc: "Augmentez votre force et vos performances avec la créatine monohydrate pure et micronisée.",
-    price: "3 800 DA",
-    category: "Performance",
-    stock: true,
-    icon: <Zap size={44} className="text-accent" />,
-  },
-  {
-    name: "Pre-Workout Extreme",
-    desc: "Formule concentrée avec caféine et bêta-alanine pour des entraînements intenses et explosifs.",
-    price: "5 200 DA",
-    category: "Performance",
-    stock: false,
-    icon: <Flame size={44} className="text-accent" />,
-  },
-  {
-    name: "Multivitamines Sport",
-    desc: "Complexe complet de vitamines et minéraux formulé pour les sportifs actifs.",
-    price: "2 800 DA",
-    category: "Vitamines",
-    stock: true,
-    icon: <Sparkles size={44} className="text-accent" />,
-  },
-  {
-    name: "Oméga-3 Fish Oil",
-    desc: "Acides gras essentiels pour la santé cardiovasculaire et la récupération articulaire.",
-    price: "3 000 DA",
-    category: "Vitamines",
-    stock: true,
-    icon: <Fish size={44} className="text-accent" />,
-  },
-  {
-    name: "Barres Protéinées (x12)",
-    desc: "Pack de 12 barres riches en protéines, parfaites comme collation post-entraînement.",
-    price: "4 200 DA",
-    category: "Snacks",
-    stock: true,
-    icon: <Cookie size={44} className="text-accent" />,
-  },
-];
+const defaultProducts: ProductUIItem[] = [];
 
 export default function ProduitsPage() {
   const [activeCategory, setActiveCategory] = useState("Tous");
-  const [productList, setProductList] = useState<ProductUIItem[]>(defaultProducts);
+  const [productList, setProductList] = useState<ProductUIItem[]>([]);
 
   useEffect(() => {
     async function loadData() {
@@ -118,6 +45,9 @@ export default function ProduitsPage() {
           }));
           setProductList(mapped);
           return;
+        } else if (supaData && supaData.length === 0) {
+          setProductList([]);
+          return;
         }
       }
 
@@ -126,7 +56,7 @@ export default function ProduitsPage() {
         const saved = localStorage.getItem("tlenorgym_admin_products");
         if (saved) {
           const parsed = JSON.parse(saved);
-          if (parsed && parsed.length > 0) {
+          if (Array.isArray(parsed)) {
             const mapped: ProductUIItem[] = parsed.map((item: { name: string; desc?: string; price: string; category: string; stock?: boolean }) => ({
               name: item.name,
               desc: item.desc || "Supplément de qualité supérieure disponible à la salle.",
@@ -136,11 +66,13 @@ export default function ProduitsPage() {
               icon: categoryIcons[item.category] || <Package size={44} className="text-accent" />,
             }));
             setProductList(mapped);
+            return;
           }
         }
       } catch {
         // fallback
       }
+      setProductList([]);
     }
     loadData();
   }, []);

@@ -51,13 +51,6 @@ CREATE POLICY "Ecriture produits" ON public.products FOR ALL USING (true);
 CREATE POLICY "Ecriture tarifs" ON public.plans FOR ALL USING (true);
 CREATE POLICY "Ecriture leads" ON public.leads FOR ALL USING (true);
 
--- Données d'exemple initiales (Produits Tlénor Gym)
-INSERT INTO public.products (name, category, price, description, stock) VALUES
-('Whey Protein Isolate', 'Protéines', '8 500 DA', 'Protéine de lactosérum isolée pour récupération rapide', true),
-('Caséine Micellaire', 'Protéines', '7 800 DA', 'Protéine à digestion lente', true),
-('BCAA 2:1:1', 'Acides Aminés', '4 500 DA', 'Acides aminés à chaîne ramifiée', true),
-('L-Glutamine', 'Acides Aminés', '3 200 DA', 'Réparation musculaire & immunité', true),
-('Créatine Monohydrate', 'Performance', '3 800 DA', 'Créatine pure micronisée', true),
-('Pre-Workout Extreme', 'Performance', '5 200 DA', 'Caféine & bêta-alanine concentrée', false),
-('Multivitamines Sport', 'Vitamines', '2 800 DA', 'Complexe vitamines complet', true)
-ON CONFLICT DO NOTHING;
+
+-- Table prête pour vos vrais produits (À ajouter via l'espace Admin)
+

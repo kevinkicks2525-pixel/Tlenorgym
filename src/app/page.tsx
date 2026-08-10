@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Features from "@/components/Features";
@@ -6,9 +9,38 @@ import Planning from "@/components/Planning";
 import ContactSection from "@/components/ContactSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
-import { Milk, Pill, Zap, MessageSquare, ArrowRight, Check } from "lucide-react";
+import { Milk, Pill, Zap, MessageSquare, ArrowRight, Package } from "lucide-react";
+import { getSupabaseProducts, isSupabaseConfigured } from "@/lib/supabase";
 
 export default function Home() {
+  const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function loadData() {
+      if (isSupabaseConfigured) {
+        const supaData = await getSupabaseProducts();
+        if (supaData && supaData.length > 0) {
+          setFeaturedProducts(supaData.slice(0, 3));
+          return;
+        }
+      }
+      try {
+        const saved = localStorage.getItem("tlenorgym_admin_products");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setFeaturedProducts(parsed.slice(0, 3));
+            return;
+          }
+        }
+      } catch {
+        // fallback
+      }
+      setFeaturedProducts([]);
+    }
+    loadData();
+  }, []);
+
   return (
     <>
       <Hero />
@@ -33,70 +65,59 @@ export default function Home() {
             </div>
           </ScrollReveal>
 
-          <div className="products__grid">
-            {[
-              {
-                name: "Whey Protein Isolate",
-                desc: "Protéine de lactosérum premium pour la récupération musculaire.",
-                price: "8 500 DA",
-                category: "Protéines",
-                icon: <Milk size={44} className="text-accent" />,
-              },
-              {
-                name: "BCAA 2:1:1",
-                desc: "Acides aminés essentiels pour réduire la fatigue et préserver le muscle.",
-                price: "4 500 DA",
-                category: "Acides Aminés",
-                icon: <Pill size={44} className="text-accent" />,
-              },
-              {
-                name: "Créatine Monohydrate",
-                desc: "Augmentez votre force et vos performances avec la créatine pure.",
-                price: "3 800 DA",
-                category: "Performance",
-                icon: <Zap size={44} className="text-accent" />,
-              },
-            ].map((product, i) => (
-              <ScrollReveal key={i} delay={i * 120}>
-                <div className="product-card">
-                  <div
-                    className="product-card__image"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      background: "linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg) 100%)",
-                      padding: "2rem",
-                    }}
-                  >
-                    {product.icon}
-                    <span className="product-card__category">{product.category}</span>
-                  </div>
-                  <div className="product-card__body">
-                    <h3 className="product-card__name">{product.name}</h3>
-                    <p className="product-card__desc">{product.desc}</p>
-                    <div className="product-card__footer">
-                      <span className="product-card__price">{product.price}</span>
-                      <a
-                        href={`https://wa.me/213552089293?text=Bonjour, je suis intéressé par ${product.name}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn--whatsapp btn--sm"
-                        style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
-                      >
-                        <MessageSquare size={14} /> Commander
-                      </a>
+          {featuredProducts.length > 0 ? (
+            <div className="products__grid">
+              {featuredProducts.map((product, i) => (
+                <ScrollReveal key={i} delay={i * 120}>
+                  <div className="product-card">
+                    <div
+                      className="product-card__image"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        background: "linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg) 100%)",
+                        padding: "2rem",
+                        position: "relative",
+                      }}
+                    >
+                      {product.image && typeof product.image === "string" && product.image.startsWith("http") ? (
+                        <img src={product.image} alt={product.name} style={{ maxHeight: "100px", objectFit: "contain" }} />
+                      ) : (
+                        <Package size={44} className="text-accent" />
+                      )}
+                      <span className="product-card__category">{product.category || "Produit"}</span>
+                    </div>
+                    <div className="product-card__body">
+                      <h3 className="product-card__name">{product.name}</h3>
+                      <p className="product-card__desc">{product.desc || product.description || "Disponible sur place"}</p>
+                      <div className="product-card__footer">
+                        <span className="product-card__price">{product.price}</span>
+                        <a
+                          href={`https://wa.me/213552089293?text=Bonjour, je suis intéressé par ${product.name}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn--whatsapp btn--sm"
+                          style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
+                        >
+                          <MessageSquare size={14} /> Commander
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          ) : (
+            <div style={{ textAlign: "center", padding: "2rem", color: "var(--color-text-muted)" }}>
+              <p style={{ fontSize: "1.1rem" }}>Nos suppléments et produits de nutrition seront bientôt disponibles.</p>
+            </div>
+          )}
 
           <ScrollReveal>
             <div style={{ textAlign: "center", marginTop: "var(--space-3xl)" }}>
               <Link href="/produits" className="btn btn--outline" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-                Voir tous les produits <ArrowRight size={16} />
+                Voir la boutique produits <ArrowRight size={16} />
               </Link>
             </div>
           </ScrollReveal>

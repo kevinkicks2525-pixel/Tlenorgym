@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
-  title: "Tlénor Gym — The Power To Build Your Body",
+  title: "Tlénor Gym - The Power To Build Your Body",
   description:
     "Salle de sport premium à Draria, Alger. Équipement TechnoGym professionnel, coaching personnalisé, compléments alimentaires et abonnements flexibles. Rejoignez 8000+ membres.",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "compléments alimentaires",
   ],
   openGraph: {
-    title: "Tlénor Gym — The Power To Build Your Body",
+    title: "Tlénor Gym - The Power To Build Your Body",
     description:
       "Salle de sport premium à Draria. Équipement TechnoGym, coaching personnalisé et ambiance motivante.",
     type: "website",

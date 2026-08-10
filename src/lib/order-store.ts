@@ -1,6 +1,7 @@
 "use client";
 
 import { createSupabaseOrder, getSupabaseOrders, isSupabaseConfigured, OrderItemData } from "@/lib/supabase";
+import { sendTelegramOrderNotification } from "@/lib/telegram";
 
 const ORDERS_STORAGE_KEY = "tlenorgym_admin_orders";
 const ORDERS_EVENT_NAME = "tlenorgym_orders_updated";
@@ -90,6 +91,11 @@ export async function saveNewOrder(order: OrderItemData): Promise<OrderItemData>
       console.warn("Background Supabase order creation warning:", err);
     });
   }
+
+  // 3. Send Telegram Bot Notification
+  sendTelegramOrderNotification(newOrder).catch((err) => {
+    console.warn("Telegram notification send warning:", err);
+  });
 
   return newOrder;
 }

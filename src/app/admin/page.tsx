@@ -794,19 +794,21 @@ export default function AdminPage() {
                             value={ord.status || "Nouvelle"}
                             onChange={(e) => ord.id && handleOrderStatusChange(ord.id, e.target.value)}
                             style={{
-                              padding: "4px 8px",
+                              padding: "6px 10px",
                               borderRadius: "8px",
                               fontSize: "0.8rem",
                               fontWeight: 600,
-                              background: ord.status === "Livrée" ? "rgba(37, 211, 102, 0.15)" : ord.status === "En cours" ? "rgba(245, 197, 24, 0.15)" : "rgba(255, 255, 255, 0.1)",
-                              color: ord.status === "Livrée" ? "#25d366" : ord.status === "En cours" ? "var(--color-accent)" : "#fff",
+                              background: "var(--color-bg)",
+                              color: ord.status === "Livrée" ? "#25d366" : ord.status === "En cours" ? "var(--color-accent)" : ord.status === "Annulée" ? "var(--color-red)" : "#fff",
                               border: "1px solid var(--color-border)",
+                              cursor: "pointer",
+                              outline: "none",
                             }}
                           >
-                            <option value="Nouvelle">Nouvelle</option>
-                            <option value="En cours">En cours</option>
-                            <option value="Livrée">Livrée</option>
-                            <option value="Annulée">Annulée</option>
+                            <option value="Nouvelle" style={{ background: "#1a1a1a", color: "#ffffff" }}>Nouvelle</option>
+                            <option value="En cours" style={{ background: "#1a1a1a", color: "#f5c518" }}>En cours</option>
+                            <option value="Livrée" style={{ background: "#1a1a1a", color: "#25d366" }}>Livrée</option>
+                            <option value="Annulée" style={{ background: "#1a1a1a", color: "#e63946" }}>Annulée</option>
                           </select>
                         </td>
                         <td style={{ padding: "12px", textAlign: "right" }}>

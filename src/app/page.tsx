@@ -9,7 +9,7 @@ import Planning from "@/components/Planning";
 import ContactSection from "@/components/ContactSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
-import { Milk, Pill, Zap, MessageSquare, ArrowRight, Package } from "lucide-react";
+import { Milk, Pill, Zap, MessageSquare, ArrowRight, Package, ShoppingBag } from "lucide-react";
 import { getSupabaseProducts, isSupabaseConfigured } from "@/lib/supabase";
 
 import ProductDetailModal from "@/components/ProductDetailModal";
@@ -73,10 +73,11 @@ export default function Home() {
             <div className="products__grid">
               {featuredProducts.map((product, i) => (
                 <ScrollReveal key={i} delay={i * 120}>
-                  <div
+                  <Link
+                    href={`/produits/${encodeURIComponent(product.id || product.name)}`}
                     className="product-card"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setSelectedProductDetail(product)}
+                    style={{ cursor: "pointer", textDecoration: "none", display: "flex", flexDirection: "column" }}
+                    onClick={() => trackProductClick(product.name)}
                   >
                     <div
                       className="product-card__image"
@@ -85,36 +86,35 @@ export default function Home() {
                         alignItems: "center",
                         justifyContent: "center",
                         background: "linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg) 100%)",
-                        padding: "1.5rem",
                         position: "relative",
-                        minHeight: "200px",
+                        height: "240px",
+                        width: "100%",
+                        overflow: "hidden",
                       }}
                     >
                       {product.image && typeof product.image === "string" && (product.image.startsWith("http") || product.image.startsWith("data:")) ? (
-                        <img src={product.image} alt={product.name} style={{ height: "160px", width: "100%", objectFit: "contain", filter: "drop-shadow(0 10px 15px rgba(0,0,0,0.5))" }} />
+                        <img src={product.image} alt={product.name} style={{ height: "100%", width: "100%", objectFit: "cover", transition: "transform 0.3s ease" }} />
                       ) : (
                         <Package size={44} className="text-accent" />
                       )}
                       <span className="product-card__category">{product.category || "Produit"}</span>
                     </div>
-                    <div className="product-card__body">
-                      <h3 className="product-card__name">{product.name}</h3>
-                      <p className="product-card__desc">{product.desc || "Disponible sur place"}</p>
-                      <div className="product-card__footer">
+                    <div className="product-card__body" style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                      <div>
+                        <h3 className="product-card__name">{product.name}</h3>
+                        <p className="product-card__desc">{product.desc || "Disponible sur place"}</p>
+                      </div>
+                      <div className="product-card__footer" style={{ marginTop: "1rem" }}>
                         <span className="product-card__price">{product.price}</span>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedProductDetail(product);
-                          }}
+                        <span
                           className="btn btn--primary btn--sm"
-                          style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
+                          style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", fontWeight: 700 }}
                         >
-                          <Eye size={14} /> Voir Produit
-                        </button>
+                          <ShoppingBag size={14} /> Commander
+                        </span>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </ScrollReveal>
               ))}
             </div>

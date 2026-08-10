@@ -47,7 +47,6 @@ export default function AdminSidebar({
           id: "orders",
           label: "Commandes & Livraisons",
           icon: <ShoppingBag size={18} />,
-          badge: newOrdersCount > 0 ? `${newOrdersCount} nouvelle${newOrdersCount > 1 ? "s" : ""}` : undefined,
         },
       ],
     },
@@ -139,9 +138,6 @@ export default function AdminSidebar({
             <span style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "1.25rem" }}>
               TLÉNOR <span className="text-accent">GYM</span>
             </span>
-            <span style={{ fontSize: "0.65rem", background: "var(--color-accent-dim)", color: "var(--color-accent)", padding: "2px 8px", borderRadius: "10px", fontWeight: 700 }}>
-              ADMIN PRO
-            </span>
           </div>
 
           <Link
@@ -203,7 +199,7 @@ export default function AdminSidebar({
                         <span>{item.label}</span>
                       </div>
 
-                      {item.badge ? (
+                      {(item as any).badge ? (
                         <span
                           style={{
                             background: isActive ? "#0a0a0a" : "var(--color-red)",
@@ -214,10 +210,12 @@ export default function AdminSidebar({
                             borderRadius: "10px",
                           }}
                         >
-                          {item.badge}
+                          {(item as any).badge}
                         </span>
                       ) : (
-                        isActive && <ChevronRight size={14} />
+                        isActive && (
+                          <span style={{ width: "6px", height: "6px", background: "#0a0a0a", borderRadius: "50%" }} />
+                        )
                       )}
                     </button>
                   );

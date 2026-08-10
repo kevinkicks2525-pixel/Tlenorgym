@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
-import { Milk, Moon, Pill, Dna, Zap, Flame, Sparkles, Fish, Cookie, MessageSquare, Phone, Package, Eye } from "lucide-react";
+import { Milk, Moon, Pill, Dna, Zap, Flame, Sparkles, Fish, Cookie, MessageSquare, Phone, Package, Eye, ShoppingBag } from "lucide-react";
 import ProductDetailModal from "@/components/ProductDetailModal";
 import { useCart } from "@/context/CartContext";
 import { getLocalProducts, fetchAndMergeProducts, subscribeProducts, ProductItem } from "@/lib/product-store";
@@ -144,9 +144,10 @@ export default function ProduitsPage() {
                       alignItems: "center",
                       justifyContent: "center",
                       background: "linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg) 100%)",
-                      padding: "1.5rem",
                       position: "relative",
-                      minHeight: "220px",
+                      height: "240px",
+                      width: "100%",
+                      overflow: "hidden",
                     }}
                   >
                     {product.image && (product.image.startsWith("http") || product.image.startsWith("data:")) ? (
@@ -154,10 +155,9 @@ export default function ProduitsPage() {
                         src={product.image}
                         alt={product.name}
                         style={{
-                          height: "170px",
+                          height: "100%",
                           width: "100%",
-                          objectFit: "contain",
-                          filter: "drop-shadow(0 12px 20px rgba(0,0,0,0.6))",
+                          objectFit: "cover",
                           transition: "transform 0.3s ease",
                         }}
                       />
@@ -196,9 +196,9 @@ export default function ProduitsPage() {
                       <div style={{ display: "flex", gap: "0.4rem" }}>
                         <span
                           className={`btn ${product.stock_quantity > 0 ? "btn--primary" : "btn--outline"} btn--sm`}
-                          style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
+                          style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", fontWeight: 700 }}
                         >
-                          <Eye size={14} /> Voir Produit
+                          <ShoppingBag size={14} /> Commander
                         </span>
                       </div>
                     </div>

@@ -4,8 +4,16 @@ import { useState, useMemo } from "react";
 import { X, CheckCircle2, ShoppingBag, Truck, MapPin, Phone, User, Package, Building } from "lucide-react";
 import { wilayas, getDeliveryCost } from "@/data/delivery-data";
 import communesData from "@/data/communes.json";
+import bureauxData from "@/data/bureaux.json";
 import { createSupabaseOrder, isSupabaseConfigured, OrderItemData } from "@/lib/supabase";
 import { saveNewOrder } from "@/lib/order-store";
+
+interface YalidineBureau {
+  code?: string;
+  name: string;
+  commune: string;
+  address?: string;
+}
 
 interface CheckoutModalProps {
   product: {
@@ -21,6 +29,7 @@ export default function CheckoutModal({ product, onClose }: CheckoutModalProps) 
   const [phone, setPhone] = useState("");
   const [selectedWilayaCode, setSelectedWilayaCode] = useState("16"); // Default Alger
   const [selectedCommune, setSelectedCommune] = useState("");
+  const [selectedBureau, setSelectedBureau] = useState("");
   const [address, setAddress] = useState("");
   const [deliveryType, setDeliveryType] = useState<"home" | "office">("home");
 
@@ -37,6 +46,12 @@ export default function CheckoutModal({ product, onClose }: CheckoutModalProps) 
   const availableCommunes = useMemo(() => {
     const rawCommunes = (communesData as unknown as Record<string, Array<{ name: string }>>)[selectedWilayaCode] || [];
     return rawCommunes.map((c) => (typeof c === "string" ? c : c.name));
+  }, [selectedWilayaCode]);
+
+  // Filter Bureaux for selected Wilaya
+  const availableBureaux = useMemo(() => {
+    const rawBureaux = (bureauxData as unknown as Record<string, YalidineBureau[]>)[selectedWilayaCode] || [];
+    return rawBureaux;
   }, [selectedWilayaCode]);
 
   // Numerical Product Price
@@ -60,13 +75,21 @@ export default function CheckoutModal({ product, onClose }: CheckoutModalProps) 
       return;
     }
 
-    if (!selectedCommune) {
+    if (deliveryType === "home" && !selectedCommune) {
       setErrorMsg("Veuillez sélectionner votre commune.");
+      return;
+    }
+
+    if (deliveryType === "office" && !selectedBureau) {
+      setErrorMsg("Veuillez sélectionner votre bureau Yalidine.");
       return;
     }
 
     setIsSubmitting(true);
     setErrorMsg("");
+
+    const communeOrBureau = deliveryType === "office" ? selectedBureau : selectedCommune;
+    const fullAddress = deliveryType === "home" ? (address || selectedCommune) : `Bureau Yalidine: ${selectedBureau}`;
 
     const newOrder: OrderItemData = {
       id: Date.now(),
@@ -74,8 +97,8 @@ export default function CheckoutModal({ product, onClose }: CheckoutModalProps) 
       phone: phone,
       wilaya_code: selectedWilayaCode,
       wilaya_name: `${currentWilaya.code} - ${currentWilaya.nameFr}`,
-      commune_name: selectedCommune,
-      address: address || (deliveryType === "home" ? selectedCommune : "Bureau Yalidine / Stopdesk"),
+      commune_name: communeOrBureau,
+      address: fullAddress,
       delivery_type: deliveryType,
       product_name: product.name,
       product_price: product.price,
@@ -85,7 +108,7 @@ export default function CheckoutModal({ product, onClose }: CheckoutModalProps) 
       created_at: new Date().toISOString(),
     };
 
-    // Save locally
+    // Save locally, send Telegram & update store
     await saveNewOrder(newOrder);
     setIsSubmitting(false);
     setIsSuccess(true);
@@ -128,90 +151,68 @@ export default function CheckoutModal({ product, onClose }: CheckoutModalProps) 
             position: "absolute",
             top: "16px",
             right: "16px",
-            background: "rgba(255,255,255,0.05)",
+            background: "none",
             border: "none",
-            color: "#fff",
-            borderRadius: "50%",
-            width: "36px",
-            height: "36px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            color: "var(--color-text-muted)",
             cursor: "pointer",
+            padding: "4px",
           }}
         >
           <X size={20} />
         </button>
 
         {isSuccess ? (
-          <div style={{ textAlign: "center", padding: "1.5rem 0" }}>
+          <div style={{ textAlign: "center", padding: "1rem 0" }}>
             <div
               style={{
-                width: "70px",
-                height: "70px",
+                width: "64px",
+                height: "64px",
                 background: "rgba(37, 211, 102, 0.15)",
                 color: "#25d366",
                 borderRadius: "50%",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                margin: "0 auto 1.5rem",
+                margin: "0 auto 1.25rem",
               }}
             >
-              <CheckCircle2 size={40} />
+              <CheckCircle2 size={38} />
             </div>
-            <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.75rem", marginBottom: "0.75rem" }}>
-              Commande Confirmée !
+
+            <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.75rem", marginBottom: "0.5rem" }}>
+              Merci pour votre commande !
             </h3>
             <p style={{ color: "var(--color-text-secondary)", fontSize: "0.95rem", lineHeight: 1.6, marginBottom: "1.5rem" }}>
-              Merci <strong>{customerName}</strong>. Votre commande pour <strong>{product.name}</strong> a bien été enregistrée.
-              Notre équipe vous contactera par téléphone au <strong>{phone}</strong> pour valider la livraison.
+              Votre commande pour <strong style={{ color: "#fff" }}>{product.name}</strong> a été enregistrée avec succès. Notre équipe vous appellera au <strong style={{ color: "var(--color-accent)" }}>{phone}</strong> pour confirmer l&apos;expédition.
             </p>
 
-            <div
-              style={{
-                background: "var(--color-bg)",
-                border: "1px solid var(--color-border)",
-                borderRadius: "var(--radius-md)",
-                padding: "1rem",
-                marginBottom: "1.5rem",
-                textAlign: "left",
-                fontSize: "0.85rem",
-              }}
-            >
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.4rem" }}>
-                <span style={{ color: "var(--color-text-muted)" }}>Wilaya & Commune :</span>
-                <strong>{currentWilaya.nameFr} - {selectedCommune}</strong>
+            <div style={{ background: "var(--color-bg)", padding: "1.25rem", borderRadius: "var(--radius-md)", textAlign: "left", marginBottom: "1.5rem", fontSize: "0.9rem" }}>
+              <div style={{ marginBottom: "0.4rem" }}><strong>Client :</strong> {customerName}</div>
+              <div style={{ marginBottom: "0.4rem" }}><strong>Wilaya :</strong> {currentWilaya.code} - {currentWilaya.nameFr}</div>
+              <div style={{ marginBottom: "0.4rem" }}>
+                <strong>Mode :</strong> {deliveryType === "home" ? `À domicile (${selectedCommune})` : `Bureau Yalidine (${selectedBureau})`}
               </div>
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.4rem" }}>
-                <span style={{ color: "var(--color-text-muted)" }}>Type de livraison :</span>
-                <strong>{deliveryType === "home" ? "À domicile" : "Bureau Stopdesk"}</strong>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between", borderTop: "1px solid var(--color-border)", paddingTop: "0.5rem", marginTop: "0.5rem" }}>
-                <span style={{ color: "var(--color-text-muted)" }}>Montant Total à payer :</span>
-                <strong style={{ color: "var(--color-accent)", fontSize: "1.1rem" }}>{totalPrice.toLocaleString()} DA</strong>
+              <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#25d366", marginTop: "0.5rem", paddingTop: "0.5rem", borderTop: "1px solid var(--color-border)" }}>
+                Total à payer : {totalPrice.toLocaleString()} DA
               </div>
             </div>
 
-            <button onClick={onClose} className="btn btn--primary" style={{ width: "100%", justifyContent: "center" }}>
-              Fermer la fenêtre
+            <button onClick={onClose} className="btn btn--primary btn--lg" style={{ width: "100%", justifyContent: "center" }}>
+              Fermer et continuer
             </button>
           </div>
         ) : (
-          <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
-              <div style={{ background: "var(--color-accent-dim)", color: "var(--color-accent)", padding: "10px", borderRadius: "12px" }}>
-                <ShoppingBag size={24} />
-              </div>
-              <div>
-                <span style={{ fontSize: "0.75rem", color: "var(--color-accent)", textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 700 }}>Formulaire de Commande</span>
-                <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.35rem", margin: 0 }}>
-                  Acheter <span className="text-accent">{product.name}</span>
-                </h3>
-              </div>
+          <>
+            <div style={{ marginBottom: "1.5rem" }}>
+              <span style={{ fontSize: "0.75rem", color: "var(--color-accent)", textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 700 }}>
+                Commande Rapide (Livraison 58 Wilayas)
+              </span>
+              <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.5rem", margin: "0.2rem 0 0" }}>
+                Finaliser votre commande
+              </h2>
             </div>
 
-            {/* Product Summary Mini Card */}
+            {/* Recap produit */}
             <div
               style={{
                 display: "flex",
@@ -278,52 +279,10 @@ export default function CheckoutModal({ product, onClose }: CheckoutModalProps) 
                 </div>
               </div>
 
-              {/* Wilaya & Commune */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", marginBottom: "1rem" }}>
-                <div>
-                  <label style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-secondary)", marginBottom: "0.3rem" }}>
-                    Wilaya *
-                  </label>
-                  <select
-                    value={selectedWilayaCode}
-                    onChange={(e) => {
-                      setSelectedWilayaCode(e.target.value);
-                      setSelectedCommune("");
-                    }}
-                    style={{ width: "100%", padding: "10px 12px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff", fontSize: "0.9rem" }}
-                  >
-                    {wilayas.map((w) => (
-                      <option key={w.code} value={w.code}>
-                        {w.code} - {w.nameFr}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-secondary)", marginBottom: "0.3rem" }}>
-                    Commune *
-                  </label>
-                  <select
-                    value={selectedCommune}
-                    onChange={(e) => setSelectedCommune(e.target.value)}
-                    required
-                    style={{ width: "100%", padding: "10px 12px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff", fontSize: "0.9rem" }}
-                  >
-                    <option value="">Sélectionnez la commune...</option>
-                    {availableCommunes.map((c, idx) => (
-                      <option key={idx} value={c}>
-                        {c}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              {/* Mode de Livraison */}
+              {/* Mode de livraison */}
               <div style={{ marginBottom: "1rem" }}>
                 <label style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-secondary)", marginBottom: "0.4rem" }}>
-                  Mode de Livraison
+                  Mode de livraison
                 </label>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
                   <label
@@ -367,28 +326,96 @@ export default function CheckoutModal({ product, onClose }: CheckoutModalProps) 
                       checked={deliveryType === "office"}
                       onChange={() => setDeliveryType("office")}
                     />
-                    <Building size={16} className="text-accent" /> Bureau Stopdesk
+                    <Building size={16} className="text-accent" /> Bureau Yalidine
                   </label>
                 </div>
               </div>
 
-              {/* Adresse */}
-              {deliveryType === "home" && (
-                <div style={{ marginBottom: "1.25rem" }}>
+              {/* Wilaya Selection */}
+              <div style={{ marginBottom: "1rem" }}>
+                <label style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-secondary)", marginBottom: "0.3rem" }}>
+                  Wilaya *
+                </label>
+                <select
+                  value={selectedWilayaCode}
+                  onChange={(e) => {
+                    setSelectedWilayaCode(e.target.value);
+                    setSelectedCommune("");
+                    setSelectedBureau("");
+                  }}
+                  style={{ width: "100%", padding: "10px 12px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff", fontSize: "0.9rem" }}
+                >
+                  {wilayas.map((w) => (
+                    <option key={w.code} value={w.code}>
+                      {w.code} - {w.nameFr}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Conditional Yalidine Bureaux vs Commune */}
+              {deliveryType === "office" ? (
+                <div style={{ marginBottom: "1rem" }}>
                   <label style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-secondary)", marginBottom: "0.3rem" }}>
-                    Adresse de Livraison
+                    Bureau Yalidine / Stopdesk *
                   </label>
-                  <input
-                    type="text"
-                    placeholder="Quartier, Rue, N° de maison..."
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
+                  <select
+                    value={selectedBureau}
+                    onChange={(e) => {
+                      setSelectedBureau(e.target.value);
+                      const found = availableBureaux.find((b) => b.name === e.target.value);
+                      if (found) {
+                        setSelectedCommune(found.commune || found.name);
+                      }
+                    }}
+                    required
                     style={{ width: "100%", padding: "10px 12px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff", fontSize: "0.9rem" }}
-                  />
+                  >
+                    <option value="">Sélectionnez un bureau Yalidine...</option>
+                    {availableBureaux.map((b, idx) => (
+                      <option key={idx} value={b.name}>
+                        {b.name} ({b.commune})
+                      </option>
+                    ))}
+                  </select>
                 </div>
+              ) : (
+                <>
+                  <div style={{ marginBottom: "1rem" }}>
+                    <label style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-secondary)", marginBottom: "0.3rem" }}>
+                      Commune *
+                    </label>
+                    <select
+                      value={selectedCommune}
+                      onChange={(e) => setSelectedCommune(e.target.value)}
+                      required
+                      style={{ width: "100%", padding: "10px 12px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff", fontSize: "0.9rem" }}
+                    >
+                      <option value="">Sélectionnez la commune...</option>
+                      {availableCommunes.map((c, idx) => (
+                        <option key={idx} value={c}>
+                          {c}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div style={{ marginBottom: "1.25rem" }}>
+                    <label style={{ display: "block", fontSize: "0.8rem", color: "var(--color-text-secondary)", marginBottom: "0.3rem" }}>
+                      Adresse précise
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Quartier, rue, numéro de maison..."
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      style={{ width: "100%", padding: "10px 12px", background: "var(--color-bg)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", color: "#fff", fontSize: "0.9rem" }}
+                    />
+                  </div>
+                </>
               )}
 
-              {/* Price Calculation Box */}
+              {/* Order Summary */}
               <div
                 style={{
                   background: "var(--color-bg)",
@@ -399,16 +426,18 @@ export default function CheckoutModal({ product, onClose }: CheckoutModalProps) 
                 }}
               >
                 <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.85rem", color: "var(--color-text-secondary)", marginBottom: "0.4rem" }}>
-                  <span>Sous-total produit :</span>
-                  <span>{numericProductPrice.toLocaleString()} DA</span>
+                  <span>Prix produit :</span>
+                  <span>{product.price}</span>
                 </div>
-                <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.85rem", color: "var(--color-text-secondary)", marginBottom: "0.4rem" }}>
+
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.85rem", color: "var(--color-text-secondary)", marginBottom: "0.5rem" }}>
                   <span>Frais de livraison ({currentWilaya.nameFr}) :</span>
                   <span>{shippingCost.toLocaleString()} DA</span>
                 </div>
-                <div style={{ display: "flex", justifyContent: "space-between", borderTop: "1px solid var(--color-border)", paddingTop: "0.6rem", marginTop: "0.6rem" }}>
-                  <span style={{ fontWeight: 700, fontSize: "1rem" }}>TOTAL À PAYER :</span>
-                  <strong style={{ fontSize: "1.2rem", color: "var(--color-accent)" }}>{totalPrice.toLocaleString()} DA</strong>
+
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: "1.1rem", fontWeight: 800, borderTop: "1px solid var(--color-border)", paddingTop: "0.5rem" }}>
+                  <span>Total à payer à la livraison :</span>
+                  <span style={{ color: "#25d366" }}>{totalPrice.toLocaleString()} DA</span>
                 </div>
               </div>
 
@@ -416,12 +445,12 @@ export default function CheckoutModal({ product, onClose }: CheckoutModalProps) 
                 type="submit"
                 disabled={isSubmitting}
                 className="btn btn--primary btn--lg"
-                style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
+                style={{ width: "100%", justifyContent: "center" }}
               >
-                {isSubmitting ? "Traitement de la commande..." : "Confirmer la Commande"}
+                {isSubmitting ? "Validation en cours..." : "Confirmer la Commande"}
               </button>
             </form>
-          </div>
+          </>
         )}
       </div>
     </div>

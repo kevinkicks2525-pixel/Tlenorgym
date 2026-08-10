@@ -1,7 +1,10 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+const supabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL || "https://stcehnakpycchfliianc.supabase.co";
+const supabaseAnonKey =
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0Y2VobmFreXBjY2hmbGlpYW5jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzNDQwMDYsImV4cCI6MjA5ODkyMDAwNn0.zKEUctWgCbs_uON0w19rsW5EVN0R0ZqCQk2dwfNuS-c";
 
 export const isSupabaseConfigured = Boolean(
   supabaseUrl && 
@@ -36,6 +39,7 @@ export async function addSupabaseProduct(product: {
   price: string;
   desc?: string;
   stock?: boolean;
+  stock_quantity?: number;
   image?: string;
 }) {
   if (!supabase) return null;
@@ -48,6 +52,7 @@ export async function addSupabaseProduct(product: {
         price: product.price,
         description: product.desc,
         stock: product.stock ?? true,
+        stock_quantity: product.stock_quantity ?? 10,
         image_url: product.image,
       }])
       .select();

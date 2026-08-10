@@ -123,9 +123,11 @@ export function subscribeProducts(onChange: () => void) {
   const handleUpdate = () => onChange();
   window.addEventListener(EVENT_NAME, handleUpdate);
   window.addEventListener("storage", handleUpdate);
+  window.addEventListener("focus", handleUpdate);
 
   return () => {
     window.removeEventListener(EVENT_NAME, handleUpdate);
     window.removeEventListener("storage", handleUpdate);
+    window.removeEventListener("focus", handleUpdate);
   };
 }

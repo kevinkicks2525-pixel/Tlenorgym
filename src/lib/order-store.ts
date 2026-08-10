@@ -106,9 +106,11 @@ export function subscribeOrders(onChange: () => void) {
   const handleUpdate = () => onChange();
   window.addEventListener(ORDERS_EVENT_NAME, handleUpdate);
   window.addEventListener("storage", handleUpdate);
+  window.addEventListener("focus", handleUpdate);
 
   return () => {
     window.removeEventListener(ORDERS_EVENT_NAME, handleUpdate);
     window.removeEventListener("storage", handleUpdate);
+    window.removeEventListener("focus", handleUpdate);
   };
 }

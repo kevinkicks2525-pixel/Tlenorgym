@@ -74,23 +74,17 @@ ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.categories ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.orders ENABLE ROW LEVEL SECURITY;
 
--- Politiques de LECTURE publique (tout visiteur peut lire)
+-- Politiques de LECTURE et ÉCRITURE publique (pour synchronisation PC / Mobile sans Supabase Auth)
 CREATE POLICY "Lecture publique produits" ON public.products FOR SELECT USING (true);
 CREATE POLICY "Lecture publique tarifs" ON public.plans FOR SELECT USING (true);
 CREATE POLICY "Lecture publique catégories" ON public.categories FOR SELECT USING (true);
 
--- Politiques d'ÉCRITURE réservées au service_role (admin uniquement)
--- Les opérations INSERT / UPDATE / DELETE ne fonctionnent qu'avec la clé service_role
-CREATE POLICY "Ecriture produits" ON public.products FOR ALL USING (auth.role() = 'service_role');
-CREATE POLICY "Ecriture tarifs" ON public.plans FOR ALL USING (auth.role() = 'service_role');
-CREATE POLICY "Ecriture catégories" ON public.categories FOR ALL USING (auth.role() = 'service_role');
-
--- Les commandes et leads peuvent être insérés par tout le monde (formulaire public)
--- mais seul le service_role peut les modifier/supprimer
-CREATE POLICY "Insertion commandes" ON public.orders FOR INSERT WITH CHECK (true);
-CREATE POLICY "Gestion commandes" ON public.orders FOR ALL USING (auth.role() = 'service_role');
-CREATE POLICY "Insertion leads" ON public.leads FOR INSERT WITH CHECK (true);
-CREATE POLICY "Gestion leads" ON public.leads FOR ALL USING (auth.role() = 'service_role');
+-- Ecriture permise pour l'administration et la prise de commande
+CREATE POLICY "Ecriture produits" ON public.products FOR ALL USING (true);
+CREATE POLICY "Ecriture tarifs" ON public.plans FOR ALL USING (true);
+CREATE POLICY "Ecriture catégories" ON public.categories FOR ALL USING (true);
+CREATE POLICY "Ecriture commandes" ON public.orders FOR ALL USING (true);
+CREATE POLICY "Ecriture leads" ON public.leads FOR ALL USING (true);
 
 -- ============================================================
 -- MIGRATION : Si vous avez déjà la base, exécutez ceci :

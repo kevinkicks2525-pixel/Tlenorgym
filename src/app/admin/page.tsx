@@ -303,6 +303,7 @@ export default function AdminPage() {
         price: formattedPrice,
         desc: newProdDesc,
         stock: newProdStockQty > 0,
+        stock_quantity: newProdStockQty,
         image: newProdImage,
       });
       if (supaRes && supaRes.id) {

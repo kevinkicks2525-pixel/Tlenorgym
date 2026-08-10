@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Milk, Moon, Pill, Dna, Zap, Flame, Sparkles, Fish, Cookie, MessageSquare, Phone, Package } from "lucide-react";
 import { getSupabaseProducts, isSupabaseConfigured } from "@/lib/supabase";
+import CheckoutModal from "@/components/CheckoutModal";
 
 interface ProductUIItem {
   name: string;
@@ -11,6 +12,7 @@ interface ProductUIItem {
   price: string;
   category: string;
   stock: boolean;
+  image?: string;
   icon: React.ReactNode;
 }
 
@@ -29,6 +31,7 @@ const defaultProducts: ProductUIItem[] = [];
 export default function ProduitsPage() {
   const [activeCategory, setActiveCategory] = useState("Tous");
   const [productList, setProductList] = useState<ProductUIItem[]>([]);
+  const [selectedCheckoutProduct, setSelectedCheckoutProduct] = useState<ProductUIItem | null>(null);
 
   useEffect(() => {
     async function loadData() {
@@ -41,6 +44,7 @@ export default function ProduitsPage() {
             price: item.price,
             category: item.category,
             stock: item.stock ?? true,
+            image: item.image_url || "",
             icon: categoryIcons[item.category] || <Package size={44} className="text-accent" />,
           }));
           setProductList(mapped);
@@ -57,12 +61,13 @@ export default function ProduitsPage() {
         if (saved) {
           const parsed = JSON.parse(saved);
           if (Array.isArray(parsed)) {
-            const mapped: ProductUIItem[] = parsed.map((item: { name: string; desc?: string; price: string; category: string; stock?: boolean }) => ({
+            const mapped: ProductUIItem[] = parsed.map((item: { name: string; desc?: string; price: string; category: string; stock?: boolean; image?: string }) => ({
               name: item.name,
               desc: item.desc || "Supplément de qualité supérieure disponible à la salle.",
               price: item.price,
               category: item.category,
               stock: item.stock ?? true,
+              image: item.image || "",
               icon: categoryIcons[item.category] || <Package size={44} className="text-accent" />,
             }));
             setProductList(mapped);
@@ -84,27 +89,42 @@ export default function ProduitsPage() {
 
   return (
     <>
+      {selectedCheckoutProduct && (
+        <CheckoutModal
+          product={selectedCheckoutProduct}
+          onClose={() => setSelectedCheckoutProduct(null)}
+        />
+      )}
+      
       <div className="page-header">
         <div className="container">
-          <span className="section-label">Boutique</span>
+          <span className="section-label">Boutique Officielle</span>
           <h1 className="page-header__title">
-            Compléments <span className="text-accent">Alimentaires</span>
+            Nos <span className="text-accent">Produits & Suppléments</span>
           </h1>
           <p className="page-header__desc">
-            Sélection de suppléments de qualité disponibles directement à la
-            salle. Commandez via WhatsApp et récupérez à Tlénor Gym.
+            Des compléments alimentaires 100% authentiques sélectionnés par nos
+            coachs. Livraison rapide dans les 58 wilayas d&apos;Algérie.
           </p>
         </div>
       </div>
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="container">
-          <div className="filters">
+          <div
+            style={{
+              display: "flex",
+              gap: "0.5rem",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              marginBottom: "var(--space-2xl)",
+            }}
+          >
             {categories.map((cat) => (
               <button
                 key={cat}
-                className={`filter-btn ${activeCategory === cat ? "filter-btn--active" : ""}`}
                 onClick={() => setActiveCategory(cat)}
+                className={`filter-btn ${activeCategory === cat ? "filter-btn--active" : ""}`}
               >
                 {cat}
               </button>
@@ -113,7 +133,7 @@ export default function ProduitsPage() {
 
           <div className="products__grid">
             {filtered.map((product, i) => (
-              <ScrollReveal key={product.name} delay={i * 80}>
+              <ScrollReveal key={product.name + i} delay={i * 80}>
                 <div className="product-card" style={{ opacity: product.stock ? 1 : 0.7 }}>
                   <div
                     className="product-card__image"
@@ -123,11 +143,16 @@ export default function ProduitsPage() {
                       justifyContent: "center",
                       background:
                         "linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg) 100%)",
-                      padding: "2.5rem",
+                      padding: "1.5rem",
                       position: "relative",
+                      minHeight: "180px",
                     }}
                   >
-                    {product.icon}
+                    {product.image && (product.image.startsWith("http") || product.image.startsWith("data:")) ? (
+                      <img src={product.image} alt={product.name} style={{ maxHeight: "140px", maxWidth: "100%", objectFit: "contain", filter: "drop-shadow(0 10px 15px rgba(0,0,0,0.5))" }} />
+                    ) : (
+                      product.icon
+                    )}
                     <span className="product-card__category">{product.category}</span>
                     {!product.stock && (
                       <span
@@ -152,19 +177,14 @@ export default function ProduitsPage() {
                     <p className="product-card__desc">{product.desc}</p>
                     <div className="product-card__footer">
                       <span className="product-card__price">{product.price}</span>
-                      <a
-                        href={
-                          product.stock
-                            ? `https://wa.me/213552089293?text=Bonjour, je suis intéressé par ${product.name} à ${product.price}`
-                            : `https://wa.me/213552089293?text=Bonjour, je souhaite réserver ${product.name} lors du réapprovisionnement`
-                        }
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`btn ${product.stock ? "btn--whatsapp" : "btn--outline"} btn--sm`}
+                      <button
+                        onClick={() => setSelectedCheckoutProduct(product)}
+                        disabled={!product.stock}
+                        className={`btn ${product.stock ? "btn--primary" : "btn--outline"} btn--sm`}
                         style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
                       >
-                        <MessageSquare size={14} /> {product.stock ? "Commander" : "Réserver"}
-                      </a>
+                        <MessageSquare size={14} /> {product.stock ? "Commander" : "Indisponible"}
+                      </button>
                     </div>
                   </div>
                 </div>

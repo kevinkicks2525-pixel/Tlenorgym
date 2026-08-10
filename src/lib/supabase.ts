@@ -88,3 +88,94 @@ export async function deleteSupabaseProduct(id: number | string) {
     return false;
   }
 }
+
+// ── ORDERS HELPERS ─────────────────────────────────────────
+
+export interface OrderItemData {
+  id?: number | string;
+  customer_name: string;
+  phone: string;
+  wilaya_code: string;
+  wilaya_name: string;
+  commune_name: string;
+  address?: string;
+  delivery_type: "home" | "office";
+  product_name: string;
+  product_price: string;
+  delivery_cost: number;
+  total_amount: number;
+  status?: string;
+  created_at?: string;
+}
+
+export async function createSupabaseOrder(order: OrderItemData) {
+  if (!supabase) return null;
+  try {
+    const { data, error } = await supabase
+      .from("orders")
+      .insert([{
+        customer_name: order.customer_name,
+        phone: order.phone,
+        wilaya_code: order.wilaya_code,
+        wilaya_name: order.wilaya_name,
+        commune_name: order.commune_name,
+        address: order.address || "Stopdesk / Bureau",
+        delivery_type: order.delivery_type,
+        product_name: order.product_name,
+        product_price: order.product_price,
+        delivery_cost: order.delivery_cost,
+        total_amount: order.total_amount,
+        status: order.status || "Nouvelle",
+      }])
+      .select();
+    if (error) throw error;
+    return data?.[0];
+  } catch (err) {
+    console.error("Supabase order insert error:", err);
+    return null;
+  }
+}
+
+export async function getSupabaseOrders() {
+  if (!supabase) return null;
+  try {
+    const { data, error } = await supabase
+      .from("orders")
+      .select("*")
+      .order("created_at", { ascending: false });
+    if (error) throw error;
+    return data;
+  } catch (err) {
+    console.warn("Supabase orders fetch error:", err);
+    return null;
+  }
+}
+
+export async function updateSupabaseOrderStatus(id: number | string, status: string) {
+  if (!supabase) return null;
+  try {
+    const { data, error } = await supabase
+      .from("orders")
+      .update({ status })
+      .eq("id", id)
+      .select();
+    if (error) throw error;
+    return data?.[0];
+  } catch (err) {
+    console.error("Supabase order status update error:", err);
+    return null;
+  }
+}
+
+export async function deleteSupabaseOrder(id: number | string) {
+  if (!supabase) return false;
+  try {
+    const { error } = await supabase.from("orders").delete().eq("id", id);
+    if (error) throw error;
+    return true;
+  } catch (err) {
+    console.error("Supabase order delete error:", err);
+    return false;
+  }
+}
+

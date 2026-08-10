@@ -25,13 +25,24 @@ import {
   FileImage,
   RefreshCw,
   Sliders,
-  DollarSign
+  DollarSign,
+  ShoppingBag,
+  Truck,
+  Phone,
+  Calendar,
+  Eye,
+  MapPin,
+  Building
 } from "lucide-react";
 import { 
   getSupabaseProducts, 
   addSupabaseProduct, 
   updateSupabaseProduct, 
   deleteSupabaseProduct, 
+  getSupabaseOrders,
+  updateSupabaseOrderStatus,
+  deleteSupabaseOrder,
+  OrderItemData,
   isSupabaseConfigured 
 } from "@/lib/supabase";
 
@@ -70,7 +81,7 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passcode, setPasscode] = useState("");
   const [passError, setPassError] = useState(false);
-  const [activeTab, setActiveTab] = useState<"analytics" | "products" | "stock" | "optimize" | "plans">("analytics");
+  const [activeTab, setActiveTab] = useState<"analytics" | "orders" | "products" | "stock" | "optimize" | "plans">("analytics");
 
   // Dynamic Product State
   const [productsList, setProductsList] = useState<ProductItem[]>(initialProducts);
@@ -78,6 +89,11 @@ export default function AdminPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Tous");
   const [stockFilter, setStockFilter] = useState<"all" | "in_stock" | "out_of_stock">("all");
+
+  // Orders State
+  const [ordersList, setOrdersList] = useState<OrderItemData[]>([]);
+  const [orderFilter, setOrderFilter] = useState<string>("all");
+  const [selectedOrderDetails, setSelectedOrderDetails] = useState<OrderItemData | null>(null);
 
   // Form states for New Product
   const [newProdName, setNewProdName] = useState("");
@@ -93,6 +109,7 @@ export default function AdminPage() {
   // Load from Supabase if configured, or localStorage
   useEffect(() => {
     async function loadData() {
+      // Products
       if (isSupabaseConfigured) {
         const supaData = await getSupabaseProducts();
         if (supaData && supaData.length > 0) {
@@ -106,17 +123,35 @@ export default function AdminPage() {
             image: item.image_url || "",
           }));
           setProductsList(mapped);
-          return;
+        }
+
+        // Orders
+        const supaOrders = await getSupabaseOrders();
+        if (supaOrders && supaOrders.length > 0) {
+          setOrdersList(supaOrders);
         }
       }
 
-      // Fallback to localStorage
+      // Fallback to localStorage for Products
       try {
-        const saved = localStorage.getItem("tlenorgym_admin_products");
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed)) {
+        const savedProducts = localStorage.getItem("tlenorgym_admin_products");
+        if (savedProducts) {
+          const parsed = JSON.parse(savedProducts);
+          if (Array.isArray(parsed) && parsed.length > 0 && productsList.length === 0) {
             setProductsList(parsed);
+          }
+        }
+      } catch {
+        // fallback
+      }
+
+      // Fallback to localStorage for Orders
+      try {
+        const savedOrders = localStorage.getItem("tlenorgym_admin_orders");
+        if (savedOrders) {
+          const parsed = JSON.parse(savedOrders);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setOrdersList(parsed);
           }
         }
       } catch {
@@ -130,6 +165,15 @@ export default function AdminPage() {
     setProductsList(newList);
     try {
       localStorage.setItem("tlenorgym_admin_products", JSON.stringify(newList));
+    } catch {
+      // fallback
+    }
+  };
+
+  const saveOrders = (newList: OrderItemData[]) => {
+    setOrdersList(newList);
+    try {
+      localStorage.setItem("tlenorgym_admin_orders", JSON.stringify(newList));
     } catch {
       // fallback
     }
@@ -224,6 +268,27 @@ export default function AdminPage() {
     setEditingProduct(null);
   };
 
+  // Orders Management Handlers
+  const handleOrderStatusChange = async (orderId: number | string, newStatus: string) => {
+    const updated = ordersList.map((o) => (o.id === orderId ? { ...o, status: newStatus } : o));
+    saveOrders(updated);
+
+    if (isSupabaseConfigured) {
+      await updateSupabaseOrderStatus(orderId, newStatus);
+    }
+  };
+
+  const handleDeleteOrder = async (orderId: number | string) => {
+    if (confirm("Voulez-vous vraiment supprimer cette commande ?")) {
+      const updated = ordersList.filter((o) => o.id !== orderId);
+      saveOrders(updated);
+
+      if (isSupabaseConfigured) {
+        await deleteSupabaseOrder(orderId);
+      }
+    }
+  };
+
   // Image Upload Handler (Data URL converter for local previews)
   const handleImageFileChange = (e: React.ChangeEvent<HTMLInputElement>, isEdit: boolean = false) => {
     const file = e.target.files?.[0];
@@ -276,10 +341,18 @@ export default function AdminPage() {
     return matchesCategory && matchesSearch && matchesStock;
   });
 
+  // Filtered Orders
+  const filteredOrders = ordersList.filter((o) => {
+    if (orderFilter === "all") return true;
+    return o.status === orderFilter;
+  });
+
   // Calculate Metrics
   const totalProducts = productsList.length;
   const inStockCount = productsList.filter((p) => p.stock).length;
   const outOfStockCount = totalProducts - inStockCount;
+  const totalOrdersCount = ordersList.length;
+  const newOrdersCount = ordersList.filter((o) => o.status === "Nouvelle").length;
 
   if (!isAuthenticated) {
     return (
@@ -331,7 +404,7 @@ export default function AdminPage() {
   return (
     <div style={{ minHeight: "100vh", background: "var(--color-bg)", paddingTop: "40px", paddingBottom: "60px" }}>
       <div className="container">
-        {/* Clean Backoffice Header (No Supabase Connected Bubble) */}
+        {/* Clean Backoffice Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem", marginBottom: "2rem", paddingBottom: "1.5rem", borderBottom: "1px solid var(--color-border)" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
             <Link href="/" className="btn btn--ghost btn--sm" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
@@ -359,6 +432,18 @@ export default function AdminPage() {
             style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
           >
             <BarChart3 size={16} /> Analytics & Vue d&apos;Ensemble
+          </button>
+          <button
+            className={`btn btn--sm ${activeTab === "orders" ? "btn--primary" : "btn--ghost"}`}
+            onClick={() => setActiveTab("orders")}
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", position: "relative" }}
+          >
+            <ShoppingBag size={16} /> Commandes ({totalOrdersCount})
+            {newOrdersCount > 0 && (
+              <span style={{ background: "var(--color-red)", color: "#fff", fontSize: "0.7rem", fontWeight: 700, padding: "2px 6px", borderRadius: "10px" }}>
+                {newOrdersCount} nouvelle{newOrdersCount > 1 ? "s" : ""}
+              </span>
+            )}
           </button>
           <button
             className={`btn btn--sm ${activeTab === "products" ? "btn--primary" : "btn--ghost"}`}
@@ -396,6 +481,15 @@ export default function AdminPage() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.5rem", marginBottom: "2.5rem" }}>
               <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "1.5rem" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+                  <span style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>Commandes</span>
+                  <ShoppingBag size={20} className="text-accent" />
+                </div>
+                <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)" }}>{totalOrdersCount}</div>
+                <span style={{ fontSize: "0.8rem", color: "#25d366" }}>{newOrdersCount} en attente de traitement</span>
+              </div>
+
+              <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "1.5rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
                   <span style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>Total Produits</span>
                   <Package size={20} className="text-accent" />
                 </div>
@@ -420,15 +514,6 @@ export default function AdminPage() {
                 <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)", color: "var(--color-red)" }}>{outOfStockCount}</div>
                 <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>À réapprovisionner</span>
               </div>
-
-              <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "1.5rem" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
-                  <span style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>Abonnements Gym</span>
-                  <CreditCard size={20} className="text-accent" />
-                </div>
-                <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)" }}>8 Formules</div>
-                <span style={{ fontSize: "0.8rem", color: "#25d366" }}>Actives sur le site</span>
-              </div>
             </div>
 
             {/* Quick Actions & Overview */}
@@ -438,6 +523,9 @@ export default function AdminPage() {
                   Actions Rapides
                 </h3>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                  <button onClick={() => setActiveTab("orders")} className="btn btn--outline" style={{ justifyContent: "flex-start", gap: "0.75rem" }}>
+                    <ShoppingBag size={18} className="text-accent" /> Consulter les commandes de produits ({totalOrdersCount})
+                  </button>
                   <button onClick={() => setActiveTab("products")} className="btn btn--outline" style={{ justifyContent: "flex-start", gap: "0.75rem" }}>
                     <Plus size={18} className="text-accent" /> Ajouter un nouveau produit au catalogue
                   </button>
@@ -452,16 +540,16 @@ export default function AdminPage() {
 
               <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
                 <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.25rem", marginBottom: "1rem" }}>
-                  Boutique WhatsApp & Demandes
+                  Boutique E-Commerce & Livraison
                 </h3>
                 <p style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem", lineHeight: 1.6 }}>
-                  Toutes les commandes effectuées par vos clients sur la page <strong>Produits</strong> ou <strong>Abonnements</strong> sont directement redirigées vers votre numéro WhatsApp professionnel et notifiées en temps réel.
+                  Les clients commandent directement sur le site en renseignant leur <strong>Wilaya</strong> (1 à 58), leur <strong>Commune</strong> et leur adresse de livraison (Domicile ou Bureau Yalidine).
                 </p>
                 <div style={{ marginTop: "1.5rem", padding: "1rem", background: "rgba(37, 211, 102, 0.1)", borderRadius: "var(--radius-md)", border: "1px solid rgba(37, 211, 102, 0.2)", display: "flex", alignItems: "center", gap: "0.75rem" }}>
                   <CheckCircle2 size={24} style={{ color: "#25d366" }} />
                   <div>
-                    <strong style={{ color: "#25d366", display: "block" }}>Lien direct WhatsApp Actif</strong>
-                    <span style={{ fontSize: "0.85rem", color: "var(--color-text-secondary)" }}>+213 552 08 92 93</span>
+                    <strong style={{ color: "#25d366", display: "block" }}>Système de Commande Actif</strong>
+                    <span style={{ fontSize: "0.85rem", color: "var(--color-text-secondary)" }}>Prise en charge des 58 wilayas d&apos;Algérie</span>
                   </div>
                 </div>
               </div>
@@ -469,7 +557,145 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* Tab 2: Products Management */}
+        {/* Tab 2: Orders Management */}
+        {activeTab === "orders" && (
+          <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem", flexWrap: "wrap", gap: "1rem" }}>
+              <div>
+                <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.5rem", margin: 0 }}>
+                  Commandes Clients ({filteredOrders.length})
+                </h2>
+                <p style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem", margin: "0.25rem 0 0" }}>
+                  Gérez les commandes, la livraison et les statuts des clients
+                </p>
+              </div>
+
+              <div style={{ display: "flex", gap: "0.5rem" }}>
+                <button
+                  className={`btn btn--sm ${orderFilter === "all" ? "btn--primary" : "btn--outline"}`}
+                  onClick={() => setOrderFilter("all")}
+                >
+                  Toutes ({totalOrdersCount})
+                </button>
+                <button
+                  className={`btn btn--sm ${orderFilter === "Nouvelle" ? "btn--primary" : "btn--outline"}`}
+                  onClick={() => setOrderFilter("Nouvelle")}
+                >
+                  Nouvelles ({newOrdersCount})
+                </button>
+                <button
+                  className={`btn btn--sm ${orderFilter === "En cours" ? "btn--primary" : "btn--outline"}`}
+                  onClick={() => setOrderFilter("En cours")}
+                >
+                  En cours
+                </button>
+                <button
+                  className={`btn btn--sm ${orderFilter === "Livrée" ? "btn--primary" : "btn--outline"}`}
+                  onClick={() => setOrderFilter("Livrée")}
+                >
+                  Livrées
+                </button>
+              </div>
+            </div>
+
+            {filteredOrders.length === 0 ? (
+              <div style={{ textAlign: "center", padding: "3rem", color: "var(--color-text-muted)" }}>
+                <ShoppingBag size={48} style={{ opacity: 0.3, marginBottom: "0.75rem" }} />
+                <p style={{ fontSize: "1.1rem" }}>Aucune commande enregistrée pour le moment.</p>
+              </div>
+            ) : (
+              <div style={{ overflowX: "auto" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
+                  <thead>
+                    <tr style={{ borderBottom: "1px solid var(--color-border)", color: "var(--color-text-secondary)", fontSize: "0.85rem" }}>
+                      <th style={{ padding: "12px" }}>ID</th>
+                      <th style={{ padding: "12px" }}>Client</th>
+                      <th style={{ padding: "12px" }}>Téléphone</th>
+                      <th style={{ padding: "12px" }}>Wilaya / Commune</th>
+                      <th style={{ padding: "12px" }}>Produit</th>
+                      <th style={{ padding: "12px" }}>Total</th>
+                      <th style={{ padding: "12px" }}>Statut</th>
+                      <th style={{ padding: "12px", textAlign: "right" }}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredOrders.map((ord, idx) => (
+                      <tr key={ord.id || idx} style={{ borderBottom: "1px solid var(--color-border)" }}>
+                        <td style={{ padding: "12px", fontSize: "0.85rem", color: "var(--color-text-muted)" }}>#{ord.id}</td>
+                        <td style={{ padding: "12px", fontWeight: 600 }}>{ord.customer_name}</td>
+                        <td style={{ padding: "12px", color: "var(--color-accent)", fontWeight: 600 }}>{ord.phone}</td>
+                        <td style={{ padding: "12px", fontSize: "0.9rem" }}>
+                          {ord.wilaya_name} - {ord.commune_name}
+                          <span style={{ display: "block", fontSize: "0.75rem", color: "var(--color-text-muted)" }}>
+                            {ord.delivery_type === "home" ? "À domicile" : "Bureau Stopdesk"}
+                          </span>
+                        </td>
+                        <td style={{ padding: "12px", fontWeight: 500 }}>{ord.product_name}</td>
+                        <td style={{ padding: "12px", color: "#25d366", fontWeight: 700 }}>
+                          {ord.total_amount ? ord.total_amount.toLocaleString() : ord.product_price} DA
+                        </td>
+                        <td style={{ padding: "12px" }}>
+                          <select
+                            value={ord.status || "Nouvelle"}
+                            onChange={(e) => ord.id && handleOrderStatusChange(ord.id, e.target.value)}
+                            style={{
+                              padding: "4px 8px",
+                              borderRadius: "8px",
+                              fontSize: "0.8rem",
+                              fontWeight: 600,
+                              background:
+                                ord.status === "Livrée"
+                                  ? "rgba(37, 211, 102, 0.15)"
+                                  : ord.status === "En cours"
+                                  ? "rgba(245, 197, 24, 0.15)"
+                                  : ord.status === "Annulée"
+                                  ? "rgba(230, 57, 70, 0.15)"
+                                  : "rgba(255, 255, 255, 0.1)",
+                              color:
+                                ord.status === "Livrée"
+                                  ? "#25d366"
+                                  : ord.status === "En cours"
+                                  ? "var(--color-accent)"
+                                  : ord.status === "Annulée"
+                                  ? "var(--color-red)"
+                                  : "#fff",
+                              border: "1px solid var(--color-border)",
+                            }}
+                          >
+                            <option value="Nouvelle">Nouvelle</option>
+                            <option value="En cours">En cours</option>
+                            <option value="Livrée">Livrée</option>
+                            <option value="Annulée">Annulée</option>
+                          </select>
+                        </td>
+                        <td style={{ padding: "12px", textAlign: "right" }}>
+                          <button
+                            onClick={() => setSelectedOrderDetails(ord)}
+                            className="btn btn--ghost btn--sm"
+                            style={{ padding: "6px", marginRight: "0.4rem" }}
+                            title="Détails"
+                          >
+                            <Eye size={16} />
+                          </button>
+                          <button
+                            onClick={() => ord.id && handleDeleteOrder(ord.id)}
+                            className="btn btn--ghost btn--sm"
+                            style={{ padding: "6px", color: "var(--color-red)" }}
+                            title="Supprimer"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Tab 3: Products Management */}
         {activeTab === "products" && (
           <div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2rem" }}>
@@ -554,7 +780,7 @@ export default function AdminPage() {
                     {newProdImage && (
                       <div style={{ marginTop: "0.75rem", display: "flex", alignItems: "center", gap: "0.75rem" }}>
                         <img src={newProdImage} alt="Aperçu" style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "8px", border: "1px solid var(--color-border)" }} />
-                        <span style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)" }}>Aperçu sélectionné</span>
+                        <span style={{ fontSize: "0.8rem", color: "#25d366" }}>✓ Photo prête à être enregistrée</span>
                       </div>
                     )}
                   </div>
@@ -608,7 +834,7 @@ export default function AdminPage() {
                         }}
                       >
                         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                          {prod.image && prod.image.startsWith("data:") || (prod.image && prod.image.startsWith("http")) ? (
+                          {prod.image && (prod.image.startsWith("data:") || prod.image.startsWith("http")) ? (
                             <img src={prod.image} alt={prod.name} style={{ width: "44px", height: "44px", objectFit: "cover", borderRadius: "8px" }} />
                           ) : (
                             <div style={{ width: "44px", height: "44px", background: "var(--color-surface)", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.2rem" }}>
@@ -665,7 +891,7 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* Tab 3: Stock Management */}
+        {/* Tab 4: Stock Management */}
         {activeTab === "stock" && (
           <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem", flexWrap: "wrap", gap: "1rem" }}>
@@ -757,7 +983,7 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* Tab 4: Image Optimization (Inspired by CD Project) */}
+        {/* Tab 5: Image Optimization */}
         {activeTab === "optimize" && (
           <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem", flexWrap: "wrap", gap: "1rem" }}>
@@ -833,7 +1059,7 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* Tab 5: Subscription Plans */}
+        {/* Tab 6: Subscription Plans */}
         {activeTab === "plans" && (
           <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem" }}>
             <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.5rem", marginBottom: "1rem" }}>
@@ -860,6 +1086,47 @@ export default function AdminPage() {
                   <div style={{ color: "var(--color-accent)", fontWeight: 700, fontSize: "1.2rem" }}>{plan.price}</div>
                 </div>
               ))}
+            </div>
+          </div>
+        )}
+
+        {/* Modal Order Details */}
+        {selectedOrderDetails && (
+          <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(0,0,0,0.8)", backdropFilter: "blur(5px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "1rem" }}>
+            <div style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-xl)", padding: "2rem", maxWidth: "500px", width: "100%", position: "relative" }}>
+              <button onClick={() => setSelectedOrderDetails(null)} style={{ position: "absolute", top: "16px", right: "16px", background: "none", border: "none", color: "#fff", cursor: "pointer" }}>
+                <X size={20} />
+              </button>
+
+              <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.35rem", marginBottom: "1.25rem" }}>
+                Détails de la Commande #{selectedOrderDetails.id}
+              </h3>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", fontSize: "0.9rem" }}>
+                <div style={{ background: "var(--color-bg)", padding: "1rem", borderRadius: "var(--radius-md)" }}>
+                  <div style={{ marginBottom: "0.4rem" }}><strong>Client :</strong> {selectedOrderDetails.customer_name}</div>
+                  <div style={{ marginBottom: "0.4rem" }}><strong>Téléphone :</strong> <a href={`tel:${selectedOrderDetails.phone}`} style={{ color: "var(--color-accent)", fontWeight: 700 }}>{selectedOrderDetails.phone}</a></div>
+                  <div style={{ marginBottom: "0.4rem" }}><strong>Wilaya :</strong> {selectedOrderDetails.wilaya_name}</div>
+                  <div style={{ marginBottom: "0.4rem" }}><strong>Commune :</strong> {selectedOrderDetails.commune_name}</div>
+                  <div style={{ marginBottom: "0.4rem" }}><strong>Mode Livraison :</strong> {selectedOrderDetails.delivery_type === "home" ? "À domicile" : "Bureau Stopdesk"}</div>
+                  <div><strong>Adresse :</strong> {selectedOrderDetails.address || "N/A"}</div>
+                </div>
+
+                <div style={{ background: "var(--color-bg)", padding: "1rem", borderRadius: "var(--radius-md)" }}>
+                  <div style={{ marginBottom: "0.4rem" }}><strong>Produit :</strong> {selectedOrderDetails.product_name}</div>
+                  <div style={{ marginBottom: "0.4rem" }}><strong>Prix Article :</strong> {selectedOrderDetails.product_price}</div>
+                  <div style={{ marginBottom: "0.4rem" }}><strong>Frais Livraison :</strong> {selectedOrderDetails.delivery_cost} DA</div>
+                  <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#25d366", marginTop: "0.5rem", borderTop: "1px solid var(--color-border)", paddingTop: "0.5rem" }}>
+                    Total à encaisser : {selectedOrderDetails.total_amount ? selectedOrderDetails.total_amount.toLocaleString() : selectedOrderDetails.product_price} DA
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ marginTop: "1.5rem" }}>
+                <button onClick={() => setSelectedOrderDetails(null)} className="btn btn--primary" style={{ width: "100%", justifyContent: "center" }}>
+                  Fermer
+                </button>
+              </div>
             </div>
           </div>
         )}

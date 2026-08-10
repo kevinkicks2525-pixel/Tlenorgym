@@ -12,8 +12,11 @@ import Link from "next/link";
 import { Milk, Pill, Zap, MessageSquare, ArrowRight, Package } from "lucide-react";
 import { getSupabaseProducts, isSupabaseConfigured } from "@/lib/supabase";
 
+import CheckoutModal from "@/components/CheckoutModal";
+
 export default function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
+  const [selectedCheckoutProduct, setSelectedCheckoutProduct] = useState<any | null>(null);
 
   useEffect(() => {
     async function loadData() {
@@ -43,6 +46,12 @@ export default function Home() {
 
   return (
     <>
+      {selectedCheckoutProduct && (
+        <CheckoutModal
+          product={selectedCheckoutProduct}
+          onClose={() => setSelectedCheckoutProduct(null)}
+        />
+      )}
       <Hero />
       <About />
       <Features />
@@ -81,7 +90,7 @@ export default function Home() {
                         position: "relative",
                       }}
                     >
-                      {product.image && typeof product.image === "string" && product.image.startsWith("http") ? (
+                      {product.image && typeof product.image === "string" && (product.image.startsWith("http") || product.image.startsWith("data:")) ? (
                         <img src={product.image} alt={product.name} style={{ maxHeight: "100px", objectFit: "contain" }} />
                       ) : (
                         <Package size={44} className="text-accent" />
@@ -93,15 +102,13 @@ export default function Home() {
                       <p className="product-card__desc">{product.desc || product.description || "Disponible sur place"}</p>
                       <div className="product-card__footer">
                         <span className="product-card__price">{product.price}</span>
-                        <a
-                          href={`https://wa.me/213552089293?text=Bonjour, je suis intéressé par ${product.name}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn btn--whatsapp btn--sm"
+                        <button
+                          onClick={() => setSelectedCheckoutProduct(product)}
+                          className="btn btn--primary btn--sm"
                           style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
                         >
                           <MessageSquare size={14} /> Commander
-                        </a>
+                        </button>
                       </div>
                     </div>
                   </div>

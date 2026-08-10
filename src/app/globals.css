@@ -169,10 +169,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-label::before {
-  content: "";
-  width: 24px;
-  height: 2px;
-  background: var(--color-accent);
+  display: none;
 }
 
 .section-title {
@@ -527,13 +524,15 @@ h1, h2, h3, h4, h5, h6 {
   height: var(--nav-height);
   z-index: 1000;
   transition: all var(--transition-base);
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .navbar--scrolled {
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--color-border);
+  background: rgba(10, 10, 10, 0.95);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .navbar__inner {
@@ -573,12 +572,13 @@ h1, h2, h3, h4, h5, h6 {
 .navbar__link {
   font-family: var(--font-heading);
   font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-semibold);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--color-text-secondary);
+  color: #ffffff;
   transition: color var(--transition-fast);
   position: relative;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
 }
 
 .navbar__link::after {
@@ -594,7 +594,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar__link:hover,
 .navbar__link--active {
-  color: var(--color-text);
+  color: var(--color-accent);
 }
 
 .navbar__link:hover::after,
@@ -1654,5 +1654,19 @@ h1, h2, h3, h4, h5, h6 {
   .hero__buttons .btn {
     width: 100%;
     max-width: 300px;
+  }
+
+  /* Mobile icon scaling fix */
+  .product-card__image svg,
+  .feature-card__icon svg,
+  .program-card__icon svg,
+  .advantage-card svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .product-card__image {
+    padding: 1.25rem !important;
+    min-height: 140px !important;
   }
 }

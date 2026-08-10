@@ -1,0 +1,9364 @@
+{
+  "10": [
+    {
+      "name": "Aïn Bessem",
+      "nameAr": "Aïn Bessem",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Hanif",
+      "nameAr": "Hanif",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aghbalou",
+      "nameAr": "Aghbalou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn El Hadjar",
+      "nameAr": "Aïn El Hadjar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ahl El Ksar",
+      "nameAr": "Ahl El Ksar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Laloui",
+      "nameAr": "Aïn Laloui",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ath Mansour",
+      "nameAr": "Ath Mansour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aomar",
+      "nameAr": "Aomar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn El Turc",
+      "nameAr": "Aïn El Turc",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Laziz",
+      "nameAr": "Aït Laziz",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouderbala",
+      "nameAr": "Bouderbala",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bechloul",
+      "nameAr": "Bechloul",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bir Ghbalou",
+      "nameAr": "Bir Ghbalou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boukram",
+      "nameAr": "Boukram",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bordj Okhriss",
+      "nameAr": "Bordj Okhriss",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouira",
+      "nameAr": "Bouira",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Chorfa",
+      "nameAr": "Chorfa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dechmia",
+      "nameAr": "Dechmia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dirrah",
+      "nameAr": "Dirrah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djebahia",
+      "nameAr": "Djebahia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Hakimia",
+      "nameAr": "El Hakimia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Hachimia",
+      "nameAr": "El Hachimia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Adjiba",
+      "nameAr": "El Adjiba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Khabouzia",
+      "nameAr": "El Khabouzia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Mokrani",
+      "nameAr": "El Mokrani",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Asnam",
+      "nameAr": "El Asnam",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Guerrouma",
+      "nameAr": "Guerrouma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Haizer",
+      "nameAr": "Haizer",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hadjera Zerga",
+      "nameAr": "Hadjera Zerga",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kadiria",
+      "nameAr": "Kadiria",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Lakhdaria",
+      "nameAr": "Lakhdaria",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "M'Chedallah",
+      "nameAr": "M'Chedallah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mezdour",
+      "nameAr": "Mezdour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Maala",
+      "nameAr": "Maala",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Maamora",
+      "nameAr": "Maamora",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued El Berdi",
+      "nameAr": "Oued El Berdi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Rached",
+      "nameAr": "Ouled Rached",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Raouraoua",
+      "nameAr": "Raouraoua",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ridane",
+      "nameAr": "Ridane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Saharidj",
+      "nameAr": "Saharidj",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sour El Ghouzlane",
+      "nameAr": "Sour El Ghouzlane",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Souk El Khemis",
+      "nameAr": "Souk El Khemis",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taguedit",
+      "nameAr": "Taguedit",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taghzout",
+      "nameAr": "Taghzout",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zbarbar",
+      "nameAr": "Zbarbar",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "11": [
+    {
+      "name": "Tamanrasset",
+      "nameAr": "Tamanrasset",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Abalessa",
+      "nameAr": "Abalessa",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Idles",
+      "nameAr": "Idles",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Tazrouk",
+      "nameAr": "Tazrouk",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "In Amguel",
+      "nameAr": "In Amguel",
+      "postalCode": "inactive",
+      "active": false
+    }
+  ],
+  "12": [
+    {
+      "name": "Tébessa",
+      "nameAr": "Tébessa",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bir el Ater",
+      "nameAr": "Bir el Ater",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Cheria",
+      "nameAr": "Cheria",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Stah Guentis",
+      "nameAr": "Stah Guentis",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Aouinet",
+      "nameAr": "El Aouinet",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Houidjbet",
+      "nameAr": "El Houidjbet",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Safsaf El Ouesra",
+      "nameAr": "Safsaf El Ouesra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hammamet",
+      "nameAr": "Hammamet",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Negrine",
+      "nameAr": "Negrine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bir Mokkadem",
+      "nameAr": "Bir Mokkadem",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Kouif",
+      "nameAr": "El Kouif",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Morsott",
+      "nameAr": "Morsott",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Ogla",
+      "nameAr": "El Ogla",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bir Dheb",
+      "nameAr": "Bir Dheb",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ogla Melha",
+      "nameAr": "Ogla Melha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Guorriguer",
+      "nameAr": "Guorriguer",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bekkaria",
+      "nameAr": "Bekkaria",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boukhadra",
+      "nameAr": "Boukhadra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouenza",
+      "nameAr": "Ouenza",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Ma Labiodh",
+      "nameAr": "El Ma Labiodh",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oum Ali",
+      "nameAr": "Oum Ali",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tlidjene",
+      "nameAr": "Tlidjene",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Zerga",
+      "nameAr": "Aïn Zerga",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Meridj",
+      "nameAr": "El Meridj",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boulhaf Dir",
+      "nameAr": "Boulhaf Dir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bedjene",
+      "nameAr": "Bedjene",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Mezeraa",
+      "nameAr": "El Mezeraa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ferkane",
+      "nameAr": "Ferkane",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "13": [
+    {
+      "name": "Tlemcen",
+      "nameAr": "Tlemcen",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Beni Mester",
+      "nameAr": "Beni Mester",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Tallout",
+      "nameAr": "Aïn Tallout",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Remchi",
+      "nameAr": "Remchi",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "El Fehoul",
+      "nameAr": "El Fehoul",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sabra",
+      "nameAr": "Sabra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ghazaouet",
+      "nameAr": "Ghazaouet",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Souani",
+      "nameAr": "Souani",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djebala",
+      "nameAr": "Djebala",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Gor",
+      "nameAr": "El Gor",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Lakhdar",
+      "nameAr": "Oued Lakhdar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Fezza",
+      "nameAr": "Aïn Fezza",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Mimoun",
+      "nameAr": "Ouled Mimoun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Amieur",
+      "nameAr": "Amieur",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Youcef",
+      "nameAr": "Aïn Youcef",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zenata",
+      "nameAr": "Zenata",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Snous",
+      "nameAr": "Beni Snous",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bab El Assa",
+      "nameAr": "Bab El Assa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dar Yaghmouracene",
+      "nameAr": "Dar Yaghmouracene",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Fellaoucene",
+      "nameAr": "Fellaoucene",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Azails",
+      "nameAr": "Azails",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sebaa Chioukh",
+      "nameAr": "Sebaa Chioukh",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Terny Beni Hdiel",
+      "nameAr": "Terny Beni Hdiel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bensekrane",
+      "nameAr": "Bensekrane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Nehala",
+      "nameAr": "Aïn Nehala",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hennaya",
+      "nameAr": "Hennaya",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Maghnia",
+      "nameAr": "Maghnia",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Hammam Boughrara",
+      "nameAr": "Hammam Boughrara",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Souahlia",
+      "nameAr": "Souahlia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "MSirda Fouaga",
+      "nameAr": "MSirda Fouaga",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Fetah",
+      "nameAr": "Aïn Fetah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Aricha",
+      "nameAr": "El Aricha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Souk Tlata",
+      "nameAr": "Souk Tlata",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Abdelli",
+      "nameAr": "Sidi Abdelli",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sebdou",
+      "nameAr": "Sebdou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Ouarsous",
+      "nameAr": "Beni Ouarsous",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Medjahed",
+      "nameAr": "Sidi Medjahed",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Boussaid",
+      "nameAr": "Beni Boussaid",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Marsa Ben M'Hidi",
+      "nameAr": "Marsa Ben M'Hidi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Nedroma",
+      "nameAr": "Nedroma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Djillali",
+      "nameAr": "Sidi Djillali",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Bahdel",
+      "nameAr": "Beni Bahdel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Bouihi",
+      "nameAr": "El Bouihi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Honaïne",
+      "nameAr": "Honaïne",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tienet",
+      "nameAr": "Tienet",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Riyah",
+      "nameAr": "Ouled Riyah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouhlou",
+      "nameAr": "Bouhlou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Khellad",
+      "nameAr": "Beni Khellad",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Ghoraba",
+      "nameAr": "Aïn Ghoraba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chetouane",
+      "nameAr": "Chetouane",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Mansourah",
+      "nameAr": "Mansourah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Semiel",
+      "nameAr": "Beni Semiel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Kebira",
+      "nameAr": "Aïn Kebira",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "14": [
+    {
+      "name": "Aïn Bouchekif",
+      "nameAr": "Aïn Bouchekif",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Deheb",
+      "nameAr": "Aïn Deheb",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn El Hadid",
+      "nameAr": "Aïn El Hadid",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Kermes",
+      "nameAr": "Aïn Kermes",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Dzarit",
+      "nameAr": "Aïn Dzarit",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bougara",
+      "nameAr": "Bougara",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chehaima",
+      "nameAr": "Chehaima",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dahmouni",
+      "nameAr": "Dahmouni",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djebilet Rosfa",
+      "nameAr": "Djebilet Rosfa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djillali Ben Amar",
+      "nameAr": "Djillali Ben Amar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Faidja",
+      "nameAr": "Faidja",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Frenda",
+      "nameAr": "Frenda",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Guertoufa",
+      "nameAr": "Guertoufa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hamadia",
+      "nameAr": "Hamadia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ksar Chellala",
+      "nameAr": "Ksar Chellala",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Madna",
+      "nameAr": "Madna",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Mahdia",
+      "nameAr": "Mahdia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mechraa Safa",
+      "nameAr": "Mechraa Safa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Medrissa",
+      "nameAr": "Medrissa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Medroussa",
+      "nameAr": "Medroussa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Meghila",
+      "nameAr": "Meghila",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mellakou",
+      "nameAr": "Mellakou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Nadorah",
+      "nameAr": "Nadorah",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Naima",
+      "nameAr": "Naima",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Lilli",
+      "nameAr": "Oued Lilli",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Rahouia",
+      "nameAr": "Rahouia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Rechaiga",
+      "nameAr": "Rechaiga",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sebaine",
+      "nameAr": "Sebaine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sebt",
+      "nameAr": "Sebt",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Serghine",
+      "nameAr": "Serghine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Si Abdelghani",
+      "nameAr": "Si Abdelghani",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Abderahmane",
+      "nameAr": "Sidi Abderahmane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Ali Mellal",
+      "nameAr": "Sidi Ali Mellal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Bakhti",
+      "nameAr": "Sidi Bakhti",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Sidi Hosni",
+      "nameAr": "Sidi Hosni",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sougueur",
+      "nameAr": "Sougueur",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tagdemt",
+      "nameAr": "Tagdemt",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Takhemaret",
+      "nameAr": "Takhemaret",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tiaret",
+      "nameAr": "Tiaret",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Tidda",
+      "nameAr": "Tidda",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tousnina",
+      "nameAr": "Tousnina",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zmalet El Emir Abdelkader",
+      "nameAr": "Zmalet El Emir Abdelkader",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "15": [
+    {
+      "name": "Tizi Ouzou",
+      "nameAr": "Tizi Ouzou",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Ain El Hammam",
+      "nameAr": "Ain El Hammam",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Akbil",
+      "nameAr": "Akbil",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Freha",
+      "nameAr": "Freha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Souamaâ",
+      "nameAr": "Souamaâ",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mechtras",
+      "nameAr": "Mechtras",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Irdjen",
+      "nameAr": "Irdjen",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Timizart",
+      "nameAr": "Timizart",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Makouda",
+      "nameAr": "Makouda",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Draâ El Mizan",
+      "nameAr": "Draâ El Mizan",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tizi Gheniff",
+      "nameAr": "Tizi Gheniff",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bounouh",
+      "nameAr": "Bounouh",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Chafâa",
+      "nameAr": "Aït Chafâa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Frikat",
+      "nameAr": "Frikat",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Aïssi",
+      "nameAr": "Beni Aïssi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Zmenzer",
+      "nameAr": "Beni Zmenzer",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Iferhounène",
+      "nameAr": "Iferhounène",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Azazga",
+      "nameAr": "Azazga",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Illoula Oumalou",
+      "nameAr": "Illoula Oumalou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Yakouren",
+      "nameAr": "Yakouren",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Larbaâ Nath Irathen",
+      "nameAr": "Larbaâ Nath Irathen",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tizi Rached",
+      "nameAr": "Tizi Rached",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zekri",
+      "nameAr": "Zekri",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Ouaguenoun",
+      "nameAr": "Ouaguenoun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Zaouia",
+      "nameAr": "Aïn Zaouia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "M'Kira",
+      "nameAr": "M'Kira",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Yahia",
+      "nameAr": "Aït Yahia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Mahmoud",
+      "nameAr": "Aït Mahmoud",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mâatkas",
+      "nameAr": "Mâatkas",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Boumahdi",
+      "nameAr": "Aït Boumahdi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Abi Youcef",
+      "nameAr": "Abi Youcef",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Douala",
+      "nameAr": "Beni Douala",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Illilten",
+      "nameAr": "Illilten",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouzguen",
+      "nameAr": "Bouzguen",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Aggouacha",
+      "nameAr": "Aït Aggouacha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouadhia",
+      "nameAr": "Ouadhia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Azeffoun",
+      "nameAr": "Azeffoun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tigzirt",
+      "nameAr": "Tigzirt",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Aïssa Mimoun",
+      "nameAr": "Aït Aïssa Mimoun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boghni",
+      "nameAr": "Boghni",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ifigha",
+      "nameAr": "Ifigha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Oumalou",
+      "nameAr": "Aït Oumalou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tirmitine",
+      "nameAr": "Tirmitine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Akerrou",
+      "nameAr": "Akerrou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Yatafen",
+      "nameAr": "Yatafen",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ath Zikki",
+      "nameAr": "Ath Zikki",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Draâ Ben Khedda",
+      "nameAr": "Draâ Ben Khedda",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Ouacif",
+      "nameAr": "Ouacif",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Idjeur",
+      "nameAr": "Idjeur",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mekla",
+      "nameAr": "Mekla",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tizi N'Tleta",
+      "nameAr": "Tizi N'Tleta",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Yenni",
+      "nameAr": "Aït Yenni",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aghribs",
+      "nameAr": "Aghribs",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Iflissen",
+      "nameAr": "Iflissen",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boudjima",
+      "nameAr": "Boudjima",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Yahia Moussa",
+      "nameAr": "Aït Yahia Moussa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Souk El Thenine",
+      "nameAr": "Souk El Thenine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Khellili",
+      "nameAr": "Aït Khellili",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Namane",
+      "nameAr": "Sidi Namane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Iboudraren",
+      "nameAr": "Iboudraren",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Agouni Gueghrane",
+      "nameAr": "Agouni Gueghrane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mizrana",
+      "nameAr": "Mizrana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Imsouhel",
+      "nameAr": "Imsouhel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tadmaït",
+      "nameAr": "Tadmaït",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Bouadou",
+      "nameAr": "Aït Bouadou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Assi Youcef",
+      "nameAr": "Assi Youcef",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Toudert",
+      "nameAr": "Aït Toudert",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "16": [
+    {
+      "name": "Alger Centre",
+      "nameAr": "Alger Centre",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Sidi M'Hamed",
+      "nameAr": "Sidi M'Hamed",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Madania",
+      "nameAr": "El Madania",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Belouizdad",
+      "nameAr": "Belouizdad",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bab El Oued",
+      "nameAr": "Bab El Oued",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bologhine",
+      "nameAr": "Bologhine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Casbah",
+      "nameAr": "Casbah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Koriche",
+      "nameAr": "Oued Koriche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bir Mourad Raïs",
+      "nameAr": "Bir Mourad Raïs",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "El Biar",
+      "nameAr": "El Biar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouzareah",
+      "nameAr": "Bouzareah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Birkhadem",
+      "nameAr": "Birkhadem",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "El Harrach",
+      "nameAr": "El Harrach",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Baraki",
+      "nameAr": "Baraki",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Oued Smar",
+      "nameAr": "Oued Smar",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bachdjerrah",
+      "nameAr": "Bachdjerrah",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Hussein Dey",
+      "nameAr": "Hussein Dey",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Kouba",
+      "nameAr": "Kouba",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bourouba",
+      "nameAr": "Bourouba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dar El Beïda",
+      "nameAr": "Dar El Beïda",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bab Ezzouar",
+      "nameAr": "Bab Ezzouar",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Ben Aknoun",
+      "nameAr": "Ben Aknoun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dely Ibrahim",
+      "nameAr": "Dely Ibrahim",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Hammamet",
+      "nameAr": "El Hammamet",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Raïs Hamidou",
+      "nameAr": "Raïs Hamidou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djasr Kasentina",
+      "nameAr": "Djasr Kasentina",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Mouradia",
+      "nameAr": "El Mouradia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hydra",
+      "nameAr": "Hydra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mohammadia",
+      "nameAr": "Mohammadia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bordj El Kiffan",
+      "nameAr": "Bordj El Kiffan",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "El Magharia",
+      "nameAr": "El Magharia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Messous",
+      "nameAr": "Beni Messous",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Les Eucalyptus",
+      "nameAr": "Les Eucalyptus",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Birtouta",
+      "nameAr": "Birtouta",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Tessala El Merdja",
+      "nameAr": "Tessala El Merdja",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Chebel",
+      "nameAr": "Ouled Chebel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Moussa",
+      "nameAr": "Sidi Moussa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Taya",
+      "nameAr": "Aïn Taya",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bordj El Bahri",
+      "nameAr": "Bordj El Bahri",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "El Marsa",
+      "nameAr": "El Marsa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "H'raoua",
+      "nameAr": "H'raoua",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Rouïba",
+      "nameAr": "Rouïba",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Reghaïa",
+      "nameAr": "Reghaïa",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Aïn Benian",
+      "nameAr": "Aïn Benian",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Staoueli",
+      "nameAr": "Staoueli",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zeralda",
+      "nameAr": "Zeralda",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Mahelma",
+      "nameAr": "Mahelma",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Rahmania",
+      "nameAr": "Rahmania",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Souidania",
+      "nameAr": "Souidania",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Cheraga",
+      "nameAr": "Cheraga",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Ouled Fayet",
+      "nameAr": "Ouled Fayet",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "El Achour",
+      "nameAr": "El Achour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Draria",
+      "nameAr": "Draria",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Douera",
+      "nameAr": "Douera",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Baba Hassen",
+      "nameAr": "Baba Hassen",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Khraicia",
+      "nameAr": "Khraicia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Saoula",
+      "nameAr": "Saoula",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "17": [
+    {
+      "name": "Aïn Chouhada",
+      "nameAr": "Aïn Chouhada",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Aïn El Ibel",
+      "nameAr": "Aïn El Ibel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Feka",
+      "nameAr": "Aïn Feka",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Maabed",
+      "nameAr": "Aïn Maabed",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Oussara",
+      "nameAr": "Aïn Oussara",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Amourah",
+      "nameAr": "Amourah",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Benhar",
+      "nameAr": "Benhar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Yagoub",
+      "nameAr": "Beni Yagoub",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Birine",
+      "nameAr": "Birine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouira Lahdab",
+      "nameAr": "Bouira Lahdab",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Charef",
+      "nameAr": "Charef",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dar Chioukh",
+      "nameAr": "Dar Chioukh",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Deldoul",
+      "nameAr": "Deldoul",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djelfa",
+      "nameAr": "Djelfa",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Douis",
+      "nameAr": "Douis",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Guedid",
+      "nameAr": "El Guedid",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Idrissia",
+      "nameAr": "El Idrissia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Khemis",
+      "nameAr": "El Khemis",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Faidh El Botma",
+      "nameAr": "Faidh El Botma",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Guernini",
+      "nameAr": "Guernini",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Guettara",
+      "nameAr": "Guettara",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Had Sahary",
+      "nameAr": "Had Sahary",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassi Bahbah",
+      "nameAr": "Hassi Bahbah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassi El Euch",
+      "nameAr": "Hassi El Euch",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassi Fedoul",
+      "nameAr": "Hassi Fedoul",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Messaad",
+      "nameAr": "Messaad",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "M'Liliha",
+      "nameAr": "M'Liliha",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Moudjebara",
+      "nameAr": "Moudjebara",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oum Laadham",
+      "nameAr": "Oum Laadham",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Sed Rahal",
+      "nameAr": "Sed Rahal",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Selmana",
+      "nameAr": "Selmana",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Sidi Baizid",
+      "nameAr": "Sidi Baizid",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Sidi Ladjel",
+      "nameAr": "Sidi Ladjel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tadmit",
+      "nameAr": "Tadmit",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Zaafrane",
+      "nameAr": "Zaafrane",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Zaccar",
+      "nameAr": "Zaccar",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "18": [
+    {
+      "name": "Jijel",
+      "nameAr": "Jijel",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Eraguene",
+      "nameAr": "Eraguene",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Aouana",
+      "nameAr": "El Aouana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ziama Mansouriah",
+      "nameAr": "Ziama Mansouriah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taher",
+      "nameAr": "Taher",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Emir Abdelkader",
+      "nameAr": "Emir Abdelkader",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chekfa",
+      "nameAr": "Chekfa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chahna",
+      "nameAr": "Chahna",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Milia",
+      "nameAr": "El Milia",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Sidi Maarouf",
+      "nameAr": "Sidi Maarouf",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Settara",
+      "nameAr": "Settara",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Ancer",
+      "nameAr": "El Ancer",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Abdelaziz",
+      "nameAr": "Sidi Abdelaziz",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kaous",
+      "nameAr": "Kaous",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Ghebala",
+      "nameAr": "Ghebala",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouraoui Belhadef",
+      "nameAr": "Bouraoui Belhadef",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djimla",
+      "nameAr": "Djimla",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Selma Benziada",
+      "nameAr": "Selma Benziada",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Boucif Ouled Askeur",
+      "nameAr": "Boucif Ouled Askeur",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "El Kennar Nouchfi",
+      "nameAr": "El Kennar Nouchfi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Yahia Khedrouche",
+      "nameAr": "Ouled Yahia Khedrouche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boudriaa Ben Yadjis",
+      "nameAr": "Boudriaa Ben Yadjis",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kheïri Oued Adjoul",
+      "nameAr": "Kheïri Oued Adjoul",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Texenna",
+      "nameAr": "Texenna",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djemaa Beni Habibi",
+      "nameAr": "Djemaa Beni Habibi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bordj Tahar",
+      "nameAr": "Bordj Tahar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Rabah",
+      "nameAr": "Ouled Rabah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouadjana",
+      "nameAr": "Ouadjana",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "19": [
+    {
+      "name": "Aïn Abessa",
+      "nameAr": "Aïn Abessa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Arnat",
+      "nameAr": "Aïn Arnat",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Aïn Azel",
+      "nameAr": "Aïn Azel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn El Kebira",
+      "nameAr": "Aïn El Kebira",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Lahdjar",
+      "nameAr": "Aïn Lahdjar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Legradj",
+      "nameAr": "Aïn Legradj",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Oulmene",
+      "nameAr": "Aïn Oulmene",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Aïn Roua",
+      "nameAr": "Aïn Roua",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Sebt",
+      "nameAr": "Aïn Sebt",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Naoual Mezada",
+      "nameAr": "Aït Naoual Mezada",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Tizi",
+      "nameAr": "Aït Tizi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Wertilan",
+      "nameAr": "Aït Wertilan",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Amoucha",
+      "nameAr": "Amoucha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Babor",
+      "nameAr": "Babor",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bazer Sakhra",
+      "nameAr": "Bazer Sakhra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beidha Bordj",
+      "nameAr": "Beidha Bordj",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Belaa",
+      "nameAr": "Belaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Aziz",
+      "nameAr": "Beni Aziz",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Chebana",
+      "nameAr": "Beni Chebana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Fouda",
+      "nameAr": "Beni Fouda",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Hocine",
+      "nameAr": "Beni Hocine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Mouhli",
+      "nameAr": "Beni Mouhli",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bir El Arch",
+      "nameAr": "Bir El Arch",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bir Haddada",
+      "nameAr": "Bir Haddada",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouandas",
+      "nameAr": "Bouandas",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bougaa",
+      "nameAr": "Bougaa",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bousselam",
+      "nameAr": "Bousselam",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boutaleb",
+      "nameAr": "Boutaleb",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dehamcha",
+      "nameAr": "Dehamcha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djemila",
+      "nameAr": "Djemila",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Draa Kebila",
+      "nameAr": "Draa Kebila",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Eulma",
+      "nameAr": "El Eulma",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "El Ouldja",
+      "nameAr": "El Ouldja",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Ouricia",
+      "nameAr": "El Ouricia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Guellal",
+      "nameAr": "Guellal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Guelta Zerka",
+      "nameAr": "Guelta Zerka",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Guenzet",
+      "nameAr": "Guenzet",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Guidjel",
+      "nameAr": "Guidjel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hamma",
+      "nameAr": "Hamma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hammam Guergour",
+      "nameAr": "Hammam Guergour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hammam Soukhna",
+      "nameAr": "Hammam Soukhna",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Harbil",
+      "nameAr": "Harbil",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ksar El Abtal",
+      "nameAr": "Ksar El Abtal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Maaouia",
+      "nameAr": "Maaouia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Maoklane",
+      "nameAr": "Maoklane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mezloug",
+      "nameAr": "Mezloug",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued El Barad",
+      "nameAr": "Oued El Barad",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Addouane",
+      "nameAr": "Ouled Addouane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Sabor",
+      "nameAr": "Ouled Sabor",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Si Ahmed",
+      "nameAr": "Ouled Si Ahmed",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Tebben",
+      "nameAr": "Ouled Tebben",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Rasfa",
+      "nameAr": "Rasfa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Salah Bey",
+      "nameAr": "Salah Bey",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Serdj El Ghoul",
+      "nameAr": "Serdj El Ghoul",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sétif",
+      "nameAr": "Sétif",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Tachouda",
+      "nameAr": "Tachouda",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Talaifacene",
+      "nameAr": "Talaifacene",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taya",
+      "nameAr": "Taya",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tella",
+      "nameAr": "Tella",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tizi N'Bechar",
+      "nameAr": "Tizi N'Bechar",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "20": [
+    {
+      "name": "Aïn El Hadjar",
+      "nameAr": "Aïn El Hadjar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Sekhouna",
+      "nameAr": "Aïn Sekhouna",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Aïn Soltane",
+      "nameAr": "Aïn Soltane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Doui Thabet",
+      "nameAr": "Doui Thabet",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Hassasna",
+      "nameAr": "El Hassasna",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hounet",
+      "nameAr": "Hounet",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Maamora",
+      "nameAr": "Maamora",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Moulay Larbi",
+      "nameAr": "Moulay Larbi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Brahim",
+      "nameAr": "Ouled Brahim",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Khaled",
+      "nameAr": "Ouled Khaled",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Saïda",
+      "nameAr": "Saïda",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Sidi Ahmed",
+      "nameAr": "Sidi Ahmed",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Amar",
+      "nameAr": "Sidi Amar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Boubekeur",
+      "nameAr": "Sidi Boubekeur",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tircine",
+      "nameAr": "Tircine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Youb",
+      "nameAr": "Youb",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "21": [
+    {
+      "name": "Aïn Bouziane",
+      "nameAr": "Aïn Bouziane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Charchar",
+      "nameAr": "Aïn Charchar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Kechra",
+      "nameAr": "Aïn Kechra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Zouit",
+      "nameAr": "Aïn Zouit",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Azzaba",
+      "nameAr": "Azzaba",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bekkouche Lakhdar",
+      "nameAr": "Bekkouche Lakhdar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bin El Ouiden",
+      "nameAr": "Bin El Ouiden",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ben Azzouz",
+      "nameAr": "Ben Azzouz",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Bechir",
+      "nameAr": "Beni Bechir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Oulbane",
+      "nameAr": "Beni Oulbane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Zid",
+      "nameAr": "Beni Zid",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouchtata",
+      "nameAr": "Bouchtata",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Cheraia",
+      "nameAr": "Cheraia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Collo",
+      "nameAr": "Collo",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Djendel Saadi Mohamed",
+      "nameAr": "Djendel Saadi Mohamed",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Ghedir",
+      "nameAr": "El Ghedir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Hadaiek",
+      "nameAr": "El Hadaiek",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Harrouch",
+      "nameAr": "El Harrouch",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "El Marsa",
+      "nameAr": "El Marsa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Emdjez Edchich",
+      "nameAr": "Emdjez Edchich",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Es Sebt",
+      "nameAr": "Es Sebt",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Filfila",
+      "nameAr": "Filfila",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Hamadi Krouma",
+      "nameAr": "Hamadi Krouma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kanoua",
+      "nameAr": "Kanoua",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kerkera",
+      "nameAr": "Kerkera",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kheneg Mayoum",
+      "nameAr": "Kheneg Mayoum",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Zehour",
+      "nameAr": "Oued Zehour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouldja Boulballout",
+      "nameAr": "Ouldja Boulballout",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Attia",
+      "nameAr": "Ouled Attia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Hbaba",
+      "nameAr": "Ouled Hbaba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oum Toub",
+      "nameAr": "Oum Toub",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ramdane Djamel",
+      "nameAr": "Ramdane Djamel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Salah Bouchaour",
+      "nameAr": "Salah Bouchaour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Mezghiche",
+      "nameAr": "Sidi Mezghiche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Skikda",
+      "nameAr": "Skikda",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Tamalous",
+      "nameAr": "Tamalous",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Zerdaza",
+      "nameAr": "Zerdaza",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zitouna",
+      "nameAr": "Zitouna",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "22": [
+    {
+      "name": "Aïn Adden",
+      "nameAr": "Aïn Adden",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn El Berd",
+      "nameAr": "Aïn El Berd",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Kada",
+      "nameAr": "Aïn Kada",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Thrid",
+      "nameAr": "Aïn Thrid",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Tindamine",
+      "nameAr": "Aïn Tindamine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Amarnas",
+      "nameAr": "Amarnas",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Badredine El Mokrani",
+      "nameAr": "Badredine El Mokrani",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Belarbi",
+      "nameAr": "Belarbi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ben Badis",
+      "nameAr": "Ben Badis",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Benachiba Chelia",
+      "nameAr": "Benachiba Chelia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bir El Hammam",
+      "nameAr": "Bir El Hammam",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boudjebaa El Bordj",
+      "nameAr": "Boudjebaa El Bordj",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boukhanafis",
+      "nameAr": "Boukhanafis",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chettouane Belaila",
+      "nameAr": "Chettouane Belaila",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dhaya",
+      "nameAr": "Dhaya",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Haçaiba",
+      "nameAr": "El Haçaiba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassi Dahou",
+      "nameAr": "Hassi Dahou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassi Zehana",
+      "nameAr": "Hassi Zehana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Lamtar",
+      "nameAr": "Lamtar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Makedra",
+      "nameAr": "Makedra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Marhoum",
+      "nameAr": "Marhoum",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "M'Cid",
+      "nameAr": "M'Cid",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Merine",
+      "nameAr": "Merine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mezaourou",
+      "nameAr": "Mezaourou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mostefa Ben Brahim",
+      "nameAr": "Mostefa Ben Brahim",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Moulay Slissen",
+      "nameAr": "Moulay Slissen",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Sebaa",
+      "nameAr": "Oued Sebaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Sefioun",
+      "nameAr": "Oued Sefioun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Taourira",
+      "nameAr": "Oued Taourira",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ras El Ma",
+      "nameAr": "Ras El Ma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Redjem Demouche",
+      "nameAr": "Redjem Demouche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sehala Thaoura",
+      "nameAr": "Sehala Thaoura",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sfisef",
+      "nameAr": "Sfisef",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Ali Benyoub",
+      "nameAr": "Sidi Ali Benyoub",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Ali Boussidi",
+      "nameAr": "Sidi Ali Boussidi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Bel Abbes",
+      "nameAr": "Sidi Bel Abbes",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Sidi Brahim",
+      "nameAr": "Sidi Brahim",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Chaib",
+      "nameAr": "Sidi Chaib",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Daho des Zairs",
+      "nameAr": "Sidi Daho des Zairs",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Hamadouche",
+      "nameAr": "Sidi Hamadouche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Khaled",
+      "nameAr": "Sidi Khaled",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Lahcene",
+      "nameAr": "Sidi Lahcene",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Yacoub",
+      "nameAr": "Sidi Yacoub",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tabia",
+      "nameAr": "Tabia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tafissour",
+      "nameAr": "Tafissour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taoudmout",
+      "nameAr": "Taoudmout",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Teghalimet",
+      "nameAr": "Teghalimet",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Telagh",
+      "nameAr": "Telagh",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tenira",
+      "nameAr": "Tenira",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tessala",
+      "nameAr": "Tessala",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tilmouni",
+      "nameAr": "Tilmouni",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zerouala",
+      "nameAr": "Zerouala",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "23": [
+    {
+      "name": "Annaba",
+      "nameAr": "Annaba",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Berrahal",
+      "nameAr": "Berrahal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Hadjar",
+      "nameAr": "El Hadjar",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Eulma",
+      "nameAr": "Eulma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Bouni",
+      "nameAr": "El Bouni",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Oued El Aneb",
+      "nameAr": "Oued El Aneb",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Cheurfa",
+      "nameAr": "Cheurfa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Seraïdi",
+      "nameAr": "Seraïdi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Berda",
+      "nameAr": "Aïn Berda",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chetaïbi",
+      "nameAr": "Chetaïbi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Amar",
+      "nameAr": "Sidi Amar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Treat",
+      "nameAr": "Treat",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "24": [
+    {
+      "name": "Aïn Ben Beida",
+      "nameAr": "Aïn Ben Beida",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Larbi",
+      "nameAr": "Aïn Larbi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Makhlouf",
+      "nameAr": "Aïn Makhlouf",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Reggada",
+      "nameAr": "Aïn Reggada",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Sandel",
+      "nameAr": "Aïn Sandel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Belkheir",
+      "nameAr": "Belkheir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ben Djerrah",
+      "nameAr": "Ben Djerrah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Mezline",
+      "nameAr": "Beni Mezline",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bordj Sabath",
+      "nameAr": "Bordj Sabath",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouhachana",
+      "nameAr": "Bouhachana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouhamdane",
+      "nameAr": "Bouhamdane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouati Mahmoud",
+      "nameAr": "Bouati Mahmoud",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouchegouf",
+      "nameAr": "Bouchegouf",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boumahra Ahmed",
+      "nameAr": "Boumahra Ahmed",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dahouara",
+      "nameAr": "Dahouara",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djeballah Khemissi",
+      "nameAr": "Djeballah Khemissi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Fedjoudj",
+      "nameAr": "El Fedjoudj",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Guellat Bou Sbaa",
+      "nameAr": "Guellat Bou Sbaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Guelma",
+      "nameAr": "Guelma",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Hammam Debagh",
+      "nameAr": "Hammam Debagh",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hammam N'Bail",
+      "nameAr": "Hammam N'Bail",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Héliopolis",
+      "nameAr": "Héliopolis",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Houari Boumédiène",
+      "nameAr": "Houari Boumédiène",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Khezarra",
+      "nameAr": "Khezarra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Medjez Amar",
+      "nameAr": "Medjez Amar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Medjez Sfa",
+      "nameAr": "Medjez Sfa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Nechmaya",
+      "nameAr": "Nechmaya",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Cheham",
+      "nameAr": "Oued Cheham",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Fragha",
+      "nameAr": "Oued Fragha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Zenati",
+      "nameAr": "Oued Zenati",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Ras El Agba",
+      "nameAr": "Ras El Agba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Roknia",
+      "nameAr": "Roknia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sellaoua Announa",
+      "nameAr": "Sellaoua Announa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tamlouka",
+      "nameAr": "Tamlouka",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "25": [
+    {
+      "name": "Aïn Abid",
+      "nameAr": "Aïn Abid",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Smara",
+      "nameAr": "Aïn Smara",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Hamiden",
+      "nameAr": "Beni Hamiden",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Constantine",
+      "nameAr": "Constantine",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Didouche Mourad",
+      "nameAr": "Didouche Mourad",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "El Khroub",
+      "nameAr": "El Khroub",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Hamma Bouziane",
+      "nameAr": "Hamma Bouziane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ibn Badis",
+      "nameAr": "Ibn Badis",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ibn Ziad",
+      "nameAr": "Ibn Ziad",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Messaoud Boudjriou",
+      "nameAr": "Messaoud Boudjriou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Rahmoune",
+      "nameAr": "Ouled Rahmoune",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zighoud Youcef",
+      "nameAr": "Zighoud Youcef",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "26": [
+    {
+      "name": "Aïn Boucif",
+      "nameAr": "Aïn Boucif",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Ouksir",
+      "nameAr": "Aïn Ouksir",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Aissaouia",
+      "nameAr": "Aissaouia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aziz",
+      "nameAr": "Aziz",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Baata",
+      "nameAr": "Baata",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Benchicao",
+      "nameAr": "Benchicao",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Slimane",
+      "nameAr": "Beni Slimane",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Berrouaghia",
+      "nameAr": "Berrouaghia",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bir Ben Laabed",
+      "nameAr": "Bir Ben Laabed",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boghar",
+      "nameAr": "Boghar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bou Aiche",
+      "nameAr": "Bou Aiche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouaichoune",
+      "nameAr": "Bouaichoune",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouchrahil",
+      "nameAr": "Bouchrahil",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boughezoul",
+      "nameAr": "Boughezoul",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouskene",
+      "nameAr": "Bouskene",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chahbounia",
+      "nameAr": "Chahbounia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chellalet El Adhaoura",
+      "nameAr": "Chellalet El Adhaoura",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Cheniguel",
+      "nameAr": "Cheniguel",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Derrag",
+      "nameAr": "Derrag",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Deux Bassins",
+      "nameAr": "Deux Bassins",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djouab",
+      "nameAr": "Djouab",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Draa Essamar",
+      "nameAr": "Draa Essamar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Azizia",
+      "nameAr": "El Azizia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Guelb El Kebir",
+      "nameAr": "El Guelb El Kebir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Hamdania",
+      "nameAr": "El Hamdania",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Omaria",
+      "nameAr": "El Omaria",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Ouinet",
+      "nameAr": "El Ouinet",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hannacha",
+      "nameAr": "Hannacha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kef Lakhdar",
+      "nameAr": "Kef Lakhdar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Khams Djouamaa",
+      "nameAr": "Khams Djouamaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ksar Boukhari",
+      "nameAr": "Ksar Boukhari",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Meghraoua",
+      "nameAr": "Meghraoua",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Médéa",
+      "nameAr": "Médéa",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Moudjbar",
+      "nameAr": "Moudjbar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Meftaha",
+      "nameAr": "Meftaha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mezerana",
+      "nameAr": "Mezerana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mihoub",
+      "nameAr": "Mihoub",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouamri",
+      "nameAr": "Ouamri",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Harbil",
+      "nameAr": "Oued Harbil",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Antar",
+      "nameAr": "Ouled Antar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Bouachra",
+      "nameAr": "Ouled Bouachra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Brahim",
+      "nameAr": "Ouled Brahim",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Deide",
+      "nameAr": "Ouled Deide",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Hellal",
+      "nameAr": "Ouled Hellal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Maaref",
+      "nameAr": "Ouled Maaref",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oum El Djalil",
+      "nameAr": "Oum El Djalil",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouzera",
+      "nameAr": "Ouzera",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Rebaia",
+      "nameAr": "Rebaia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Saneg",
+      "nameAr": "Saneg",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sedraia",
+      "nameAr": "Sedraia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Seghouane",
+      "nameAr": "Seghouane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Si Mahdjoub",
+      "nameAr": "Si Mahdjoub",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Damed",
+      "nameAr": "Sidi Damed",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Errabia",
+      "nameAr": "Sidi Errabia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Naamanez",
+      "nameAr": "Sidi Naamanez",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Zahar",
+      "nameAr": "Sidi Zahar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Ziane",
+      "nameAr": "Sidi Ziane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Souagui",
+      "nameAr": "Souagui",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tablat",
+      "nameAr": "Tablat",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Tafraout",
+      "nameAr": "Tafraout",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tamesguida",
+      "nameAr": "Tamesguida",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tizi Mahdi",
+      "nameAr": "Tizi Mahdi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tlatet Eddouar",
+      "nameAr": "Tlatet Eddouar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zoubiria",
+      "nameAr": "Zoubiria",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "27": [
+    {
+      "name": "Abdelmalek Ramdane",
+      "nameAr": "Abdelmalek Ramdane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Achaacha",
+      "nameAr": "Achaacha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Boudinar",
+      "nameAr": "Aïn Boudinar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Nouissy",
+      "nameAr": "Aïn Nouissy",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Sidi Cherif",
+      "nameAr": "Aïn Sidi Cherif",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Tedles",
+      "nameAr": "Aïn Tedles",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Blad Touahria",
+      "nameAr": "Blad Touahria",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouguirat",
+      "nameAr": "Bouguirat",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Hassaine",
+      "nameAr": "El Hassaine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Fornaka",
+      "nameAr": "Fornaka",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hadjadj",
+      "nameAr": "Hadjadj",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassi Mameche",
+      "nameAr": "Hassi Mameche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Khadra",
+      "nameAr": "Khadra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kheireddine",
+      "nameAr": "Kheireddine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mansourah",
+      "nameAr": "Mansourah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mesra",
+      "nameAr": "Mesra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mazagran",
+      "nameAr": "Mazagran",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mostaganem",
+      "nameAr": "Mostaganem",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Nekmaria",
+      "nameAr": "Nekmaria",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued El Kheir",
+      "nameAr": "Oued El Kheir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Boughalem",
+      "nameAr": "Ouled Boughalem",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Maallah",
+      "nameAr": "Ouled Maallah",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Safsaf",
+      "nameAr": "Safsaf",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sayada",
+      "nameAr": "Sayada",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Ali",
+      "nameAr": "Sidi Ali",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Belattar",
+      "nameAr": "Sidi Belattar",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Sidi Lakhdar",
+      "nameAr": "Sidi Lakhdar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sirat",
+      "nameAr": "Sirat",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Souaflia",
+      "nameAr": "Souaflia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sour",
+      "nameAr": "Sour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Stidia",
+      "nameAr": "Stidia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tazgait",
+      "nameAr": "Tazgait",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "28": [
+    {
+      "name": "Aïn El Hadjel",
+      "nameAr": "Aïn El Hadjel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn El Melh",
+      "nameAr": "Aïn El Melh",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Errich",
+      "nameAr": "Aïn Errich",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Fares",
+      "nameAr": "Aïn Fares",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Khadra",
+      "nameAr": "Aïn Khadra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Belaiba",
+      "nameAr": "Belaiba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ben Srour",
+      "nameAr": "Ben Srour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Ilmane",
+      "nameAr": "Beni Ilmane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Benzouh",
+      "nameAr": "Benzouh",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Berhoum",
+      "nameAr": "Berhoum",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bir Foda",
+      "nameAr": "Bir Foda",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bou Saâda",
+      "nameAr": "Bou Saâda",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bouti Sayah",
+      "nameAr": "Bouti Sayah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chellal",
+      "nameAr": "Chellal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dehahna",
+      "nameAr": "Dehahna",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djebel Messaad",
+      "nameAr": "Djebel Messaad",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Hamel",
+      "nameAr": "El Hamel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Houamed",
+      "nameAr": "El Houamed",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hammam Dhalaa",
+      "nameAr": "Hammam Dhalaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Khettouti Sed El Djir",
+      "nameAr": "Khettouti Sed El Djir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Khoubana",
+      "nameAr": "Khoubana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Maadid",
+      "nameAr": "Maadid",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Maarif",
+      "nameAr": "Maarif",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Magra",
+      "nameAr": "Magra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "M'Cif",
+      "nameAr": "M'Cif",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Medjedel",
+      "nameAr": "Medjedel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mohammed Boudiaf",
+      "nameAr": "Mohammed Boudiaf",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "M'Sila",
+      "nameAr": "M'Sila",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "M'Tarfa",
+      "nameAr": "M'Tarfa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouanougha",
+      "nameAr": "Ouanougha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Addi Guebala",
+      "nameAr": "Ouled Addi Guebala",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Atia",
+      "nameAr": "Ouled Atia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Derradj",
+      "nameAr": "Ouled Derradj",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Madhi",
+      "nameAr": "Ouled Madhi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Mansour",
+      "nameAr": "Ouled Mansour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Sidi Brahim",
+      "nameAr": "Ouled Sidi Brahim",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Slimane",
+      "nameAr": "Ouled Slimane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oultem",
+      "nameAr": "Oultem",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Aïssa",
+      "nameAr": "Sidi Aïssa",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Sidi Ameur",
+      "nameAr": "Sidi Ameur",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Hadjeres",
+      "nameAr": "Sidi Hadjeres",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi M'Hamed",
+      "nameAr": "Sidi M'Hamed",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Slim",
+      "nameAr": "Slim",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Souamaa",
+      "nameAr": "Souamaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tamsa",
+      "nameAr": "Tamsa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tarmount",
+      "nameAr": "Tarmount",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zarzour",
+      "nameAr": "Zarzour",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "29": [
+    {
+      "name": "Aïn Fares",
+      "nameAr": "Aïn Fares",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Fekan",
+      "nameAr": "Aïn Fekan",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Ferah",
+      "nameAr": "Aïn Ferah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Fras",
+      "nameAr": "Aïn Fras",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Alaïmia",
+      "nameAr": "Alaïmia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aouf",
+      "nameAr": "Aouf",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beniane",
+      "nameAr": "Beniane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bou Hanifia",
+      "nameAr": "Bou Hanifia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bou Henni",
+      "nameAr": "Bou Henni",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chorfa",
+      "nameAr": "Chorfa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Bordj",
+      "nameAr": "El Bordj",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Gaada",
+      "nameAr": "El Gaada",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Ghomri",
+      "nameAr": "El Ghomri",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Guettana",
+      "nameAr": "El Guettana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Keurt",
+      "nameAr": "El Keurt",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Menaouer",
+      "nameAr": "El Menaouer",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ferraguig",
+      "nameAr": "Ferraguig",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Froha",
+      "nameAr": "Froha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Gharrous",
+      "nameAr": "Gharrous",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Guerdjoum",
+      "nameAr": "Guerdjoum",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ghriss",
+      "nameAr": "Ghriss",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hachem",
+      "nameAr": "Hachem",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hacine",
+      "nameAr": "Hacine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Khalouia",
+      "nameAr": "Khalouia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Makdha",
+      "nameAr": "Makdha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mamounia",
+      "nameAr": "Mamounia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Maoussa",
+      "nameAr": "Maoussa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mascara",
+      "nameAr": "Mascara",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Matemore",
+      "nameAr": "Matemore",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mocta Douz",
+      "nameAr": "Mocta Douz",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mohammadia",
+      "nameAr": "Mohammadia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Nesmoth",
+      "nameAr": "Nesmoth",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oggaz",
+      "nameAr": "Oggaz",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued El Abtal",
+      "nameAr": "Oued El Abtal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Taria",
+      "nameAr": "Oued Taria",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ras El Aïn Amirouche",
+      "nameAr": "Ras El Aïn Amirouche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sedjerara",
+      "nameAr": "Sedjerara",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sehailia",
+      "nameAr": "Sehailia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Abdeldjebar",
+      "nameAr": "Sidi Abdeldjebar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Abdelmoumen",
+      "nameAr": "Sidi Abdelmoumen",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Kada",
+      "nameAr": "Sidi Kada",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Boussaid",
+      "nameAr": "Sidi Boussaid",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sig",
+      "nameAr": "Sig",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Tighennif",
+      "nameAr": "Tighennif",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Tizi",
+      "nameAr": "Tizi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zahana",
+      "nameAr": "Zahana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zelmata",
+      "nameAr": "Zelmata",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "30": [
+    {
+      "name": "Aïn Beida",
+      "nameAr": "Aïn Beida",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassi Ben Abdellah",
+      "nameAr": "Hassi Ben Abdellah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassi Messaoud",
+      "nameAr": "Hassi Messaoud",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "N'Goussa",
+      "nameAr": "N'Goussa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouargla",
+      "nameAr": "Ouargla",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Rouissat",
+      "nameAr": "Rouissat",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Khouiled",
+      "nameAr": "Sidi Khouiled",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "31": [
+    {
+      "name": "Oran",
+      "nameAr": "Oran",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Gdyel",
+      "nameAr": "Gdyel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bir El Djir",
+      "nameAr": "Bir El Djir",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Hassi Bounif",
+      "nameAr": "Hassi Bounif",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Es Senia",
+      "nameAr": "Es Senia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Arzew",
+      "nameAr": "Arzew",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bethioua",
+      "nameAr": "Bethioua",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Marsat El Hadjadj",
+      "nameAr": "Marsat El Hadjadj",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn El Turk",
+      "nameAr": "Aïn El Turk",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Ançor",
+      "nameAr": "El Ançor",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Tlelat",
+      "nameAr": "Oued Tlelat",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tafraoui",
+      "nameAr": "Tafraoui",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Chami",
+      "nameAr": "Sidi Chami",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boufatis",
+      "nameAr": "Boufatis",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mers El Kébir",
+      "nameAr": "Mers El Kébir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bou Sfer",
+      "nameAr": "Bou Sfer",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Kerma",
+      "nameAr": "El Kerma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Braya",
+      "nameAr": "El Braya",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassi Ben Okba",
+      "nameAr": "Hassi Ben Okba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ben Freha",
+      "nameAr": "Ben Freha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassi Mefsoukh",
+      "nameAr": "Hassi Mefsoukh",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Benyebka",
+      "nameAr": "Sidi Benyebka",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Misserghin",
+      "nameAr": "Misserghin",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boutlelis",
+      "nameAr": "Boutlelis",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn El Kerma",
+      "nameAr": "Aïn El Kerma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn El Bia",
+      "nameAr": "Aïn El Bia",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "32": [
+    {
+      "name": "El Bayadh",
+      "nameAr": "El Bayadh",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Rogassa",
+      "nameAr": "Rogassa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Stitten",
+      "nameAr": "Stitten",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Brezina",
+      "nameAr": "Brezina",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ghassoul",
+      "nameAr": "Ghassoul",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boualem",
+      "nameAr": "Boualem",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Abiodh Sidi Cheikh",
+      "nameAr": "El Abiodh Sidi Cheikh",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn El Orak",
+      "nameAr": "Aïn El Orak",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Arbaouat",
+      "nameAr": "Arbaouat",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bougtoub",
+      "nameAr": "Bougtoub",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Kheiter",
+      "nameAr": "El Kheiter",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kef El Ahmar",
+      "nameAr": "Kef El Ahmar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boussemghoun",
+      "nameAr": "Boussemghoun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chellala",
+      "nameAr": "Chellala",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kraakda",
+      "nameAr": "Kraakda",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "El Bnoud",
+      "nameAr": "El Bnoud",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Cheguig",
+      "nameAr": "Cheguig",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Sidi Ameur",
+      "nameAr": "Sidi Ameur",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "El Mehara",
+      "nameAr": "El Mehara",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tousmouline",
+      "nameAr": "Tousmouline",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Sidi Slimane",
+      "nameAr": "Sidi Slimane",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Sidi Tifour",
+      "nameAr": "Sidi Tifour",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "33": [
+    {
+      "name": "Illizi",
+      "nameAr": "Illizi",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Debdeb",
+      "nameAr": "Debdeb",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Bordj Omar Driss",
+      "nameAr": "Bordj Omar Driss",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "In Amenas",
+      "nameAr": "In Amenas",
+      "postalCode": "active",
+      "active": true
+    }
+  ],
+  "34": [
+    {
+      "name": "Aïn Taghrout",
+      "nameAr": "Aïn Taghrout",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Tesra",
+      "nameAr": "Aïn Tesra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Belimour",
+      "nameAr": "Belimour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ben Daoud",
+      "nameAr": "Ben Daoud",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bir Kasdali",
+      "nameAr": "Bir Kasdali",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bordj Bou Arreridj",
+      "nameAr": "Bordj Bou Arreridj",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bordj Ghédir",
+      "nameAr": "Bordj Ghédir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bordj Zemoura",
+      "nameAr": "Bordj Zemoura",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Colla",
+      "nameAr": "Colla",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djaafra",
+      "nameAr": "Djaafra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Ach",
+      "nameAr": "El Ach",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Achir",
+      "nameAr": "El Achir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Anseur",
+      "nameAr": "El Anseur",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Hamadia",
+      "nameAr": "El Hamadia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Main",
+      "nameAr": "El Main",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El M'hir",
+      "nameAr": "El M'hir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ghilassa",
+      "nameAr": "Ghilassa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Haraza",
+      "nameAr": "Haraza",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hasnaoua",
+      "nameAr": "Hasnaoua",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Khelil",
+      "nameAr": "Khelil",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ksour",
+      "nameAr": "Ksour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mansoura",
+      "nameAr": "Mansoura",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Medjana",
+      "nameAr": "Medjana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Brahem",
+      "nameAr": "Ouled Brahem",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Dahmane",
+      "nameAr": "Ouled Dahmane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Sidi Brahim",
+      "nameAr": "Ouled Sidi Brahim",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Rabta",
+      "nameAr": "Rabta",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ras El Oued",
+      "nameAr": "Ras El Oued",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Sidi Embarek",
+      "nameAr": "Sidi Embarek",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tefreg",
+      "nameAr": "Tefreg",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taglait",
+      "nameAr": "Taglait",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Teniet En Nasr",
+      "nameAr": "Teniet En Nasr",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tassameurt",
+      "nameAr": "Tassameurt",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tixter",
+      "nameAr": "Tixter",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "35": [
+    {
+      "name": "Boumerdes",
+      "nameAr": "Boumerdes",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Boudouaou",
+      "nameAr": "Boudouaou",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Afir",
+      "nameAr": "Afir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bordj Menaiel",
+      "nameAr": "Bordj Menaiel",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Baghlia",
+      "nameAr": "Baghlia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Daoud",
+      "nameAr": "Sidi Daoud",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Naciria",
+      "nameAr": "Naciria",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djinet",
+      "nameAr": "Djinet",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Issers",
+      "nameAr": "Issers",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zemmouri",
+      "nameAr": "Zemmouri",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Si Mustapha",
+      "nameAr": "Si Mustapha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tidjelabine",
+      "nameAr": "Tidjelabine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chabet el Ameur",
+      "nameAr": "Chabet el Ameur",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Thenia",
+      "nameAr": "Thenia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Timezrit",
+      "nameAr": "Timezrit",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Corso",
+      "nameAr": "Corso",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Moussa",
+      "nameAr": "Ouled Moussa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Larbatache",
+      "nameAr": "Larbatache",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouzegza Keddara",
+      "nameAr": "Bouzegza Keddara",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taourga",
+      "nameAr": "Taourga",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Aissa",
+      "nameAr": "Ouled Aissa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ben Choud",
+      "nameAr": "Ben Choud",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dellys",
+      "nameAr": "Dellys",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ammal",
+      "nameAr": "Ammal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Amrane",
+      "nameAr": "Beni Amrane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Souk El Had",
+      "nameAr": "Souk El Had",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boudouaou El Bahri",
+      "nameAr": "Boudouaou El Bahri",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Hedadj",
+      "nameAr": "Ouled Hedadj",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Leghata",
+      "nameAr": "Leghata",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hammedi",
+      "nameAr": "Hammedi",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Khemis El Khechna",
+      "nameAr": "Khemis El Khechna",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Kharrouba",
+      "nameAr": "El Kharrouba",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "36": [
+    {
+      "name": "Aïn El Assel",
+      "nameAr": "Aïn El Assel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Kerma",
+      "nameAr": "Aïn Kerma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Asfour",
+      "nameAr": "Asfour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ben Mehidi",
+      "nameAr": "Ben Mehidi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Berrihane",
+      "nameAr": "Berrihane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Besbes",
+      "nameAr": "Besbes",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bougous",
+      "nameAr": "Bougous",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouhadjar",
+      "nameAr": "Bouhadjar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouteldja",
+      "nameAr": "Bouteldja",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chebaita Mokhtar",
+      "nameAr": "Chebaita Mokhtar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chefia",
+      "nameAr": "Chefia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chihani",
+      "nameAr": "Chihani",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dréan",
+      "nameAr": "Dréan",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Echatt",
+      "nameAr": "Echatt",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Aioun",
+      "nameAr": "El Aioun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Kala",
+      "nameAr": "El Kala",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Tarf",
+      "nameAr": "El Tarf",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Hammam Beni Salah",
+      "nameAr": "Hammam Beni Salah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Lac des Oiseaux",
+      "nameAr": "Lac des Oiseaux",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Zitoun",
+      "nameAr": "Oued Zitoun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Raml Souk",
+      "nameAr": "Raml Souk",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Souarekh",
+      "nameAr": "Souarekh",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zerizer",
+      "nameAr": "Zerizer",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zitouna",
+      "nameAr": "Zitouna",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "37": [
+    {
+      "name": "Oum el Assel",
+      "nameAr": "Oum el Assel",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Tindouf",
+      "nameAr": "Tindouf",
+      "postalCode": "active",
+      "active": true
+    }
+  ],
+  "38": [
+    {
+      "name": "Ammari",
+      "nameAr": "Ammari",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Chaib",
+      "nameAr": "Beni Chaib",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Beni Lahcene",
+      "nameAr": "Beni Lahcene",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Boucaid",
+      "nameAr": "Boucaid",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bordj Bou Naama",
+      "nameAr": "Bordj Bou Naama",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bordj El Emir Abdelkader",
+      "nameAr": "Bordj El Emir Abdelkader",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Khemisti",
+      "nameAr": "Khemisti",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Larbaa",
+      "nameAr": "Larbaa",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Lardjem",
+      "nameAr": "Lardjem",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Layoune",
+      "nameAr": "Layoune",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Lazharia",
+      "nameAr": "Lazharia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Maacem",
+      "nameAr": "Maacem",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Melaab",
+      "nameAr": "Melaab",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Bessem",
+      "nameAr": "Ouled Bessem",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Abed",
+      "nameAr": "Sidi Abed",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Sidi Boutouchent",
+      "nameAr": "Sidi Boutouchent",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Sidi Lantri",
+      "nameAr": "Sidi Lantri",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Slimane",
+      "nameAr": "Sidi Slimane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tamalaht",
+      "nameAr": "Tamalaht",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Theniet El Had",
+      "nameAr": "Theniet El Had",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tissemsilt",
+      "nameAr": "Tissemsilt",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Youssoufia",
+      "nameAr": "Youssoufia",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "39": [
+    {
+      "name": "El Oued",
+      "nameAr": "El Oued",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Robbah",
+      "nameAr": "Robbah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued El Alenda",
+      "nameAr": "Oued El Alenda",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bayadha",
+      "nameAr": "Bayadha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Nakhla",
+      "nameAr": "Nakhla",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Guemar",
+      "nameAr": "Guemar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kouinine",
+      "nameAr": "Kouinine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Reguiba",
+      "nameAr": "Reguiba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hamraia",
+      "nameAr": "Hamraia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taghzout",
+      "nameAr": "Taghzout",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Debila",
+      "nameAr": "Debila",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassani Abdelkrim",
+      "nameAr": "Hassani Abdelkrim",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassi Khalifa",
+      "nameAr": "Hassi Khalifa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taleb Larbi",
+      "nameAr": "Taleb Larbi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Douar El Ma",
+      "nameAr": "Douar El Ma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Aoun",
+      "nameAr": "Sidi Aoun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Trifaoui",
+      "nameAr": "Trifaoui",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Magrane",
+      "nameAr": "Magrane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Guecha",
+      "nameAr": "Beni Guecha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ourmas",
+      "nameAr": "Ourmas",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Ogla",
+      "nameAr": "El Ogla",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mih Ouansa",
+      "nameAr": "Mih Ouansa",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "40": [
+    {
+      "name": "Aïn Touila",
+      "nameAr": "Aïn Touila",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Babar",
+      "nameAr": "Babar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Baghai",
+      "nameAr": "Baghai",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouhmama",
+      "nameAr": "Bouhmama",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chechar",
+      "nameAr": "Chechar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chelia",
+      "nameAr": "Chelia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djellal",
+      "nameAr": "Djellal",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "El Hamma",
+      "nameAr": "El Hamma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Mahmal",
+      "nameAr": "El Mahmal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Oueldja",
+      "nameAr": "El Oueldja",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ensigha",
+      "nameAr": "Ensigha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kais",
+      "nameAr": "Kais",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Khenchela",
+      "nameAr": "Khenchela",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Khirane",
+      "nameAr": "Khirane",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "M'Sara",
+      "nameAr": "M'Sara",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "M'Toussa",
+      "nameAr": "M'Toussa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Rechache",
+      "nameAr": "Ouled Rechache",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Remila",
+      "nameAr": "Remila",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tamza",
+      "nameAr": "Tamza",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taouzient",
+      "nameAr": "Taouzient",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Yabous",
+      "nameAr": "Yabous",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "41": [
+    {
+      "name": "Souk Ahras",
+      "nameAr": "Souk Ahras",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Sedrata",
+      "nameAr": "Sedrata",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Hanancha",
+      "nameAr": "Hanancha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mechroha",
+      "nameAr": "Mechroha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Driss",
+      "nameAr": "Ouled Driss",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tiffech",
+      "nameAr": "Tiffech",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zaarouria",
+      "nameAr": "Zaarouria",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taoura",
+      "nameAr": "Taoura",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Drea",
+      "nameAr": "Drea",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Heddada",
+      "nameAr": "Heddada",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Khedara",
+      "nameAr": "Khedara",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Merahna",
+      "nameAr": "Merahna",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Moumene",
+      "nameAr": "Ouled Moumene",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Bir Bou Haouch",
+      "nameAr": "Bir Bou Haouch",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "M'daourouch",
+      "nameAr": "M'daourouch",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oum El Adhaim",
+      "nameAr": "Oum El Adhaim",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Aïn Zana",
+      "nameAr": "Aïn Zana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Soltane",
+      "nameAr": "Aïn Soltane",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Ouillen",
+      "nameAr": "Ouillen",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Fredj",
+      "nameAr": "Sidi Fredj",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Safel El Ouiden",
+      "nameAr": "Safel El Ouiden",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Ragouba",
+      "nameAr": "Ragouba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Khemissa",
+      "nameAr": "Khemissa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Keberit",
+      "nameAr": "Oued Keberit",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Terraguelt",
+      "nameAr": "Terraguelt",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Zouabi",
+      "nameAr": "Zouabi",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "42": [
+    {
+      "name": "Tipaza",
+      "nameAr": "Tipaza",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Menaceur",
+      "nameAr": "Menaceur",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Larhat",
+      "nameAr": "Larhat",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Douaouda",
+      "nameAr": "Douaouda",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bourkika",
+      "nameAr": "Bourkika",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Khemisti",
+      "nameAr": "Khemisti",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aghbal",
+      "nameAr": "Aghbal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hadjout",
+      "nameAr": "Hadjout",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Sidi Amar",
+      "nameAr": "Sidi Amar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Gouraya",
+      "nameAr": "Gouraya",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Nador",
+      "nameAr": "Nador",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chaiba",
+      "nameAr": "Chaiba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Tagourait",
+      "nameAr": "Aïn Tagourait",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Cherchell",
+      "nameAr": "Cherchell",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Damous",
+      "nameAr": "Damous",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Merad",
+      "nameAr": "Merad",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Fouka",
+      "nameAr": "Fouka",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bou Ismaïl",
+      "nameAr": "Bou Ismaïl",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Ahmar El Aïn",
+      "nameAr": "Ahmar El Aïn",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouharoun",
+      "nameAr": "Bouharoun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Ghiles",
+      "nameAr": "Sidi Ghiles",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Messelmoun",
+      "nameAr": "Messelmoun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Rached",
+      "nameAr": "Sidi Rached",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Koléa",
+      "nameAr": "Koléa",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Attatba",
+      "nameAr": "Attatba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Semiane",
+      "nameAr": "Sidi Semiane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Milleuk",
+      "nameAr": "Beni Milleuk",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hadjeret Ennous",
+      "nameAr": "Hadjeret Ennous",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "43": [
+    {
+      "name": "Ahmed Rachedi",
+      "nameAr": "Ahmed Rachedi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Beida Harriche",
+      "nameAr": "Aïn Beida Harriche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Mellouk",
+      "nameAr": "Aïn Mellouk",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Tine",
+      "nameAr": "Aïn Tine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Amira Arrès",
+      "nameAr": "Amira Arrès",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Benyahia Abderrahmane",
+      "nameAr": "Benyahia Abderrahmane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouhatem",
+      "nameAr": "Bouhatem",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chelghoum Laid",
+      "nameAr": "Chelghoum Laid",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Chigara",
+      "nameAr": "Chigara",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Derradji Bousselah",
+      "nameAr": "Derradji Bousselah",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "El Mechira",
+      "nameAr": "El Mechira",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Elayadi Barbes",
+      "nameAr": "Elayadi Barbes",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Ferdjioua",
+      "nameAr": "Ferdjioua",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Grarem Gouga",
+      "nameAr": "Grarem Gouga",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hamala",
+      "nameAr": "Hamala",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mila",
+      "nameAr": "Mila",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Minar Zarza",
+      "nameAr": "Minar Zarza",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Oued Athmania",
+      "nameAr": "Oued Athmania",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Endja",
+      "nameAr": "Oued Endja",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Seguen",
+      "nameAr": "Oued Seguen",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Khalouf",
+      "nameAr": "Ouled Khalouf",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Rouached",
+      "nameAr": "Rouached",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Khelifa",
+      "nameAr": "Sidi Khelifa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Merouane",
+      "nameAr": "Sidi Merouane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tadjenanet",
+      "nameAr": "Tadjenanet",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tassadane Haddada",
+      "nameAr": "Tassadane Haddada",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Teleghma",
+      "nameAr": "Teleghma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Terrai Bainen",
+      "nameAr": "Terrai Bainen",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Tessala Lemtaï",
+      "nameAr": "Tessala Lemtaï",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Tiberguent",
+      "nameAr": "Tiberguent",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Yahia Beni Guecha",
+      "nameAr": "Yahia Beni Guecha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zeghaia",
+      "nameAr": "Zeghaia",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "44": [
+    {
+      "name": "Aïn Defla",
+      "nameAr": "Aïn Defla",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Aïn Bouyahia",
+      "nameAr": "Aïn Bouyahia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Benian",
+      "nameAr": "Aïn Benian",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Lechiekh",
+      "nameAr": "Aïn Lechiekh",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Soltane",
+      "nameAr": "Aïn Soltane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Torki",
+      "nameAr": "Aïn Torki",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Arib",
+      "nameAr": "Arib",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bathia",
+      "nameAr": "Bathia",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Belaas",
+      "nameAr": "Belaas",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Ben Allal",
+      "nameAr": "Ben Allal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Birbouche",
+      "nameAr": "Birbouche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bir Ould Khelifa",
+      "nameAr": "Bir Ould Khelifa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bordj Emir Khaled",
+      "nameAr": "Bordj Emir Khaled",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boumedfaa",
+      "nameAr": "Boumedfaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bourached",
+      "nameAr": "Bourached",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djelida",
+      "nameAr": "Djelida",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djemaa Ouled Cheikh",
+      "nameAr": "Djemaa Ouled Cheikh",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Djendel",
+      "nameAr": "Djendel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Abadia",
+      "nameAr": "El Abadia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Amra",
+      "nameAr": "El Amra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Attaf",
+      "nameAr": "El Attaf",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "El Hassania",
+      "nameAr": "El Hassania",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "El Maine",
+      "nameAr": "El Maine",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Hammam Righa",
+      "nameAr": "Hammam Righa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hoceinia",
+      "nameAr": "Hoceinia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Khemis Miliana",
+      "nameAr": "Khemis Miliana",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Mekhatria",
+      "nameAr": "Mekhatria",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Miliana",
+      "nameAr": "Miliana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Chorfa",
+      "nameAr": "Oued Chorfa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Djemaa",
+      "nameAr": "Oued Djemaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Rouina",
+      "nameAr": "Rouina",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Lakhdar",
+      "nameAr": "Sidi Lakhdar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tacheta Zougagha",
+      "nameAr": "Tacheta Zougagha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tarik Ibn Ziad",
+      "nameAr": "Tarik Ibn Ziad",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tiberkanine",
+      "nameAr": "Tiberkanine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zeddine",
+      "nameAr": "Zeddine",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "45": [
+    {
+      "name": "Naâma",
+      "nameAr": "Naâma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mecheria",
+      "nameAr": "Mecheria",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Aïn Sefra",
+      "nameAr": "Aïn Sefra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tiout",
+      "nameAr": "Tiout",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sfissifa",
+      "nameAr": "Sfissifa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Moghrar",
+      "nameAr": "Moghrar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Assela",
+      "nameAr": "Assela",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djeniene Bourezg",
+      "nameAr": "Djeniene Bourezg",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Ben Khelil",
+      "nameAr": "Aïn Ben Khelil",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Makman Ben Amer",
+      "nameAr": "Makman Ben Amer",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kasdir",
+      "nameAr": "Kasdir",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "El Biod",
+      "nameAr": "El Biod",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "46": [
+    {
+      "name": "Aghlal",
+      "nameAr": "Aghlal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn El Arbaa",
+      "nameAr": "Aïn El Arbaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Kihal",
+      "nameAr": "Aïn Kihal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Témouchent",
+      "nameAr": "Aïn Témouchent",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Aïn Tolba",
+      "nameAr": "Aïn Tolba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aoubellil",
+      "nameAr": "Aoubellil",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Saf",
+      "nameAr": "Beni Saf",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bouzedjar",
+      "nameAr": "Bouzedjar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chaabat El Leham",
+      "nameAr": "Chaabat El Leham",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chentouf",
+      "nameAr": "Chentouf",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Amria",
+      "nameAr": "El Amria",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Emir Abdelkader",
+      "nameAr": "El Emir Abdelkader",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Malah",
+      "nameAr": "El Malah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Messaid",
+      "nameAr": "El Messaid",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hammam Bouhadjar",
+      "nameAr": "Hammam Bouhadjar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassasna",
+      "nameAr": "Hassasna",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassi El Ghella",
+      "nameAr": "Hassi El Ghella",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Berkeche",
+      "nameAr": "Oued Berkeche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Sabah",
+      "nameAr": "Oued Sabah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Boudjemaa",
+      "nameAr": "Ouled Boudjemaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Kihal",
+      "nameAr": "Ouled Kihal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oulhaça El Gheraba",
+      "nameAr": "Oulhaça El Gheraba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Ben Adda",
+      "nameAr": "Sidi Ben Adda",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Boumedienne",
+      "nameAr": "Sidi Boumedienne",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Ouriache",
+      "nameAr": "Sidi Ouriache",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Safi",
+      "nameAr": "Sidi Safi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tamzoura",
+      "nameAr": "Tamzoura",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Terga",
+      "nameAr": "Terga",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "47": [
+    {
+      "name": "Berriane",
+      "nameAr": "Berriane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bounoura",
+      "nameAr": "Bounoura",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dhayet Bendhahoua",
+      "nameAr": "Dhayet Bendhahoua",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Atteuf",
+      "nameAr": "El Atteuf",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Guerrara",
+      "nameAr": "El Guerrara",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ghardaïa",
+      "nameAr": "Ghardaïa",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Mansoura",
+      "nameAr": "Mansoura",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Metlili",
+      "nameAr": "Metlili",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sebseb",
+      "nameAr": "Sebseb",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zelfana",
+      "nameAr": "Zelfana",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "48": [
+    {
+      "name": "Aïn Rahma",
+      "nameAr": "Aïn Rahma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Tarek",
+      "nameAr": "Aïn Tarek",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ammi Moussa",
+      "nameAr": "Ammi Moussa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Belassel Bouzegza",
+      "nameAr": "Belassel Bouzegza",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bendaoud",
+      "nameAr": "Bendaoud",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Dergoun",
+      "nameAr": "Beni Dergoun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Zentis",
+      "nameAr": "Beni Zentis",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dar Ben Abdellah",
+      "nameAr": "Dar Ben Abdellah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djidioua",
+      "nameAr": "Djidioua",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Guettar",
+      "nameAr": "El Guettar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Hamadna",
+      "nameAr": "El Hamadna",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Hassi",
+      "nameAr": "El Hassi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Matmar",
+      "nameAr": "El Matmar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Ouldja",
+      "nameAr": "El Ouldja",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Had Echkalla",
+      "nameAr": "Had Echkalla",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hamri",
+      "nameAr": "Hamri",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kalaa",
+      "nameAr": "Kalaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Lahlef",
+      "nameAr": "Lahlef",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mazouna",
+      "nameAr": "Mazouna",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mediouna",
+      "nameAr": "Mediouna",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mendes",
+      "nameAr": "Mendes",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Merdja Sidi Abed",
+      "nameAr": "Merdja Sidi Abed",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouarizane",
+      "nameAr": "Ouarizane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Essalem",
+      "nameAr": "Oued Essalem",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Rhiou",
+      "nameAr": "Oued Rhiou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Aiche",
+      "nameAr": "Ouled Aiche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued El Djemaa",
+      "nameAr": "Oued El Djemaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Sidi Mihoub",
+      "nameAr": "Ouled Sidi Mihoub",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ramka",
+      "nameAr": "Ramka",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Relizane",
+      "nameAr": "Relizane",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Sidi Khettab",
+      "nameAr": "Sidi Khettab",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Lazreg",
+      "nameAr": "Sidi Lazreg",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi M'Hamed Ben Ali",
+      "nameAr": "Sidi M'Hamed Ben Ali",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi M'Hamed Benaouda",
+      "nameAr": "Sidi M'Hamed Benaouda",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Saada",
+      "nameAr": "Sidi Saada",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Souk El Had",
+      "nameAr": "Souk El Had",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Yellel",
+      "nameAr": "Yellel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zemmora",
+      "nameAr": "Zemmora",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "49": [
+    {
+      "name": "Charouine",
+      "nameAr": "Charouine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ksar Kaddour",
+      "nameAr": "Ksar Kaddour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Timimoun",
+      "nameAr": "Timimoun",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Ouled Saïd",
+      "nameAr": "Ouled Saïd",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tinerkouk",
+      "nameAr": "Tinerkouk",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Deldoul",
+      "nameAr": "Deldoul",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Metarfa",
+      "nameAr": "Metarfa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aougrout",
+      "nameAr": "Aougrout",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Talmine",
+      "nameAr": "Talmine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Aïssa",
+      "nameAr": "Ouled Aïssa",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "50": [
+    {
+      "name": "Bordj Badji Mokhtar",
+      "nameAr": "Bordj Badji Mokhtar",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Timiaouine",
+      "nameAr": "Timiaouine",
+      "postalCode": "inactive",
+      "active": false
+    }
+  ],
+  "51": [
+    {
+      "name": "Besbes",
+      "nameAr": "Besbes",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Doucen",
+      "nameAr": "Doucen",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ech Chaïba",
+      "nameAr": "Ech Chaïba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Djellal",
+      "nameAr": "Ouled Djellal",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Ras El Miaad",
+      "nameAr": "Ras El Miaad",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Sidi Khaled",
+      "nameAr": "Sidi Khaled",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "52": [
+    {
+      "name": "Ouled Khoudir",
+      "nameAr": "Ouled Khoudir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Timoudi",
+      "nameAr": "Timoudi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Béni Abbès",
+      "nameAr": "Béni Abbès",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Ikhlef",
+      "nameAr": "Beni Ikhlef",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Igli",
+      "nameAr": "Igli",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tabelbala",
+      "nameAr": "Tabelbala",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "El Ouata",
+      "nameAr": "El Ouata",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kerzaz",
+      "nameAr": "Kerzaz",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ksabi",
+      "nameAr": "Ksabi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tamtert",
+      "nameAr": "Tamtert",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "53": [
+    {
+      "name": "In Ghar",
+      "nameAr": "In Ghar",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "In Salah",
+      "nameAr": "In Salah",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Foggaret Ezzaouia",
+      "nameAr": "Foggaret Ezzaouia",
+      "postalCode": "inactive",
+      "active": false
+    }
+  ],
+  "54": [
+    {
+      "name": "In Guezzam",
+      "nameAr": "In Guezzam",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Tin Zaouatine",
+      "nameAr": "Tin Zaouatine",
+      "postalCode": "inactive",
+      "active": false
+    }
+  ],
+  "55": [
+    {
+      "name": "Benaceur",
+      "nameAr": "Benaceur",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Blidet Amor",
+      "nameAr": "Blidet Amor",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Allia",
+      "nameAr": "El Allia",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "El Borma",
+      "nameAr": "El Borma",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "El Hadjira",
+      "nameAr": "El Hadjira",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Megarine",
+      "nameAr": "Megarine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "M'Naguer",
+      "nameAr": "M'Naguer",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Nezla",
+      "nameAr": "Nezla",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Slimane",
+      "nameAr": "Sidi Slimane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taibet",
+      "nameAr": "Taibet",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tamacine",
+      "nameAr": "Tamacine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tebesbest",
+      "nameAr": "Tebesbest",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Touggourt",
+      "nameAr": "Touggourt",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Zaouia El Abidia",
+      "nameAr": "Zaouia El Abidia",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "56": [
+    {
+      "name": "Djanet",
+      "nameAr": "Djanet",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bordj El Haouas",
+      "nameAr": "Bordj El Haouas",
+      "postalCode": "inactive",
+      "active": false
+    }
+  ],
+  "57": [
+    {
+      "name": "Still",
+      "nameAr": "Still",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "M'Rara",
+      "nameAr": "M'Rara",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Khellil",
+      "nameAr": "Sidi Khellil",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tendla",
+      "nameAr": "Tendla",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El M'Ghair",
+      "nameAr": "El M'Ghair",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Djamaa",
+      "nameAr": "Djamaa",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Oum Touyour",
+      "nameAr": "Oum Touyour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Amrane",
+      "nameAr": "Sidi Amrane",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "58": [
+    {
+      "name": "El Menia",
+      "nameAr": "El Menia",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Hassi Fehal",
+      "nameAr": "Hassi Fehal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassi Gara",
+      "nameAr": "Hassi Gara",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "01": [
+    {
+      "name": "Adrar",
+      "nameAr": "Adrar",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Tamest",
+      "nameAr": "Tamest",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Reggane",
+      "nameAr": "Reggane",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "In Zghmir",
+      "nameAr": "In Zghmir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tit",
+      "nameAr": "Tit",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tsabit",
+      "nameAr": "Tsabit",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zaouiet Kounta",
+      "nameAr": "Zaouiet Kounta",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aoulef",
+      "nameAr": "Aoulef",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Tamekten",
+      "nameAr": "Tamekten",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tamantit",
+      "nameAr": "Tamantit",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Fenoughil",
+      "nameAr": "Fenoughil",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sali",
+      "nameAr": "Sali",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Akabli",
+      "nameAr": "Akabli",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Ahmed Tammi",
+      "nameAr": "Ouled Ahmed Tammi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouda",
+      "nameAr": "Bouda",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sebaa",
+      "nameAr": "Sebaa",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "02": [
+    {
+      "name": "Abou El Hassan",
+      "nameAr": "Abou El Hassan",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Merane",
+      "nameAr": "Aïn Merane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bénairia",
+      "nameAr": "Bénairia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Bouateb",
+      "nameAr": "Beni Bouateb",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Haoua",
+      "nameAr": "Beni Haoua",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Rached",
+      "nameAr": "Beni Rached",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boukadir",
+      "nameAr": "Boukadir",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bouzeghaia",
+      "nameAr": "Bouzeghaia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Breira",
+      "nameAr": "Breira",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chettia",
+      "nameAr": "Chettia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chlef",
+      "nameAr": "Chlef",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Dahra",
+      "nameAr": "Dahra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Hadjadj",
+      "nameAr": "El Hadjadj",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Karimia",
+      "nameAr": "El Karimia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Marsa",
+      "nameAr": "El Marsa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Harchoun",
+      "nameAr": "Harchoun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Harenfa",
+      "nameAr": "Harenfa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Labiod Medjadja",
+      "nameAr": "Labiod Medjadja",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Moussadek",
+      "nameAr": "Moussadek",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Fodda",
+      "nameAr": "Oued Fodda",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Goussine",
+      "nameAr": "Oued Goussine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Sly",
+      "nameAr": "Oued Sly",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Abbes",
+      "nameAr": "Ouled Abbes",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Ben Abdelkader",
+      "nameAr": "Ouled Ben Abdelkader",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Fares",
+      "nameAr": "Ouled Fares",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oum Drou",
+      "nameAr": "Oum Drou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sendjas",
+      "nameAr": "Sendjas",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Abderrahmane",
+      "nameAr": "Sidi Abderrahmane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Akkacha",
+      "nameAr": "Sidi Akkacha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sobha",
+      "nameAr": "Sobha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tadjena",
+      "nameAr": "Tadjena",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Talassa",
+      "nameAr": "Talassa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taougrite",
+      "nameAr": "Taougrite",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ténès",
+      "nameAr": "Ténès",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Zeboudja",
+      "nameAr": "Zeboudja",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "03": [
+    {
+      "name": "Laghouat",
+      "nameAr": "Laghouat",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Ksar El Hirane",
+      "nameAr": "Ksar El Hirane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bennasser Benchohra",
+      "nameAr": "Bennasser Benchohra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Makhlouf",
+      "nameAr": "Sidi Makhlouf",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassi Delaa",
+      "nameAr": "Hassi Delaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hassi R'Mel",
+      "nameAr": "Hassi R'Mel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Madhi",
+      "nameAr": "Aïn Madhi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tadjemout",
+      "nameAr": "Tadjemout",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kheneg",
+      "nameAr": "Kheneg",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Gueltat Sidi Saad",
+      "nameAr": "Gueltat Sidi Saad",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Sidi Ali",
+      "nameAr": "Aïn Sidi Ali",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Beidha",
+      "nameAr": "Beidha",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Brida",
+      "nameAr": "Brida",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "El Ghicha",
+      "nameAr": "El Ghicha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hadj Mechri",
+      "nameAr": "Hadj Mechri",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Sebgag",
+      "nameAr": "Sebgag",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Taouiala",
+      "nameAr": "Taouiala",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Tadjrouna",
+      "nameAr": "Tadjrouna",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Aflou",
+      "nameAr": "Aflou",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "El Assafia",
+      "nameAr": "El Assafia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Morra",
+      "nameAr": "Oued Morra",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Oued M'Zi",
+      "nameAr": "Oued M'Zi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Houaita",
+      "nameAr": "El Houaita",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Bouzid",
+      "nameAr": "Sidi Bouzid",
+      "postalCode": "inactive",
+      "active": false
+    }
+  ],
+  "04": [
+    {
+      "name": "Oum el Bouaghi",
+      "nameAr": "Oum el Bouaghi",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Aïn Beïda",
+      "nameAr": "Aïn Beïda",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Aïn M'lila",
+      "nameAr": "Aïn M'lila",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Behir Chergui",
+      "nameAr": "Behir Chergui",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Amiria",
+      "nameAr": "El Amiria",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sigus",
+      "nameAr": "Sigus",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Belala",
+      "nameAr": "El Belala",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Babouche",
+      "nameAr": "Aïn Babouche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Berriche",
+      "nameAr": "Berriche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Hamla",
+      "nameAr": "Ouled Hamla",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Dhalaa",
+      "nameAr": "Dhalaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Kercha",
+      "nameAr": "Aïn Kercha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hanchir Toumghani",
+      "nameAr": "Hanchir Toumghani",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Djazia",
+      "nameAr": "El Djazia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Diss",
+      "nameAr": "Aïn Diss",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Fkirina",
+      "nameAr": "Fkirina",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Souk Naamane",
+      "nameAr": "Souk Naamane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zorg",
+      "nameAr": "Zorg",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Fedjoudj Boughrara Saoudi",
+      "nameAr": "El Fedjoudj Boughrara Saoudi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Zouaï",
+      "nameAr": "Ouled Zouaï",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bir Chouhada",
+      "nameAr": "Bir Chouhada",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ksar Sbahi",
+      "nameAr": "Ksar Sbahi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Nini",
+      "nameAr": "Oued Nini",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Meskiana",
+      "nameAr": "Meskiana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Fakroun",
+      "nameAr": "Aïn Fakroun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Rahia",
+      "nameAr": "Rahia",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Zitoun",
+      "nameAr": "Aïn Zitoun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Gacem",
+      "nameAr": "Ouled Gacem",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Harmilia",
+      "nameAr": "El Harmilia",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "05": [
+    {
+      "name": "Batna",
+      "nameAr": "Batna",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Ghassira",
+      "nameAr": "Ghassira",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Maafa",
+      "nameAr": "Maafa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Merouana",
+      "nameAr": "Merouana",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Seriana",
+      "nameAr": "Seriana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Menaa",
+      "nameAr": "Menaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Madher",
+      "nameAr": "El Madher",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tazoult",
+      "nameAr": "Tazoult",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "N'Gaous",
+      "nameAr": "N'Gaous",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Guigba",
+      "nameAr": "Guigba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Inoughissen",
+      "nameAr": "Inoughissen",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouyoun El Assafir",
+      "nameAr": "Ouyoun El Assafir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djerma",
+      "nameAr": "Djerma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bitam",
+      "nameAr": "Bitam",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Abdelkader Azil",
+      "nameAr": "Abdelkader Azil",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Arris",
+      "nameAr": "Arris",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kimmel",
+      "nameAr": "Kimmel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tilatou",
+      "nameAr": "Tilatou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Djasser",
+      "nameAr": "Aïn Djasser",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Sellam",
+      "nameAr": "Ouled Sellam",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tigherghar",
+      "nameAr": "Tigherghar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Yagout",
+      "nameAr": "Aïn Yagout",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Fesdis",
+      "nameAr": "Fesdis",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sefiane",
+      "nameAr": "Sefiane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Rahbat",
+      "nameAr": "Rahbat",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tighanimine",
+      "nameAr": "Tighanimine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Lemsane",
+      "nameAr": "Lemsane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ksar Bellezma",
+      "nameAr": "Ksar Bellezma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Seggana",
+      "nameAr": "Seggana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ichmoul",
+      "nameAr": "Ichmoul",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Foum Toub",
+      "nameAr": "Foum Toub",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ben Foudhala El Hakania",
+      "nameAr": "Ben Foudhala El Hakania",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued El Ma",
+      "nameAr": "Oued El Ma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Talkhamt",
+      "nameAr": "Talkhamt",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouzina",
+      "nameAr": "Bouzina",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chemora",
+      "nameAr": "Chemora",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Chaaba",
+      "nameAr": "Oued Chaaba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taxlent",
+      "nameAr": "Taxlent",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Gosbat",
+      "nameAr": "Gosbat",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Aouf",
+      "nameAr": "Ouled Aouf",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boumagueur",
+      "nameAr": "Boumagueur",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Barika",
+      "nameAr": "Barika",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Djezar",
+      "nameAr": "Djezar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "T'Kout",
+      "nameAr": "T'Kout",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Touta",
+      "nameAr": "Aïn Touta",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hidoussa",
+      "nameAr": "Hidoussa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Teniet El Abed",
+      "nameAr": "Teniet El Abed",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Taga",
+      "nameAr": "Oued Taga",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Fadel",
+      "nameAr": "Ouled Fadel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Timgad",
+      "nameAr": "Timgad",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ras El Aioun",
+      "nameAr": "Ras El Aioun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chir",
+      "nameAr": "Chir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Si Slimane",
+      "nameAr": "Ouled Si Slimane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Zanat El Beida",
+      "nameAr": "Zanat El Beida",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "M'doukel",
+      "nameAr": "M'doukel",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Ammar",
+      "nameAr": "Ouled Ammar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Hassi",
+      "nameAr": "El Hassi",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Lazrou",
+      "nameAr": "Lazrou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boumia (Batna)",
+      "nameAr": "Boumia (Batna)",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boulhilat",
+      "nameAr": "Boulhilat",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Larbaâ",
+      "nameAr": "Larbaâ",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "06": [
+    {
+      "name": "Béjaïa",
+      "nameAr": "Béjaïa",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Amizour",
+      "nameAr": "Amizour",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ferraoun",
+      "nameAr": "Ferraoun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taourirt Ighil",
+      "nameAr": "Taourirt Ighil",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chellata",
+      "nameAr": "Chellata",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tamokra",
+      "nameAr": "Tamokra",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Timezrit",
+      "nameAr": "Timezrit",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Souk El Ténine",
+      "nameAr": "Souk El Ténine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "M'cisna",
+      "nameAr": "M'cisna",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tinabdher",
+      "nameAr": "Tinabdher",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tichy",
+      "nameAr": "Tichy",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Semaoun",
+      "nameAr": "Semaoun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kendira",
+      "nameAr": "Kendira",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tifra",
+      "nameAr": "Tifra",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ighram",
+      "nameAr": "Ighram",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Amalou",
+      "nameAr": "Amalou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ighil Ali",
+      "nameAr": "Ighil Ali",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Fenaïa Ilmaten",
+      "nameAr": "Fenaïa Ilmaten",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Toudja",
+      "nameAr": "Toudja",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Darguina",
+      "nameAr": "Darguina",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Ayad",
+      "nameAr": "Sidi Ayad",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aokas",
+      "nameAr": "Aokas",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ait Djellil",
+      "nameAr": "Ait Djellil",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Adekar",
+      "nameAr": "Adekar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Akbou",
+      "nameAr": "Akbou",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Seddouk",
+      "nameAr": "Seddouk",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tazmalt",
+      "nameAr": "Tazmalt",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït R'zine",
+      "nameAr": "Aït R'zine",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chemini",
+      "nameAr": "Chemini",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Souk Oufella",
+      "nameAr": "Souk Oufella",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tibane",
+      "nameAr": "Tibane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tala Hamza",
+      "nameAr": "Tala Hamza",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Barbacha",
+      "nameAr": "Barbacha",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Ksila",
+      "nameAr": "Aït Ksila",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouzellaguen",
+      "nameAr": "Ouzellaguen",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouhamza",
+      "nameAr": "Bouhamza",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taskriout",
+      "nameAr": "Taskriout",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Mellikeche",
+      "nameAr": "Aït Mellikeche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Aïch",
+      "nameAr": "Sidi Aïch",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Kseur",
+      "nameAr": "El Kseur",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Melbou",
+      "nameAr": "Melbou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Akfadou",
+      "nameAr": "Akfadou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Leflaye",
+      "nameAr": "Leflaye",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kherrata",
+      "nameAr": "Kherrata",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Draâ El Kaïd",
+      "nameAr": "Draâ El Kaïd",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tamridjet",
+      "nameAr": "Tamridjet",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aït Smail",
+      "nameAr": "Aït Smail",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boukhelifa",
+      "nameAr": "Boukhelifa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tizi N'Berber",
+      "nameAr": "Tizi N'Berber",
+      "postalCode": "inactive",
+      "active": false
+    },
+    {
+      "name": "Aït Maouche",
+      "nameAr": "Aït Maouche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oued Ghir",
+      "nameAr": "Oued Ghir",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boudjellil",
+      "nameAr": "Boudjellil",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "07": [
+    {
+      "name": "Aïn Naga",
+      "nameAr": "Aïn Naga",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Zaatout",
+      "nameAr": "Aïn Zaatout",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Biskra",
+      "nameAr": "Biskra",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Bordj Ben Azzouz",
+      "nameAr": "Bordj Ben Azzouz",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouchagroune",
+      "nameAr": "Bouchagroune",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Branis",
+      "nameAr": "Branis",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chetma",
+      "nameAr": "Chetma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djemorah",
+      "nameAr": "Djemorah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Feidh",
+      "nameAr": "El Feidh",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Ghrous",
+      "nameAr": "El Ghrous",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Hadjeb",
+      "nameAr": "El Hadjeb",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Haouch",
+      "nameAr": "El Haouch",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Kantara",
+      "nameAr": "El Kantara",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "El Mizaraa",
+      "nameAr": "El Mizaraa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Outaya",
+      "nameAr": "El Outaya",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Foughala",
+      "nameAr": "Foughala",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Khenguet Sidi Nadji",
+      "nameAr": "Khenguet Sidi Nadji",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Lichana",
+      "nameAr": "Lichana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Lioua",
+      "nameAr": "Lioua",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "M'Chouneche",
+      "nameAr": "M'Chouneche",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mekhadma",
+      "nameAr": "Mekhadma",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "M'Lili",
+      "nameAr": "M'Lili",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Oumache",
+      "nameAr": "Oumache",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ourlal",
+      "nameAr": "Ourlal",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Sidi Okba",
+      "nameAr": "Sidi Okba",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Tolga",
+      "nameAr": "Tolga",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Zeribet El Oued",
+      "nameAr": "Zeribet El Oued",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "08": [
+    {
+      "name": "Béchar",
+      "nameAr": "Béchar",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Erg Ferradj",
+      "nameAr": "Erg Ferradj",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Meridja",
+      "nameAr": "Meridja",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Lahmar",
+      "nameAr": "Lahmar",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mechraa Houari Boumedienne",
+      "nameAr": "Mechraa Houari Boumedienne",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Kenadsa",
+      "nameAr": "Kenadsa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Taghit",
+      "nameAr": "Taghit",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boukais",
+      "nameAr": "Boukais",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mougheul",
+      "nameAr": "Mougheul",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Abadla",
+      "nameAr": "Abadla",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Ounif",
+      "nameAr": "Beni Ounif",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ],
+  "09": [
+    {
+      "name": "Blida",
+      "nameAr": "Blida",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Chebli",
+      "nameAr": "Chebli",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouinan",
+      "nameAr": "Bouinan",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Oued Alleug",
+      "nameAr": "Oued Alleug",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Yaïch",
+      "nameAr": "Ouled Yaïch",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Chréa",
+      "nameAr": "Chréa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "El Affroun",
+      "nameAr": "El Affroun",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Chiffa",
+      "nameAr": "Chiffa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Hammam Melouane",
+      "nameAr": "Hammam Melouane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Benkhelil",
+      "nameAr": "Benkhelil",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Soumaa",
+      "nameAr": "Soumaa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Mouzaia",
+      "nameAr": "Mouzaia",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Souhane",
+      "nameAr": "Souhane",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Meftah",
+      "nameAr": "Meftah",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Ouled Slama",
+      "nameAr": "Ouled Slama",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Boufarik",
+      "nameAr": "Boufarik",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Larbaa",
+      "nameAr": "Larbaa",
+      "postalCode": "active",
+      "active": true
+    },
+    {
+      "name": "Oued Djer",
+      "nameAr": "Oued Djer",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Tamou",
+      "nameAr": "Beni Tamou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bouarfa",
+      "nameAr": "Bouarfa",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Beni Mered",
+      "nameAr": "Beni Mered",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Bougara",
+      "nameAr": "Bougara",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Guerouaou",
+      "nameAr": "Guerouaou",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Aïn Romana",
+      "nameAr": "Aïn Romana",
+      "postalCode": "inactive",
+      "active": true
+    },
+    {
+      "name": "Djebabra",
+      "nameAr": "Djebabra",
+      "postalCode": "inactive",
+      "active": true
+    }
+  ]
+}

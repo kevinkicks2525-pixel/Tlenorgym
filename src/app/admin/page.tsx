@@ -268,8 +268,24 @@ export default function AdminPage() {
     if (!newProdName || !newProdPrice) return;
     const formattedPrice = newProdPrice.includes("DA") ? newProdPrice : `${newProdPrice} DA`;
 
+    let createdId: number | string = Date.now();
+
+    if (isSupabaseConfigured) {
+      const supaRes = await addSupabaseProduct({
+        name: newProdName,
+        category: newProdCat,
+        price: formattedPrice,
+        desc: newProdDesc,
+        stock: newProdStockQty > 0,
+        image: newProdImage,
+      });
+      if (supaRes && supaRes.id) {
+        createdId = supaRes.id;
+      }
+    }
+
     const newItem: ProductItem = {
-      id: Date.now(),
+      id: createdId,
       name: newProdName,
       price: formattedPrice,
       category: newProdCat,
@@ -279,20 +295,9 @@ export default function AdminPage() {
       image: newProdImage || "",
     };
 
-    const updatedList = [newItem, ...productsList];
+    const updatedList = [newItem, ...productsList.filter((p) => p.name.trim().toLowerCase() !== newProdName.trim().toLowerCase())];
     setProductsList(updatedList);
     saveLocalProducts(updatedList);
-
-    if (isSupabaseConfigured) {
-      await addSupabaseProduct({
-        name: newProdName,
-        category: newProdCat,
-        price: formattedPrice,
-        desc: newProdDesc,
-        stock: newProdStockQty > 0,
-        image: newProdImage,
-      });
-    }
 
     setNewProdName("");
     setNewProdPrice("");
@@ -645,7 +650,7 @@ export default function AdminPage() {
           <div>
             <span className="section-label" style={{ margin: 0 }}>Backoffice Administrateur</span>
             <h1 style={{ fontFamily: "var(--font-heading)", fontSize: "2rem", margin: 0 }}>
-              {activeTab === "analytics" && "Tableau de Bord & Analytics Visites (Vrais chiffres)"}
+              {activeTab === "analytics" && "Tableau de Bord & Analytics Visites"}
               {activeTab === "orders" && "Commandes & Livraisons (Yalidine Algérie)"}
               {activeTab === "products" && "Catalogue Produits Boutique"}
               {activeTab === "categories" && "Gestion des Catégories"}

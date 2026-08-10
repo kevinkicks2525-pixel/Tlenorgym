@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Phone, X, Menu, Shield } from "lucide-react";
+import { Phone, X, Menu } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Accueil" },
@@ -28,18 +28,33 @@ export default function Navbar() {
     setMobileOpen(false);
   }, [pathname]);
 
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
-
   return (
-    <nav className={`navbar ${scrolled ? "navbar--scrolled" : ""}`} id="main-nav">
-      <div className="navbar__inner" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}>
+    <nav
+      className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}
+      id="main-nav"
+      style={{ position: "relative", zIndex: 99999 }}
+    >
+      <div
+        className="navbar__inner"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "1rem",
+        }}
+      >
         {/* Brand Logo */}
-        <Link href="/" className="navbar__logo" style={{ display: "flex", alignItems: "center", gap: "0.6rem", textDecoration: "none", flexShrink: 0 }}>
+        <Link
+          href="/"
+          className="navbar__logo"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.6rem",
+            textDecoration: "none",
+            flexShrink: 0,
+          }}
+        >
           <Image
             src="/images/logo.png"
             alt="Tlénor Gym Logo"
@@ -48,7 +63,15 @@ export default function Navbar() {
             className="navbar__logo-img"
             priority
           />
-          <span style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "1.2rem", color: "#fff", whiteSpace: "nowrap" }}>
+          <span
+            style={{
+              fontFamily: "var(--font-heading)",
+              fontWeight: 900,
+              fontSize: "1.2rem",
+              color: "#fff",
+              whiteSpace: "nowrap",
+            }}
+          >
             TLÉNOR <span className="text-accent">GYM</span>
           </span>
         </Link>
@@ -98,80 +121,61 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Drawer Overlay */}
+      {/* Mobile Top-Down Dropdown Menu (Style CD Project) */}
       {mobileOpen && (
         <div
           style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 9999999,
+            position: "absolute",
+            top: "100%",
+            left: 0,
+            width: "100%",
             background: "#0a0a0a",
-            opacity: 1,
+            borderBottom: "2px solid var(--color-accent)",
+            boxShadow: "0 20px 40px rgba(0, 0, 0, 0.95)",
+            padding: "1.5rem 1.25rem 2rem 1.25rem",
             display: "flex",
             flexDirection: "column",
-            padding: "2rem 1.5rem",
-            width: "100vw",
-            height: "100vh",
-            overflowY: "auto",
+            gap: "1rem",
+            zIndex: 999999,
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "2.5rem", borderBottom: "1px solid var(--color-border)", paddingBottom: "1rem" }}>
-            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "1.3rem" }}>
-              TLÉNOR <span className="text-accent">GYM</span>
-            </span>
-            <button
-              onClick={() => setMobileOpen(false)}
-              style={{ background: "rgba(255,255,255,0.1)", border: "none", color: "#fff", borderRadius: "50%", padding: "8px", cursor: "pointer" }}
-            >
-              <X size={24} />
-            </button>
-          </div>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", flex: 1 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
                 style={{
-                  fontSize: "1.35rem",
+                  fontSize: "1.15rem",
                   fontWeight: 700,
                   fontFamily: "var(--font-heading)",
-                  color: pathname === link.href ? "var(--color-accent)" : "#fff",
+                  color: pathname === link.href ? "var(--color-accent)" : "#ffffff",
                   textDecoration: "none",
-                  padding: "0.5rem 0",
-                  borderBottom: "1px solid rgba(255,255,255,0.05)",
+                  padding: "0.6rem 0.5rem",
+                  borderRadius: "6px",
+                  background: pathname === link.href ? "rgba(245, 197, 24, 0.08)" : "transparent",
+                  display: "block",
                 }}
               >
                 {link.label}
               </Link>
             ))}
+          </div>
 
-            <Link
-              href="/admin"
-              onClick={() => setMobileOpen(false)}
+          <div style={{ paddingTop: "0.75rem", borderTop: "1px solid var(--color-border)" }}>
+            <a
+              href="tel:0552089293"
+              className="btn btn--primary btn--md"
               style={{
-                fontSize: "1.1rem",
-                fontWeight: 600,
-                color: "var(--color-text-secondary)",
-                textDecoration: "none",
+                width: "100%",
+                justifyContent: "center",
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "0.5rem",
-                marginTop: "1rem",
+                fontWeight: 700,
               }}
             >
-              <Shield size={18} className="text-accent" /> Backoffice Administrateur
-            </Link>
-          </div>
-
-          <div style={{ marginTop: "auto", paddingTop: "1.5rem" }}>
-            <a
-              href="tel:0552089293"
-              className="btn btn--primary btn--lg"
-              style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
-            >
-              <Phone size={18} /> Appelez-nous (0552 08 92 93)
+              <Phone size={16} /> Appelez-nous (0552 08 92 93)
             </a>
           </div>
         </div>

@@ -26,24 +26,24 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: false, error: "Missing order data" }, { status: 400 });
     }
 
-    const deliveryModeText = order.delivery_type === "home" ? "🏠 À Domicile" : "🏢 Bureau Yalidine / Stopdesk";
+    const deliveryModeText = order.delivery_type === "home" ? "À Domicile" : "Bureau Yalidine / Stopdesk";
 
     const messageText = `
-🛍 <b>NOUVELLE COMMANDE TLÉNOR GYM</b>
+<b>NOUVELLE COMMANDE - TLÉNOR GYM</b>
 
-👤 <b>Client:</b> ${escapeHtml(order.customer_name)}
-📞 <b>Téléphone:</b> <code>${escapeHtml(order.phone)}</code>
-📍 <b>Wilaya:</b> ${escapeHtml(order.wilaya_name)}
-🌆 <b>Commune / Bureau:</b> ${escapeHtml(order.commune_name)}
-🚚 <b>Mode:</b> ${escapeHtml(deliveryModeText)}
-🏠 <b>Adresse:</b> ${escapeHtml(order.address || "N/A")}
+<b>Client:</b> ${escapeHtml(order.customer_name)}
+<b>Téléphone:</b> <code>${escapeHtml(order.phone)}</code>
+<b>Wilaya:</b> ${escapeHtml(order.wilaya_name)}
+<b>Commune / Bureau:</b> ${escapeHtml(order.commune_name)}
+<b>Mode:</b> ${escapeHtml(deliveryModeText)}
+<b>Adresse:</b> ${escapeHtml(order.address || "N/A")}
 
-📦 <b>Produit(s):</b> ${escapeHtml(order.product_name)}
-💵 <b>Prix Articles:</b> ${escapeHtml(order.product_price)}
-🚚 <b>Frais Livraison:</b> ${order.delivery_cost || 0} DA
-💰 <b>TOTAL À ENCAISSER:</b> <b>${escapeHtml(order.total_amount ? order.total_amount.toLocaleString() : order.product_price)} DA</b>
+<b>Produit(s):</b> ${escapeHtml(order.product_name)}
+<b>Prix Articles:</b> ${escapeHtml(order.product_price)}
+<b>Frais Livraison:</b> ${order.delivery_cost || 0} DA
+<b>TOTAL À ENCAISSER:</b> <b>${escapeHtml(order.total_amount ? order.total_amount.toLocaleString() : order.product_price)} DA</b>
 
-🗓 <b>Date:</b> ${escapeHtml(new Date().toLocaleString("fr-FR"))}
+<b>Date:</b> ${escapeHtml(new Date().toLocaleString("fr-FR"))}
     `.trim();
 
     const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;

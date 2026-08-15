@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE;
 
     if (!ADMIN_PASSCODE) {
-      console.warn("⚠️ ADMIN_PASSCODE is not set in environment variables.");
+      console.warn("[ADMIN AUTH] ADMIN_PASSCODE is not set in environment variables.");
       return NextResponse.json(
         { ok: false, error: "Configuration serveur manquante (ADMIN_PASSCODE)" },
         { status: 500 }

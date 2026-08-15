@@ -195,7 +195,9 @@ export default function ProduitsPage() {
                         }}
                       />
                     ) : (
-                      categoryIcons[product.category] || <Package size={32} className="text-accent" />
+                      <div className="product-icon-fallback">
+                        {categoryIcons[product.category] || <Package size={26} className="text-accent" />}
+                      </div>
                     )}
                     <span className="product-card__category">{product.category}</span>
                     {(product.stock_quantity ?? (product.stock ? 10 : 0)) <= 0 && (

@@ -77,7 +77,6 @@ export default function Home() {
                         justifyContent: "center",
                         background: "linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg) 100%)",
                         position: "relative",
-                        height: "240px",
                         width: "100%",
                         overflow: "hidden",
                       }}
@@ -85,7 +84,9 @@ export default function Home() {
                       {product.image && typeof product.image === "string" && (product.image.startsWith("http") || product.image.startsWith("data:")) ? (
                         <img src={product.image} alt={product.name} style={{ height: "100%", width: "100%", objectFit: "cover", transition: "transform 0.3s ease" }} />
                       ) : (
-                        <Package size={44} className="text-accent" />
+                        <div className="product-icon-fallback">
+                          <Package size={26} className="text-accent" />
+                        </div>
                       )}
                       <span className="product-card__category">{product.category || "Produit"}</span>
                     </div>

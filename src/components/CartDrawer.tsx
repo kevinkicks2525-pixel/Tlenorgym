@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { X, ShoppingBag, Trash2, Plus, Minus, Truck, Building, CheckCircle2, ArrowRight } from "lucide-react";
+import { X, ShoppingBag, Trash2, Plus, Minus, Truck, Building, CheckCircle2, ArrowRight, Package } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { wilayas, getDeliveryCost } from "@/data/delivery-data";
 import communesData from "@/data/communes.json";
@@ -196,8 +196,8 @@ export default function CartDrawer() {
                       {item.image && (item.image.startsWith("http") || item.image.startsWith("data:")) ? (
                         <img src={item.image} alt={item.name} style={{ width: "55px", height: "55px", objectFit: "cover", borderRadius: "8px" }} />
                       ) : (
-                        <div style={{ width: "55px", height: "55px", background: "var(--color-surface)", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.5rem" }}>
-                          📦
+                        <div style={{ width: "55px", height: "55px", background: "var(--color-surface)", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <Package size={22} className="text-accent" />
                         </div>
                       )}
 

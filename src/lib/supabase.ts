@@ -79,11 +79,15 @@ export async function updateSupabaseProduct(id: number | string, updates: Record
 }
 
 // Helper to delete product
-export async function deleteSupabaseProduct(id: number | string) {
+export async function deleteSupabaseProduct(id: number | string, name?: string) {
   if (!supabase) return false;
   try {
     const { error } = await supabase.from("products").delete().eq("id", id);
-    if (error) throw error;
+    if (error && name) {
+      await supabase.from("products").delete().eq("name", name);
+    } else if (name) {
+      await supabase.from("products").delete().eq("name", name);
+    }
     return true;
   } catch (err) {
     console.error("Supabase delete error:", err);
@@ -206,10 +210,13 @@ export async function addSupabaseCategory(name: string) {
   }
 }
 
-export async function deleteSupabaseCategory(id: number | string) {
+export async function deleteSupabaseCategory(nameOrId: number | string) {
   if (!supabase) return false;
   try {
-    const { error } = await supabase.from("categories").delete().eq("id", id);
+    if (typeof nameOrId === "number" || (!isNaN(Number(nameOrId)) && Number(nameOrId) < 1000000000)) {
+      await supabase.from("categories").delete().eq("id", nameOrId);
+    }
+    const { error } = await supabase.from("categories").delete().eq("name", String(nameOrId));
     if (error) throw error;
     return true;
   } catch (err) {

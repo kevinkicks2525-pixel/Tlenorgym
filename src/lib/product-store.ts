@@ -51,13 +51,11 @@ export function getLocalProducts(): ProductItem[] {
 }
 
 export async function fetchAndMergeProducts(): Promise<ProductItem[]> {
-  let supaItems: ProductItem[] = [];
-
   if (isSupabaseConfigured) {
     try {
       const supaData = await getSupabaseProducts();
-      if (supaData && supaData.length > 0) {
-        supaItems = supaData.map((item) => ({
+      if (supaData !== null) {
+        const supaItems: ProductItem[] = supaData.map((item) => ({
           id: item.id,
           name: item.name,
           category: item.category || "Protéines",
@@ -67,79 +65,27 @@ export async function fetchAndMergeProducts(): Promise<ProductItem[]> {
           desc: item.description || "Supplément officiel disponible à Tlénor Gym.",
           image: item.image_url || "",
         }));
+
+        // Synchronize local cache with database truth
+        if (typeof window !== "undefined") {
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(supaItems));
+            localStorage.setItem("tlenorgym_products", JSON.stringify(supaItems));
+          } catch {
+            // fallback
+          }
+        }
+
+        return supaItems;
       }
     } catch (err) {
       console.warn("Supabase fetch products error:", err);
     }
   }
 
+  // Fallback to local storage only if Supabase is offline or not configured
   const localItems = getLocalProducts();
-
-  // If Supabase is configured, auto-push any local items missing from Supabase so mobile devices receive them
-  if (isSupabaseConfigured) {
-    const supaNameSet = new Set(supaItems.map((p) => p.name.trim().toLowerCase()));
-    for (const localProd of localItems) {
-      if (localProd.name && !supaNameSet.has(localProd.name.trim().toLowerCase())) {
-        try {
-          const inserted = await addSupabaseProduct({
-            name: localProd.name,
-            category: localProd.category || "Protéines",
-            price: localProd.price,
-            desc: localProd.desc,
-            stock: (localProd.stock_quantity ?? 10) > 0,
-            stock_quantity: localProd.stock_quantity ?? 10,
-            image: localProd.image,
-          });
-          if (inserted && inserted.id) {
-            const newSupaItem: ProductItem = {
-              id: inserted.id,
-              name: inserted.name,
-              category: inserted.category || "Protéines",
-              price: inserted.price,
-              stock: (inserted.stock_quantity ?? (inserted.stock ? 10 : 0)) > 0,
-              stock_quantity: inserted.stock_quantity ?? (inserted.stock ? 10 : 0),
-              desc: inserted.description || "Supplément officiel disponible à Tlénor Gym.",
-              image: inserted.image_url || "",
-            };
-            supaItems.push(newSupaItem);
-            supaNameSet.add(inserted.name.trim().toLowerCase());
-          }
-        } catch (err) {
-          console.warn("Auto-sync product to Supabase warning:", err);
-        }
-      }
-    }
-  }
-
-  // Merge unique products by normalized name (Supabase as primary truth)
-  const productMap = new Map<string, ProductItem>();
-  
-  supaItems.forEach((prod) => {
-    productMap.set(prod.name.trim().toLowerCase(), prod);
-  });
-
-  localItems.forEach((prod) => {
-    if (!productMap.has(prod.name.trim().toLowerCase())) {
-      productMap.set(prod.name.trim().toLowerCase(), prod);
-    }
-  });
-
-  const merged = Array.from(productMap.values());
-
-  if (merged.length === 0) {
-    return defaultProductsList;
-  }
-
-  // Update local cache
-  if (typeof window !== "undefined") {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
-    } catch {
-      // fallback
-    }
-  }
-
-  return merged;
+  return localItems.length > 0 ? localItems : defaultProductsList;
 }
 
 export function saveLocalProducts(products: ProductItem[]) {

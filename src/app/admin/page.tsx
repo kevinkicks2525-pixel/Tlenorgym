@@ -158,40 +158,37 @@ export default function AdminPage() {
       syncOrders();
     });
 
-    // Load Categories (merge Supabase + localStorage without overwriting)
+    // Load Categories (Supabase authoritative)
     async function syncCategories() {
-      const catSet = new Set<string>(defaultCategories);
+      if (isSupabaseConfigured) {
+        const supaCats = await getSupabaseCategories();
+        if (supaCats && supaCats.length > 0) {
+          const list = supaCats.map((c: { name: string }) => c.name);
+          setCategoriesList(list);
+          try {
+            localStorage.setItem("tlenorgym_admin_categories", JSON.stringify(list));
+          } catch {
+            // fallback
+          }
+          return;
+        }
+      }
 
-      // Load from localStorage first
+      // Fallback to localStorage if Supabase is not configured
       try {
         const savedCats = localStorage.getItem("tlenorgym_admin_categories");
         if (savedCats) {
           const parsed = JSON.parse(savedCats);
-          if (Array.isArray(parsed)) {
-            parsed.forEach((c: string) => catSet.add(c));
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setCategoriesList(parsed);
+            return;
           }
         }
       } catch {
         // fallback
       }
 
-      // Merge with Supabase categories
-      if (isSupabaseConfigured) {
-        const supaCats = await getSupabaseCategories();
-        if (supaCats && supaCats.length > 0) {
-          supaCats.forEach((c: { name: string }) => catSet.add(c.name));
-        }
-      }
-
-      const merged = Array.from(catSet);
-      setCategoriesList(merged);
-
-      // Persist merged categories
-      try {
-        localStorage.setItem("tlenorgym_admin_categories", JSON.stringify(merged));
-      } catch {
-        // fallback
-      }
+      setCategoriesList(defaultCategories);
     }
     syncCategories();
   }, []);
@@ -364,13 +361,14 @@ export default function AdminPage() {
   };
 
   const deleteProduct = async (id: number | string) => {
+    const targetProduct = productsList.find((p) => p.id === id);
     if (confirm("Voulez-vous vraiment supprimer ce produit ?")) {
       const updated = productsList.filter((p) => p.id !== id);
       setProductsList(updated);
       saveLocalProducts(updated);
 
       if (isSupabaseConfigured) {
-        await deleteSupabaseProduct(id);
+        await deleteSupabaseProduct(id, targetProduct?.name);
       }
       showToast("Produit supprimé du catalogue.");
     }
@@ -435,6 +433,10 @@ export default function AdminPage() {
         localStorage.setItem("tlenorgym_admin_categories", JSON.stringify(updated));
       } catch {
         // fallback
+      }
+
+      if (isSupabaseConfigured) {
+        await deleteSupabaseCategory(categoryName);
       }
       showToast("Catégorie supprimée.");
     }

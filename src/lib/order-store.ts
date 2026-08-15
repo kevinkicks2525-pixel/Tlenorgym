@@ -23,46 +23,25 @@ export function getLocalOrders(): OrderItemData[] {
 }
 
 export async function fetchAndMergeOrders(): Promise<OrderItemData[]> {
-  let supaOrders: OrderItemData[] = [];
-
   if (isSupabaseConfigured) {
     try {
       const fetched = await getSupabaseOrders();
-      if (fetched && fetched.length > 0) {
-        supaOrders = fetched;
+      if (fetched !== null) {
+        if (typeof window !== "undefined") {
+          try {
+            localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(fetched));
+          } catch {
+            // fallback
+          }
+        }
+        return fetched;
       }
     } catch (err) {
       console.warn("Supabase fetch orders error:", err);
     }
   }
 
-  const localOrders = getLocalOrders();
-
-  // Merge unique orders by ID
-  const orderMap = new Map<string | number, OrderItemData>();
-  localOrders.forEach((ord) => {
-    if (ord.id) orderMap.set(ord.id, ord);
-  });
-
-  supaOrders.forEach((ord) => {
-    if (ord.id) orderMap.set(ord.id, ord);
-  });
-
-  const merged = Array.from(orderMap.values()).sort((a, b) => {
-    const timeA = a.created_at ? new Date(a.created_at).getTime() : 0;
-    const timeB = b.created_at ? new Date(b.created_at).getTime() : 0;
-    return timeB - timeA;
-  });
-
-  if (typeof window !== "undefined") {
-    try {
-      localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(merged));
-    } catch {
-      // fallback
-    }
-  }
-
-  return merged;
+  return getLocalOrders();
 }
 
 export async function saveNewOrder(order: OrderItemData): Promise<OrderItemData> {

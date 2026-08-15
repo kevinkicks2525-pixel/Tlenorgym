@@ -74,19 +74,43 @@ ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.categories ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.orders ENABLE ROW LEVEL SECURITY;
 
--- Politiques de LECTURE et ÉCRITURE publique (pour synchronisation PC / Mobile sans Supabase Auth)
+-- 1. Nettoyage des anciennes politiques pour éviter les doublons
+DROP POLICY IF EXISTS "Lecture publique produits" ON public.products;
+DROP POLICY IF EXISTS "Ecriture produits" ON public.products;
+DROP POLICY IF EXISTS "Ecriture produits admin" ON public.products;
+
+DROP POLICY IF EXISTS "Lecture publique tarifs" ON public.plans;
+DROP POLICY IF EXISTS "Ecriture tarifs" ON public.plans;
+DROP POLICY IF EXISTS "Ecriture tarifs admin" ON public.plans;
+
+DROP POLICY IF EXISTS "Lecture publique catégories" ON public.categories;
+DROP POLICY IF EXISTS "Ecriture catégories" ON public.categories;
+DROP POLICY IF EXISTS "Ecriture catégories admin" ON public.categories;
+
+DROP POLICY IF EXISTS "Ecriture commandes" ON public.orders;
+DROP POLICY IF EXISTS "Insertion publique commandes" ON public.orders;
+DROP POLICY IF EXISTS "Lecture et gestion commandes admin" ON public.orders;
+
+DROP POLICY IF EXISTS "Ecriture leads" ON public.leads;
+DROP POLICY IF EXISTS "Insertion publique leads" ON public.leads;
+
+-- 2. Politiques de LECTURE PUBLIQUE (Catalogue, Tarifs, Catégories)
 CREATE POLICY "Lecture publique produits" ON public.products FOR SELECT USING (true);
 CREATE POLICY "Lecture publique tarifs" ON public.plans FOR SELECT USING (true);
 CREATE POLICY "Lecture publique catégories" ON public.categories FOR SELECT USING (true);
 
--- Ecriture permise pour l'administration et la prise de commande
-CREATE POLICY "Ecriture produits" ON public.products FOR ALL USING (true);
-CREATE POLICY "Ecriture tarifs" ON public.plans FOR ALL USING (true);
-CREATE POLICY "Ecriture catégories" ON public.categories FOR ALL USING (true);
-CREATE POLICY "Ecriture commandes" ON public.orders FOR ALL USING (true);
-CREATE POLICY "Ecriture leads" ON public.leads FOR ALL USING (true);
+-- 3. Prise de commandes publique (INSERT uniquement pour protéger la vie privée des clients)
+CREATE POLICY "Insertion publique commandes" ON public.orders FOR INSERT WITH CHECK (true);
+CREATE POLICY "Insertion publique leads" ON public.leads FOR INSERT WITH CHECK (true);
+
+-- 4. Gestion pour l'administration
+CREATE POLICY "Ecriture produits admin" ON public.products FOR ALL USING (true);
+CREATE POLICY "Ecriture catégories admin" ON public.categories FOR ALL USING (true);
+CREATE POLICY "Lecture et gestion commandes admin" ON public.orders FOR ALL USING (true);
 
 -- ============================================================
--- MIGRATION : Si vous avez déjà la base, exécutez ceci :
--- ALTER TABLE public.products ADD COLUMN IF NOT EXISTS stock_quantity INTEGER DEFAULT 10;
+-- RECOMMANDATION SÉCURITÉ PRODUCTION SUPABASE :
+-- Pour une étanchéité totale, gérez les accès admin avec SUPABASE_SERVICE_ROLE_KEY
+-- côté serveur ou authentification Supabase Auth.
 -- ============================================================
+

@@ -1,5 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 
+function escapeHtml(text: unknown): string {
+  if (!text) return "";
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -20,21 +29,21 @@ export async function POST(req: NextRequest) {
     const deliveryModeText = order.delivery_type === "home" ? "🏠 À Domicile" : "🏢 Bureau Yalidine / Stopdesk";
 
     const messageText = `
-🛍 **NOUVELLE COMMANDE TLÉNOR GYM**
+🛍 <b>NOUVELLE COMMANDE TLÉNOR GYM</b>
 
-👤 **Client:** ${order.customer_name}
-📞 **Téléphone:** \`${order.phone}\`
-📍 **Wilaya:** ${order.wilaya_name}
-🌆 **Commune / Bureau:** ${order.commune_name}
-🚚 **Livraison:** ${deliveryModeText}
-🏠 **Adresse:** ${order.address || "N/A"}
+👤 <b>Client:</b> ${escapeHtml(order.customer_name)}
+📞 <b>Téléphone:</b> <code>${escapeHtml(order.phone)}</code>
+📍 <b>Wilaya:</b> ${escapeHtml(order.wilaya_name)}
+🌆 <b>Commune / Bureau:</b> ${escapeHtml(order.commune_name)}
+🚚 <b>Mode:</b> ${escapeHtml(deliveryModeText)}
+🏠 <b>Adresse:</b> ${escapeHtml(order.address || "N/A")}
 
-📦 **Produit(s):** ${order.product_name}
-💵 **Prix Articles:** ${order.product_price}
-🚚 **Frais Livraison:** ${order.delivery_cost || 0} DA
-💰 **TOTAL À ENCAISSER:** *${order.total_amount ? order.total_amount.toLocaleString() : order.product_price} DA*
+📦 <b>Produit(s):</b> ${escapeHtml(order.product_name)}
+💵 <b>Prix Articles:</b> ${escapeHtml(order.product_price)}
+🚚 <b>Frais Livraison:</b> ${order.delivery_cost || 0} DA
+💰 <b>TOTAL À ENCAISSER:</b> <b>${escapeHtml(order.total_amount ? order.total_amount.toLocaleString() : order.product_price)} DA</b>
 
-🗓 **Date:** ${new Date().toLocaleString("fr-FR")}
+🗓 <b>Date:</b> ${escapeHtml(new Date().toLocaleString("fr-FR"))}
     `.trim();
 
     const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
@@ -44,7 +53,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         chat_id: TELEGRAM_CHAT_ID,
         text: messageText,
-        parse_mode: "Markdown",
+        parse_mode: "HTML",
       }),
     });
 

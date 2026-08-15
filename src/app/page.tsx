@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Features from "@/components/Features";
@@ -11,14 +12,11 @@ import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
 import { MessageSquare, ArrowRight, Package, ShoppingBag } from "lucide-react";
 
-import ProductDetailModal from "@/components/ProductDetailModal";
-
 import { getLocalProducts, fetchAndMergeProducts, subscribeProducts, ProductItem } from "@/lib/product-store";
 import { trackProductClick } from "@/lib/analytics";
 
 export default function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<ProductItem[]>([]);
-  const [selectedProductDetail, setSelectedProductDetail] = useState<ProductItem | null>(null);
 
   useEffect(() => {
     const loadData = async () => {
@@ -39,12 +37,6 @@ export default function Home() {
 
   return (
     <>
-      {selectedProductDetail && (
-        <ProductDetailModal
-          product={selectedProductDetail}
-          onClose={() => setSelectedProductDetail(null)}
-        />
-      )}
       <Hero />
       <About />
       <Features />
@@ -166,11 +158,13 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="about__image-wrapper" style={{ aspectRatio: "4/3" }}>
-              <img
+            <div className="about__image-wrapper" style={{ aspectRatio: "4/3", position: "relative" }}>
+              <Image
                 src="/images/studio-boxing.jpg"
                 alt="Studio de coaching Tlénor Gym"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
               />
             </div>
           </div>

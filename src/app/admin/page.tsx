@@ -80,13 +80,40 @@ const OPTIMIZED_IMAGES_KEY = "tlenorgym_optimized_images";
 
 export default function AdminPage() {
   // Session Persistence via localStorage
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
-    if (typeof window !== "undefined") {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+
+  // Validate stored token on mount via server-side check
+  useEffect(() => {
+    const validateToken = async () => {
+      if (typeof window === "undefined") {
+        setIsCheckingAuth(false);
+        return;
+      }
       const token = localStorage.getItem("tlenorgym_admin_auth");
-      return Boolean(token && token.startsWith("admin_"));
-    }
-    return false;
-  });
+      if (!token || !token.startsWith("admin_")) {
+        setIsCheckingAuth(false);
+        return;
+      }
+      try {
+        const res = await fetch("/api/admin-auth", {
+          method: "GET",
+          headers: { "Authorization": `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (data.ok) {
+          setIsAuthenticated(true);
+        } else {
+          localStorage.removeItem("tlenorgym_admin_auth");
+        }
+      } catch {
+        // Network error — allow cached auth for offline use
+        setIsAuthenticated(true);
+      }
+      setIsCheckingAuth(false);
+    };
+    validateToken();
+  }, []);
 
   const [passcode, setPasscode] = useState("");
   const [passError, setPassError] = useState(false);
@@ -648,6 +675,17 @@ export default function AdminPage() {
   const realProductClicks = analyticsData.totalProductClicks || 0;
   const realConversionRate = realUniqueVisitors > 0 ? ((totalOrdersCount / realUniqueVisitors) * 100).toFixed(1) : "0.0";
 
+  if (isCheckingAuth) {
+    return (
+      <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--color-bg)" }}>
+        <div style={{ textAlign: "center", color: "var(--color-text-muted)" }}>
+          <RefreshCw size={32} className="animate-spin" style={{ margin: "0 auto 1rem", display: "block" }} />
+          <p>Vérification de la session...</p>
+        </div>
+      </div>
+    );
+  }
+
   if (!isAuthenticated) {
     return (
       <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--color-bg)", padding: "1rem" }}>
@@ -664,7 +702,7 @@ export default function AdminPage() {
 
           <input
             type="password"
-            placeholder="Mot de passe (tlenor123)"
+            placeholder="Entrez le code d'accès"
             value={passcode}
             onChange={(e) => setPasscode(e.target.value)}
             style={{

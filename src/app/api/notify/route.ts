@@ -9,9 +9,50 @@ function escapeHtml(text: unknown): string {
     .replace(/"/g, "&quot;");
 }
 
+// Simple in-memory rate limiter (per IP, max 10 requests per minute)
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT_MAX = 10;
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+
+  entry.count++;
+  if (entry.count > RATE_LIMIT_MAX) {
+    return true;
+  }
+  return false;
+}
+
+// Periodically clean up stale entries (prevent memory leak)
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, entry] of rateLimitMap.entries()) {
+    if (now > entry.resetAt) {
+      rateLimitMap.delete(ip);
+    }
+  }
+}, 5 * 60 * 1000); // Every 5 minutes
+
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    // Rate limiting
+    const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
+      || req.headers.get("x-real-ip")
+      || "unknown";
+
+    if (isRateLimited(clientIp)) {
+      return NextResponse.json(
+        { ok: false, error: "Trop de requêtes. Réessayez dans une minute." },
+        { status: 429 }
+      );
+    }
 
     const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
     const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
@@ -21,9 +62,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: false, error: "Telegram not configured" }, { status: 200 });
     }
 
+    const body = await req.json();
     const { order } = body;
     if (!order) {
       return NextResponse.json({ ok: false, error: "Missing order data" }, { status: 400 });
+    }
+
+    // Validate required fields
+    if (!order.customer_name || !order.phone || !order.product_name) {
+      return NextResponse.json({ ok: false, error: "Champs requis manquants" }, { status: 400 });
     }
 
     const deliveryModeText = order.delivery_type === "home" ? "À Domicile" : "Bureau Yalidine / Stopdesk";

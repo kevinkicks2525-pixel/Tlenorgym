@@ -32,7 +32,6 @@ export default function Navbar() {
     <nav
       className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}
       id="main-nav"
-      style={{ position: "relative", zIndex: 99999 }}
     >
       <div
         className="navbar__inner"

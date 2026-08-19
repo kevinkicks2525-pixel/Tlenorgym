@@ -83,10 +83,17 @@ export async function deleteSupabaseProduct(id: number | string, name?: string) 
   if (!supabase) return false;
   try {
     const { error } = await supabase.from("products").delete().eq("id", id);
-    if (error && name) {
-      await supabase.from("products").delete().eq("name", name);
-    } else if (name) {
-      await supabase.from("products").delete().eq("name", name);
+    if (error) {
+      console.warn("Delete by ID failed, trying by name:", error.message);
+      if (name) {
+        const { error: nameError } = await supabase.from("products").delete().eq("name", name);
+        if (nameError) {
+          console.error("Delete by name also failed:", nameError.message);
+          return false;
+        }
+      } else {
+        return false;
+      }
     }
     return true;
   } catch (err) {
